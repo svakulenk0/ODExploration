@@ -32,7 +32,8 @@ class ESClient():
         '''
         returns the most popular keywords
         '''
-        result = self.es.search(index=self.index, body={"query": {"match_all": {}}, "aggs": {"licenses": {"terms": {"field": "raw.license_id.keyword"}}, "categories": {"terms": {"field": "raw.categorization.keyword"}}}})
+        # result = self.es.search(index=self.index, body={"query": {"match_all": {}}, "aggs": {"licenses": {"terms": {"field": "raw.license_id.keyword"}}, "categories": {"terms": {"field": "raw.categorization.keyword"}}}})
+        result = self.es.search(index=self.index, body={"query": {"match_all": {}}, "aggs": {"tags": {"terms": {"field": "raw.tags.name.keyword"}}, "organizations": {"terms": {"field": "raw.organization.name.keyword"}}}})
         return result['aggregations']
 
 
