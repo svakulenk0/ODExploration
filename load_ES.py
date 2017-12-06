@@ -44,7 +44,7 @@ def test_index(index=INDEX):
 
 def test_aggregation_stats(index=INDEX):
     db = ESClient(index)
-    db.aggregate()
+    print db.aggregate()
 
 
 if __name__ == '__main__':
