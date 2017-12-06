@@ -32,7 +32,7 @@ class ESClient():
 def test_index(index=INDEX):
     db = ESClient(index)
     db.check_n_items()
-    db.show_one()
+    # db.show_one()
 
 
 if __name__ == '__main__':
