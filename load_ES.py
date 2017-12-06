@@ -4,8 +4,10 @@ svakulenko
 
 Get (graph) data from Lucene (ES)
 '''
+import json
 
 from elasticsearch import Elasticsearch
+
 
 INDEX = 'odexploration'
 
