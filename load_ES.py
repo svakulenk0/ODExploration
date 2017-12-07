@@ -47,7 +47,7 @@ class ESClient():
         result = self.es.search(index=self.index, body={"query": {"match_all": {}}, "aggs": {
                 "licenses": {"cardinality": {"field": "raw.license_id.keyword"}},
                 "categories": {"cardinality": {"field": "raw.categorization.keyword"}},
-                "tags": {"terms": {"cardinality": "raw.tags.name.keyword"}},
+                "tags": {"cardinality": {"field": "raw.tags.name.keyword"}},
                 "organizations": {"cardinality": {"field": "raw.organization.name.keyword"}}
             }})
         return result['aggregations']
