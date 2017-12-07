@@ -28,7 +28,7 @@ class ESClient():
         result = self.es.search(index=self.index, body={"query": {"match_all": {}}})['hits']['hits'][0]
         print json.dumps(result, indent=4, sort_keys=True)
 
-    def aggregate(self):
+    def top(self):
         '''
         returns the most popular keywords
         '''
@@ -37,6 +37,18 @@ class ESClient():
                 "categories": {"terms": {"field": "raw.categorization.keyword"}},
                 "tags": {"terms": {"field": "raw.tags.name.keyword"}},
                 "organizations": {"terms": {"field": "raw.organization.name.keyword"}}
+            }})
+        return result['aggregations']
+
+    def count(self):
+        '''
+        returns the most popular keywords
+        '''
+        result = self.es.search(index=self.index, body={"query": {"match_all": {}}, "aggs": {
+                "licenses": {"cardinality": {"field": "raw.license_id.keyword"}},
+                "categories": {"cardinality": {"field": "raw.categorization.keyword"}},
+                "tags": {"terms": {"cardinality": "raw.tags.name.keyword"}},
+                "organizations": {"cardinality": {"field": "raw.organization.name.keyword"}}
             }})
         return result['aggregations']
 
@@ -49,7 +61,8 @@ def test_index(index=INDEX):
 
 def test_aggregation_stats(index=INDEX):
     db = ESClient(index)
-    print db.aggregate()
+    # print db.top()
+    print db.count()
 
 
 if __name__ == '__main__':
