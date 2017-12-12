@@ -1,4 +1,19 @@
-aggregations = {
+counts = {
+      u'licenses': {
+        u'value': 4
+      },
+      u'organizations': {
+        u'value': 29
+      },
+      u'categories': {
+        u'value': 117
+      },
+      u'tags': {
+        u'value': 2914
+      }
+    }
+
+top_keywords = {
       u'licenses': {
         u'buckets': [
           {
@@ -74,7 +89,7 @@ aggregations = {
             u'doc_count': 198
           },
           {
-            u'key': u'{umwelt}',
+            u'key': u'umwelt',
             u'doc_count': 186
           },
           {
