@@ -38,10 +38,12 @@ def facets_top_entities(k=2):
 
 def sample_items():
     '''
-    search docs by entity
+    show a sample of items for an entity
     '''
     db = ESClient()
-    db.search_by(field="raw.license_id.keyword", value="cc-by-at-30", limit=5)
+    results = db.search_by(field="raw.license_id.keyword", value="cc-by-at-30", limit=5)
+    for item in results:
+        print item["title"]
 
 
 def main():
