@@ -27,7 +27,7 @@ class ESClient():
         print json.dumps(result, indent=4, sort_keys=True)
 
     def search_by(self, field, value, limit):
-        result = self.es.search(index=self.index, size=limit, body={"query": {field: value}})['hits']['hits']
+        result = self.es.search(index=self.index, size=limit, body={"query": {"match": {field: value}}})['hits']['hits']
         print json.dumps(result, indent=4, sort_keys=True)
 
     def top(self):
