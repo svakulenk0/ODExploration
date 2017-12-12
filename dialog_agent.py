@@ -43,7 +43,7 @@ def sample_items():
     db = ESClient()
     results = db.search_by(field="raw.license_id.keyword", value="cc-by-at-30", limit=5)
     for item in results:
-        print item["title"]
+        print item
 
 
 def main():
