@@ -4,6 +4,12 @@
 
 2. Compute summary statistics with aggregations
 
+## Data structure
+
+4 attributes
+3,064 entities
+2,028 items
+
 
 ## References
 
