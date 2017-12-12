@@ -36,18 +36,22 @@ def facets_top_entities(k=2):
     print stats_string
 
 
-def sample_items():
+def sample_items(attribute, entity, size):
     '''
     show a sample of items for an entity
     '''
     db = ESClient()
-    results = db.search_by(field="raw.license_id.keyword", value="cc-by-at-30", limit=5)
+    results = db.search_by(field=attribute, value=entity, limit=size)
     for item in results:
         print item["_source"]["raw"]["title"]
 
 
+def test_sample_items():
+    sample_items(attribute="raw.license_id.keyword", entity="cc-by-at-30", size=5)
+
+
 def main():
-    sample_items()
+    test_sample_items()
 
 
 if __name__ == '__main__':
