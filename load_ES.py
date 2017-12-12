@@ -14,18 +14,20 @@ INDEX = 'odexploration'
 
 class ESClient():
 
-    def __init__(self, index):
+    def __init__(self, index=INDEX):
         self.es = Elasticsearch()
         self.index = index
-
 
     def check_n_items(self):
         res = self.es.search(index=self.index, body={"query": {"match_all": {}}})
         print("Total: %d items" % res['hits']['total'])
 
-
     def show_one(self):
         result = self.es.search(index=self.index, body={"query": {"match_all": {}}})['hits']['hits'][0]
+        print json.dumps(result, indent=4, sort_keys=True)
+
+    def search_by(self, field, value, limit):
+        result = self.es.search(index=self.index, size=limit, body={"query": {field: value}})['hits']['hits']
         print json.dumps(result, indent=4, sort_keys=True)
 
     def top(self):
@@ -66,4 +68,4 @@ def test_aggregation_stats(index=INDEX):
 
 
 if __name__ == '__main__':
-    test_aggregation_stats()
+    test_index()
