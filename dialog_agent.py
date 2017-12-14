@@ -75,6 +75,18 @@ TEMPLATES = {
             }
 
 
+def build_sentence(facet, entities, pattern=None):
+    '''
+    Function to build a sentence using data from the pre-defined templates
+    '''
+    if len(entities) > 1:
+        sentence = TEMPLATES['multiple'][0] % (facet, TEMPLATES['join'][0].join(entities))
+    else:
+        sentence = TEMPLATES['single'][0] % (entities[0], facet)
+
+    return sentence
+
+
 def test_rank_nodes(topn=20):
     ranking = rank_nodes(top_keywords)
     
@@ -89,10 +101,7 @@ def test_rank_nodes(topn=20):
     
     # phrase topn ranked nodes
     for facet, entities in top_facets.items():
-        if len(entities) > 1:
-            print TEMPLATES['multiple'][0] % (TEMPLATES['join'][0].join(entities), facet)
-        else:
-            print TEMPLATES['single'][0] % (entities[0], facet)
+        print build_sentence(facet, entities)
 
 
 def test_sample_items():
