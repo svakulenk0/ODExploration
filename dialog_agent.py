@@ -4,6 +4,8 @@ svakulenko
 
 Create sample utterances from data
 '''
+from Queue import PriorityQueue
+
 from load_ES import ESClient
 from aggregations import counts, top_keywords
 
@@ -46,12 +48,32 @@ def sample_items(attribute, entity, size):
         print item["_source"]["raw"]["title"]
 
 
+def rank_nodes(top_keywords):
+    '''
+    rank nodes by degree (counts)
+    '''
+    # initialize a priority queue to store nodes ranking
+    q = PriorityQueue()
+    #  iterate over attributes
+    for facet, counts in top_keywords.items():
+        entities = counts['buckets']
+        # iterate over top entities of the attribute
+        for entity in entities:
+            # insert into the priority queue (max weight items to go first)
+            q.put((-entity['doc_count'], entity['key']))
+    return q
+
+
+def test_rank_nodes():
+    print rank_nodes(top_keywords)
+
+
 def test_sample_items():
     sample_items(attribute="raw.license_id.keyword", entity="cc-by-at-30", size=5)
 
 
 def main():
-    test_sample_items()
+    test_rank_nodes()
 
 
 if __name__ == '__main__':
