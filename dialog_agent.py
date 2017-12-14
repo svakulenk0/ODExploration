@@ -108,7 +108,7 @@ class DialogAgent():
         self.transmitted_messages += 1
         print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
         print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
-        print "\t%.2f% of the information space communicated" % (self.sum_weight / float(self.space_size))
+        print "\t%.2f of the information space communicated" % (self.sum_weight / float(self.space_size))
 
     def transmit(self, message, report=False):
         '''
@@ -156,6 +156,7 @@ class DialogAgent():
 
         # report story stats
         print "\nTotal: communicated", self.sum_weight, "information units via", self.transmitted_symbols, "symbols in", self.transmitted_messages, "messages"
+        print "\t%.2f of the information space covered" % (self.sum_weight / float(self.space_size))
 
     def tell_clusters(self, topn):
         '''
