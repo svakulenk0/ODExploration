@@ -173,9 +173,9 @@ class DialogAgent():
             for node in clusters[facet]:
                 self.communicate_node(node)
             # communicate one cluster per message
-            self.transmitted_messages += 1
-            print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
-            print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
+            # self.transmitted_messages += 1
+            # print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
+            # print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
 
     def tell_greedy(self, topn):
         '''
