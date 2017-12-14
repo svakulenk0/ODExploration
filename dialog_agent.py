@@ -68,7 +68,7 @@ def rank_nodes(top_keywords):
 TEMPLATES = {
                 'single': ["%s is the most popular %s"],
                 'multiple': [
-                        "The most popular %s are: %s",
+                        "The most popular %ss are: %s",
                         "%s are the most popular among %ss"
                     ],
                 'join': [", ", " and "],
