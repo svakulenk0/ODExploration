@@ -84,7 +84,7 @@ def test_rank_nodes(topn=20):
         top_facets[facet].append(entity)
     
     # phrase topn ranked nodes
-    for facet, entities in top_facets:
+    for facet, entities in top_facets.items():
         if len(entities) > 1:
             print TEMPLATES['multiple'][0] % (" and ".join(entities), facet)
         else:
