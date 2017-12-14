@@ -1,11 +1,11 @@
 counts = {
-      u'licenses': {
+      u'license': {
         u'value': 4
       },
-      u'organizations': {
+      u'organization': {
         u'value': 29
       },
-      u'categories': {
+      u'categorization': {
         u'value': 117
       },
       u'tags': {
