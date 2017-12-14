@@ -5,6 +5,7 @@ svakulenko
 Create sample utterances from data
 '''
 from Queue import PriorityQueue
+from collections import defaultdict
 
 from load_ES import ESClient
 from aggregations import counts, top_keywords
@@ -64,14 +65,30 @@ def rank_nodes(top_keywords):
     return q
 
 
+TEMPLATES = {
+                'single': ["%s is the most popular %s"],
+                'multiple': ["%s are the most popular among %ss"]
+            }
+
+
 def test_rank_nodes(topn=20):
     ranking = rank_nodes(top_keywords)
-    # show topn ranked nodes
+    
+    # group topn ranked nodes by attribute
+    top_facets = defaultdict()
+
     for i in range(topn):
         # unpack rank
         weight, relation = ranking.get()
         facet, entity = relation
-        print "%s is the most popular %s" % (entity, facet)
+        top_facets[facet].append(entity)
+    
+    # phrase topn ranked nodes
+    for facet, entities in top_facets:
+        if len(entities) > 1:
+            print TEMPLATES['multiple'][0] % (" and ".join(entities), facet)
+        else:
+            print TEMPLATES['single'][0] % (entities[0], facet)
 
 
 def test_sample_items():
