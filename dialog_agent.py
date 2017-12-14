@@ -65,7 +65,8 @@ def rank_nodes(top_keywords):
 
 
 def test_rank_nodes():
-    print rank_nodes(top_keywords)
+    ranking = rank_nodes(top_keywords)
+    print(ranking.queue)
 
 
 def test_sample_items():
