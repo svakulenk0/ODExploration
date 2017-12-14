@@ -132,9 +132,9 @@ class DialogAgent():
             self.transmit(entity)
             sum_weight -= weight
             # report current communication efficiency (knowledge flow velocity)
-            print sum_weight / n_symbols
+            print sum_weight / self.transmitted_symbols
         
-        print "Total: communicated", sum_weight, "information units via", n_symbols, "symbols"
+        print "Total: communicated", sum_weight, "information units via", self.transmitted_symbols, "symbols"
 
 
 def get_top_nodes(topn=20):
