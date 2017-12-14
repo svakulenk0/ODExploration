@@ -106,7 +106,7 @@ class DialogAgent():
         '''
         simulate communication channel
         '''
-        if message not in transmitted_nodes:
+        if message not in self.transmitted_nodes:
             print message
             self.transmitted_nodes.append(message)
             self.transmitted_symbols += len(message)
