@@ -102,13 +102,13 @@ class DialogAgent():
         # keep track of the last transmitted node attribute to save space in the bucket
         self.top_keywords = top_keywords
 
-    def transmit(self, message):
+    def transmit(self, message, report=False):
         '''
         simulate communication channel
         '''
         if message not in self.transmitted_node:
             # report previous node as a message
-            if self.transmitted_symbols:
+            if self.transmitted_symbols and report:
                 self.transmitted_messages += 1
                 print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
                 print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
@@ -120,7 +120,7 @@ class DialogAgent():
         transmitted_symbols = 0
         weight, relation = node
         facet, entity = relation
-        transmitted_symbols += self.transmit(facet)
+        transmitted_symbols += self.transmit(facet, True)
         transmitted_symbols += self.transmit(entity)
         self.sum_weight -= weight
 
