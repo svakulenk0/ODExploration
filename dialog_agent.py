@@ -149,8 +149,7 @@ class DialogAgent():
         
         # group topn ranked nodes by attribute
         clusters = defaultdict(list)
-        clusters_weights = defaultdict(int)
-        clusters_length = defaultdict(int)
+        facet_queue = PriorityQueue()
 
         # cluster entities around facets
         for i in range(topn):
@@ -159,15 +158,14 @@ class DialogAgent():
             # retrieve the node
             weight, relation = self.ranking.get()
             facet, entity = relation
-            clusters[facet].append(entity)
-            clusters_weights[facet] += weight
-            clusters_length[facet] += len(entity)
-        
-        # rank clusters
-        top_clusters = PriorityQueue()
-        for facet, entities in top_clusters.items():
-            rank = clusters_weights[facet] / (len(facet) + clusters_length[facet])
-            # top_clusters.put(rank, )
+            clusters[facet].append((weight, relation))
+            facet_queue.put(facet)
+
+        # process top clusters
+        while len(facet_queue):
+            facet = facet_queue.get()
+            for node in clusters[facet]:
+                self.communicate_node(node)
 
     def tell_greedy(self, topn):
         '''
