@@ -108,7 +108,7 @@ class DialogAgent():
         self.transmitted_messages += 1
         print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
         print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
-        print "\t", self.sum_weight / self.space_size, "% of the information space covered"
+        print "\t{0:.2f}% of the information space communicated" % (self.sum_weight / float(self.space_size))
 
     def transmit(self, message, report=False):
         '''
