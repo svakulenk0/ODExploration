@@ -111,7 +111,7 @@ class DialogAgent():
             self.transmitted_nodes.append(message)
             self.transmitted_symbols += len(message)
 
-    def tell_story(topn=10, top_keywords=top_keywords):
+    def tell_story(self, topn=10, top_keywords=top_keywords):
         '''
         Runs the simulation of the knowledge flow
         simultaneously evaluating its productivity (velocity of the chanel)
@@ -161,7 +161,7 @@ def test_sample_items():
 def test_story_teller():
     story_size = 10  # n_concepts
     bot = DialogAgent()
-    bot.tell_story()
+    bot.tell_story(story_size)
 
 
 def main():
