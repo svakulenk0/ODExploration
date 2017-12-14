@@ -6,9 +6,11 @@
 
 ## Data structure
 
-4 attributes
-3,064 entities
 2,028 items
+4 attributes: license, organization, categorization, tags (array)
+3,064 entities
+
+2,028 items * (4 attributes + 1) = 2,028 items * 5 representation layers = 10,140 information items
 
 
 ## References
