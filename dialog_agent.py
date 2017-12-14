@@ -124,7 +124,6 @@ class DialogAgent():
 
         # report current communication efficiency (knowledge flow velocity/productivity) per symbol
         # print - weight / transmitted_symbols
-        print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
 
     def tell_story(self, topn=10):
         '''
@@ -134,12 +133,13 @@ class DialogAgent():
         topn <int> defines the size of the story requested in terms of the number of concepts communicated
         '''
         self.ranking = rank_nodes(self.top_keywords)
+        # initialize story stats
         self.sum_weight = 0
         self.transmitted_node = []
         self.transmitted_symbols = 0
-
+        self.transmitted_messages = 0
+        
         self.tell_clusters(topn)
-
         print "\nTotal: communicated", self.sum_weight, "information units via", self.transmitted_symbols, "symbols"
 
     def tell_clusters(self, topn):
@@ -167,6 +167,10 @@ class DialogAgent():
         for facet in facet_queue:
             for node in clusters[facet]:
                 self.communicate_node(node)
+            # communicate one cluster per message
+            self.transmitted_messages += 1
+            print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
+            print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
 
     def tell_greedy(self, topn):
         '''
@@ -201,8 +205,8 @@ def test_sample_items():
 
 def test_story_teller():
     story_size = 10  # n_concepts
-    bot = DialogAgent()
-    bot.tell_story(story_size)
+    chatbot = DialogAgent()
+    chatbot.tell_story(story_size)
 
 
 def main():
