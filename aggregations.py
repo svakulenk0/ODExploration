@@ -113,27 +113,27 @@ top_keywords = {
             u'doc_count': 198
           },
           {
-            u'key': u'{umwelt}',
+            u'key': u'umwelt',
             u'doc_count': 186
           },
           {
-            u'key': u'{bevoelkerung}',
+            u'key': u'bevoelkerung',
             u'doc_count': 154
           },
           {
-            u'key': u'{geographie-und-planung}',
+            u'key': u'geographie-und-planung',
             u'doc_count': 145
           },
           {
-            u'key': u'{verkehr-und-technik}',
+            u'key': u'verkehr-und-technik',
             u'doc_count': 111
           },
           {
-            u'key': u'{verwaltung-und-politik}',
+            u'key': u'verwaltung-und-politik',
             u'doc_count': 94
           },
           {
-            u'key': u'["umwelt"]',
+            u'key': u'umwelt',
             u'doc_count': 83
           },
           {
