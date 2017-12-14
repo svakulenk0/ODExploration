@@ -89,6 +89,21 @@ def build_sentence(facet, entities, pattern=None):
 
 def test_rank_nodes(topn=20):
     ranking = rank_nodes(top_keywords)
+    for i in range(topn):
+        print ranking.get()
+
+
+def estimate_ranking(topn=1):
+    ranking = rank_nodes(top_keywords)
+    sum_weight = 0
+    for i in range(topn):
+        weight, relation = ranking.get()
+        sum_weight += weight
+    print sum_weight
+
+
+def get_top_nodes(topn=20):
+    ranking = rank_nodes(top_keywords)
     
     # group topn ranked nodes by attribute
     top_facets = defaultdict(list)
@@ -109,7 +124,7 @@ def test_sample_items():
 
 
 def main():
-    test_rank_nodes()
+    estimate_ranking()
 
 
 if __name__ == '__main__':
