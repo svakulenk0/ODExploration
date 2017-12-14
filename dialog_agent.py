@@ -93,29 +93,48 @@ def test_rank_nodes(topn=20):
         print ranking.get()
 
 
-def estimate_ranking(topn=10):
+class DialogAgent():
     '''
-    Runs the simulation of the knowledge flow evaluating the productivity (velocity) of the chanel
+    Chatbot talking data optimizing for knowledge transfer
     '''
-    ranking = rank_nodes(top_keywords)
-    sum_weight = 0
-    n_symbols = 0
-    transmitted_nodes = []
 
-    for i in range(topn):
-        # retrieve the node
-        weight, relation = ranking.get()
-        facet, entity = relation
+    def __init__(self):
+        self.transmitted_nodes = []
+        self.transmitted_symbols = 0
 
-        # communicate the node
-        transmitted_nodes.extend([facet, entity])
-        n_symbols += len(facet) + len(entity)
-        sum_weight -= weight
+    def transmit(self, message):
+        '''
+        simulate communication channel
+        '''
+        if message not in transmitted_nodes:
+            print message
+            self.transmitted_nodes.append(message)
+            self.transmitted_symbols += len(message)
 
-        # report current communication efficiency (knowledge flow velocity)
-        print sum_weight / n_symbols
-    
-    print "Total: communicated", sum_weight, "information units via", n_symbols, "symbols"
+    def tell_story(topn=10, top_keywords=top_keywords):
+        '''
+        Runs the simulation of the knowledge flow
+        simultaneously evaluating its productivity (velocity of the chanel)
+
+        topn <int> defines the size of the story requested in terms of the number of concepts communicated
+
+        '''
+        ranking = rank_nodes(top_keywords)
+        sum_weight = 0
+
+        for i in range(topn):
+            # retrieve the node
+            weight, relation = ranking.get()
+            facet, entity = relation
+
+            # communicate the node
+            self.transmit(facet)
+            self.transmit(entity)
+            sum_weight -= weight
+            # report current communication efficiency (knowledge flow velocity)
+            print sum_weight / n_symbols
+        
+        print "Total: communicated", sum_weight, "information units via", n_symbols, "symbols"
 
 
 def get_top_nodes(topn=20):
@@ -139,8 +158,14 @@ def test_sample_items():
     sample_items(attribute="raw.license_id.keyword", entity="cc-by-at-30", size=5)
 
 
+def test_story_teller():
+    story_size = 10  # n_concepts
+    bot = DialogAgent()
+    bot.tell_story()
+
+
 def main():
-    estimate_ranking()
+    test_story_teller()
 
 
 if __name__ == '__main__':
