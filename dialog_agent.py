@@ -108,7 +108,7 @@ def estimate_ranking(topn=10):
         facet, entity = relation
 
         # communicate the node
-        transmitted_nodes.append(facet, entity)
+        transmitted_nodes.extend([facet, entity])
         n_symbols += len(facet) + len(entity)
         sum_weight -= weight
 
