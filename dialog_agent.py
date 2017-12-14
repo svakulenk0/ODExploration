@@ -133,12 +133,13 @@ class DialogAgent():
             transmitted_symbols += self.transmit(facet)
             transmitted_symbols += self.transmit(entity)
             sum_weight -= weight
-            # report current communication efficiency (knowledge flow velocity/productivity) per symbol
-            # print - weight / transmitted_symbols
-            print sum_weight / self.transmitted_symbols, "information units per symbol"
 
             self.transmitted_symbols += transmitted_symbols
             self.transmitted_node = relation
+
+            # report current communication efficiency (knowledge flow velocity/productivity) per symbol
+            # print - weight / transmitted_symbols
+            print sum_weight / self.transmitted_symbols, "information units per symbol"
 
         print "Total: communicated", sum_weight, "information units via", self.transmitted_symbols, "symbols"
         # print sum_weight / self.transmitted_symbols, "information units per symbol"
