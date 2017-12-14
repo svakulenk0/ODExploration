@@ -22,6 +22,8 @@ Datasets metadata of the Austrian Government Open Data portal (data.gv.at)
 3. Storytelling
 
 a) Storytelling approaches
+
+        3.0. Baseline: pick entities at random.
         
         3.1. Greedy approach to storytelling is based on a pessimistic assumption that the conversation can be interupted any time. This way the agent will always communicate the most important entities first.
         
@@ -33,7 +35,7 @@ b) Optimization criteria (performance metrics of the story quality)
 
 The agent is selecting a policy to maximize the expected reward.
 
-Cold start + incorporating user feedback (reinforcement learning).
+Cold start + incorporating user feedback (reinforcement learning)
 
 Information space coverage is the sum of the weights of all the entities communicated up to the ith point of time. The weights are derived from the entity ranking, e.g. counts. This measure can be converted into a proportion (%) with respect to the whole information space (normalised by the size of the input table).
 
@@ -64,38 +66,84 @@ Experiment_1: max story size = 10 entities
 
 license
 cc-by-at-30
-        102 information units per symbol
+    1852 information units per message
+    102 information units per symbol
+    0.18 of the information space communicated
+
 organization
 stadt-linz
-        55 information units per symbol
 stadt-wien
-        50 information units per symbol
 land-oberoesterreich
-        39 information units per symbol
+    1390 information units per message
+    39 information units per symbol
+    0.27 of the information space communicated
+
 tags
 linz
-        38 information units per symbol
+    999 information units per message
+    38 information units per symbol
+    0.30 of the information space communicated
+
 categorization
 finanzen-und-rechnungswesen
-        26 information units per symbol
+    799 information units per message
+    26 information units per symbol
+    0.32 of the information space communicated
+
 tags
 haushalt
-        25 information units per symbol
 außerordentlicher
-        24 information units per symbol
 ordentlicher
-        23 information units per symbol
+    752 information units per message
+    23 information units per symbol
+    0.37 of the information space communicated
+
 categorization
 umwelt
-        21 information units per symbol
-
-Total: communicated 3949 information units via 180 symbols
-
-
-* clustering approach: group all entities by attribute
+    658 information units per message
+    21 information units per symbol
+    0.39 of the information space communicated
 
 
+Total: communicated 3949 information units via 180 symbols in 6 messages
+    0.39 of the information space covered
 
+
+* clustering approach: group the top entities by attribute
+
+license
+cc-by-at-30
+    1852 information units per message
+    102 information units per symbol
+    0.18 of the information space communicated
+
+organization
+stadt-linz
+stadt-wien
+land-oberoesterreich
+    1390 information units per message
+    39 information units per symbol
+    0.27 of the information space communicated
+
+tags
+linz
+haushalt
+außerordentlicher
+ordentlicher
+    1188 information units per message
+    31 information units per symbol
+    0.35 of the information space communicated
+
+categorization
+finanzen-und-rechnungswesen
+umwelt
+    987 information units per message
+    24 information units per symbol
+    0.39 of the information space communicated
+
+
+Total: communicated 3949 information units via 162 symbols in 4 messages
+    0.39 of the information space covered
 
 
 ## References
