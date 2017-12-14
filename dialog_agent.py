@@ -64,9 +64,10 @@ def rank_nodes(top_keywords):
     return q
 
 
-def test_rank_nodes():
+def test_rank_nodes(topn=20):
     ranking = rank_nodes(top_keywords)
-    while True:
+    # show topn ranked nodes
+    for i in range(topn):
         print ranking.get()
 
 
