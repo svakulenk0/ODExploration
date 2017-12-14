@@ -145,6 +145,12 @@ class DialogAgent():
         self.transmitted_messages = 0
         
         self.tell_clusters(topn)
+        # report final message
+        self.transmitted_messages += 1
+        print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
+        print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
+
+        # report story stats
         print "\nTotal: communicated", self.sum_weight, "information units via", self.transmitted_symbols, "symbols in", self.transmitted_messages, "messages"
 
     def tell_clusters(self, topn):
