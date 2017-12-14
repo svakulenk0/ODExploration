@@ -67,7 +67,11 @@ def rank_nodes(top_keywords):
 
 TEMPLATES = {
                 'single': ["%s is the most popular %s"],
-                'multiple': ["%s are the most popular among %ss"]
+                'multiple': [
+                        "The most popular %s are: %s",
+                        "%s are the most popular among %ss"
+                    ],
+                'join': [", ", " and "],
             }
 
 
@@ -86,7 +90,7 @@ def test_rank_nodes(topn=20):
     # phrase topn ranked nodes
     for facet, entities in top_facets.items():
         if len(entities) > 1:
-            print TEMPLATES['multiple'][0] % (" and ".join(entities), facet)
+            print TEMPLATES['multiple'][0] % (TEMPLATES['join'][0].join(entities), facet)
         else:
             print TEMPLATES['single'][0] % (entities[0], facet)
 
