@@ -160,7 +160,8 @@ class DialogAgent():
             weight, relation = self.ranking.get()
             facet, entity = relation
             clusters[facet].append((weight, relation))
-            facet_queue.put(facet)
+            if facet not in facet_queue:
+                facet_queue.put(facet)
 
         # process top clusters
         while not facet_queue.empty():
