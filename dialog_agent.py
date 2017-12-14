@@ -113,6 +113,7 @@ class DialogAgent():
 
     def communicate_node(self, node):
         transmitted_symbols = 0
+        weight, relation = node
         facet, entity = relation
         transmitted_symbols += self.transmit(facet)
         transmitted_symbols += self.transmit(entity)
