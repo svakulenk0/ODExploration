@@ -96,10 +96,15 @@ def test_rank_nodes(topn=20):
 def estimate_ranking(topn=1):
     ranking = rank_nodes(top_keywords)
     sum_weight = 0
+    nsymbols = 0
+
     for i in range(topn):
         weight, relation = ranking.get()
-        sum_weight += weight
-    print sum_weight
+        facet, entity = relation
+        nsymbols += len(facet) + len(entity)
+        sum_weight -= weight
+
+    print sum_weight, nsymbols
 
 
 def get_top_nodes(topn=20):
