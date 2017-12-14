@@ -1,16 +1,34 @@
 # ODExploration
 
-1. Get (graph) data from Lucene (ES)
+## Dataset
 
-2. Compute summary statistics with aggregations
-
-## Data structure
+Datasets metadata of the Austrian Government Open Data portal (data.gv.at)
 
 2,028 items
-4 attributes: license, organization, categorization, tags (array)
+5 attributes: title, license, organization, categorization, tags (array)
 3,064 entities
 
-2,028 items * (4 attributes + 1) = 2,028 items * 5 representation layers = 10,140 information items
+2,028 items * 5 attributes (representation layers) = 10,140 information items
+
+
+## Approach
+
+1. Index dataset (Lucene/ES)
+2. Rank entities using counts
+
+
+## Entity ranking
+
+(-1852, (u'license', u'cc-by-at-30'))
+(-351, (u'organization', u'stadt-linz'))
+(-335, (u'organization', u'stadt-wien'))
+(-242, (u'organization', u'land-oberoesterreich'))
+(-218, (u'tags', u'linz'))
+(-198, (u'categorization', u'finanzen-und-rechnungswesen'))
+(-191, (u'tags', u'haushalt'))
+(-188, (u'tags', u'au\xdferordentlicher'))
+(-188, (u'tags', u'ordentlicher'))
+(-186, (u'categorization', u'{umwelt}'))
 
 
 ## References
