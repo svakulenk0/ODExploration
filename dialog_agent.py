@@ -139,7 +139,7 @@ class DialogAgent():
 
             # report current communication efficiency (knowledge flow velocity/productivity) per symbol
             # print - weight / transmitted_symbols
-            print sum_weight / self.transmitted_symbols, "information units per symbol"
+            print "\t", sum_weight / self.transmitted_symbols, "information units per symbol"
 
         print "Total: communicated", sum_weight, "information units via", self.transmitted_symbols, "symbols"
         # print sum_weight / self.transmitted_symbols, "information units per symbol"
