@@ -75,7 +75,7 @@ def test_rank_nodes(topn=20):
     ranking = rank_nodes(top_keywords)
     
     # group topn ranked nodes by attribute
-    top_facets = defaultdict()
+    top_facets = defaultdict(list)
 
     for i in range(topn):
         # unpack rank
