@@ -61,7 +61,7 @@ def rank_nodes(top_keywords):
         # iterate over top entities of the attribute
         for entity in entities:
             # insert into the priority queue (max weight items to go first)
-            q.put((-entity['doc_count'], (facet, entity['key'])))
+            q.put((-entity['doc_count'] / len(entity['key']), (facet, entity['key'])))
     return q
 
 
@@ -133,13 +133,14 @@ class DialogAgent():
             transmitted_symbols += self.transmit(facet)
             transmitted_symbols += self.transmit(entity)
             sum_weight -= weight
-            # report current communication efficiency (knowledge flow velocity)
-            print weight / transmitted_symbols
+            # report current communication efficiency (knowledge flow velocity/productivity) per symbol
+            print - weight / transmitted_symbols
 
             self.transmitted_symbols += transmitted_symbols
             self.transmitted_node = relation
 
         print "Total: communicated", sum_weight, "information units via", self.transmitted_symbols, "symbols"
+        print sum_weight / self.transmitted_symbols, "information units per symbol"
 
 
 def get_top_nodes(topn=20):
