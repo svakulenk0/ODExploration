@@ -109,7 +109,8 @@ class DialogAgent():
         '''
         if message not in self.transmitted_node:
             print message
-            self.transmitted_symbols += len(message)
+            return len(message)
+        return 0
 
     def tell_story(self, topn=10, top_keywords=top_keywords):
         '''
@@ -123,18 +124,21 @@ class DialogAgent():
         sum_weight = 0
 
         for i in range(topn):
+            transmitted_symbols = 0
             # retrieve the node
             weight, relation = ranking.get()
             facet, entity = relation
 
             # communicate the node
-            self.transmit(facet)
-            self.transmit(entity)
+            transmitted_symbols += self.transmit(facet)
+            transmitted_symbols += self.transmit(entity)
             sum_weight -= weight
-            self.transmitted_node = relation
             # report current communication efficiency (knowledge flow velocity)
-            print sum_weight / self.transmitted_symbols
-        
+            print weight / transmitted_symbols
+
+            self.transmitted_symbols += transmitted_symbols
+            self.transmitted_node = relation
+
         print "Total: communicated", sum_weight, "information units via", self.transmitted_symbols, "symbols"
 
 
