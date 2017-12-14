@@ -99,16 +99,16 @@ class DialogAgent():
     '''
 
     def __init__(self):
-        self.transmitted_nodes = []
+        # keep track of the last transmitted node attribute to save space in the bucket
+        self.transmitted_node = []
         self.transmitted_symbols = 0
 
     def transmit(self, message):
         '''
         simulate communication channel
         '''
-        if message not in self.transmitted_nodes:
+        if message not in self.transmitted_node:
             print message
-            self.transmitted_nodes.append(message)
             self.transmitted_symbols += len(message)
 
     def tell_story(self, topn=10, top_keywords=top_keywords):
@@ -131,6 +131,7 @@ class DialogAgent():
             self.transmit(facet)
             self.transmit(entity)
             sum_weight -= weight
+            self.transmitted_node = relation
             # report current communication efficiency (knowledge flow velocity)
             print sum_weight / self.transmitted_symbols
         
