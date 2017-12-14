@@ -93,18 +93,29 @@ def test_rank_nodes(topn=20):
         print ranking.get()
 
 
-def estimate_ranking(topn=1):
+def estimate_ranking(topn=10):
+    '''
+    Runs the simulation of the knowledge flow evaluating the productivity (velocity) of the chanel
+    '''
     ranking = rank_nodes(top_keywords)
     sum_weight = 0
     n_symbols = 0
+    transmitted_nodes = []
 
     for i in range(topn):
+        # retrieve the node
         weight, relation = ranking.get()
         facet, entity = relation
+
+        # communicate the node
+        transmitted_nodes.append(facet, entity)
         n_symbols += len(facet) + len(entity)
         sum_weight -= weight
 
-    print sum_weight, "information units per", n_symbols, "symbols"
+        # report current communication efficiency (knowledge flow velocity)
+        print sum_weight / n_symbols
+    
+    print "Total: communicated", sum_weight, "information units via", n_symbols, "symbols"
 
 
 def get_top_nodes(topn=20):
