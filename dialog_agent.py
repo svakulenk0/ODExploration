@@ -60,7 +60,7 @@ def rank_nodes(top_keywords):
         # iterate over top entities of the attribute
         for entity in entities:
             # insert into the priority queue (max weight items to go first)
-            q.put((-entity['doc_count'], entity['key']))
+            q.put((-entity['doc_count'], (facet, entity['key'])))
     return q
 
 
