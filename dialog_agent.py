@@ -116,7 +116,7 @@ class DialogAgent():
         weight, relation = node
         facet, entity = relation
         transmitted_symbols += self.transmit(facet)
-        if transmitted_symbols:
+        if transmitted_symbols and self.transmitted_symbols:
             # report previous node as a message
             self.transmitted_messages += 1
             print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
