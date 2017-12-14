@@ -137,7 +137,7 @@ class DialogAgent():
         self.transmitted_node = []
         self.transmitted_symbols = 0
 
-        self.tell_greedy(topn)
+        self.tell_clusters(topn)
 
         print "\nTotal: communicated", self.sum_weight, "information units via", self.transmitted_symbols, "symbols"
 
