@@ -68,4 +68,4 @@ def test_aggregation_stats(index=INDEX):
 
 
 if __name__ == '__main__':
-    test_index()
+    test_aggregation_stats()
