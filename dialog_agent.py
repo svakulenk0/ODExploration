@@ -150,7 +150,7 @@ class DialogAgent():
         
         # group topn ranked nodes by attribute
         clusters = defaultdict(list)
-        facet_queue = PriorityQueue()
+        facet_queue = []
 
         # cluster entities around facets
         for i in range(topn):
@@ -161,11 +161,10 @@ class DialogAgent():
             facet, entity = relation
             clusters[facet].append((weight, relation))
             if facet not in facet_queue:
-                facet_queue.put(facet)
+                facet_queue.append(facet)
 
         # process top clusters
-        while not facet_queue.empty():
-            facet = facet_queue.get()
+        for facet in facet_queue:
             for node in clusters[facet]:
                 self.communicate_node(node)
 
