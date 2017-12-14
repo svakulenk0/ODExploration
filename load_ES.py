@@ -37,7 +37,7 @@ class ESClient():
         result = self.es.search(index=self.index, body={"query": {"match_all": {}}, "aggs": {
                 "title": {"terms": {"field": "raw.title.keyword"}},
                 "license": {"terms": {"field": "raw.license_id.keyword"}},
-                "organization": {"terms": {"field": "raw.categorization.keyword"}},
+                "categorization": {"terms": {"field": "raw.categorization.keyword"}},
                 "tags": {"terms": {"field": "raw.tags.name.keyword"}},
                 "organization": {"terms": {"field": "raw.organization.name.keyword"}}
             }})
