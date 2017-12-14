@@ -98,10 +98,9 @@ class DialogAgent():
     Chatbot talking data optimizing for knowledge transfer
     '''
 
-    def __init__(self):
+    def __init__(self, top_keywords=top_keywords):
         # keep track of the last transmitted node attribute to save space in the bucket
-        self.transmitted_node = []
-        self.transmitted_symbols = 0
+        self.top_keywords = top_keywords
 
     def transmit(self, message):
         '''
@@ -112,37 +111,73 @@ class DialogAgent():
             return len(message)
         return 0
 
-    def tell_story(self, topn=10, top_keywords=top_keywords):
+    def communicate_node(weight, relation):
+        transmitted_symbols = 0
+        facet, entity = relation
+        transmitted_symbols += self.transmit(facet)
+        transmitted_symbols += self.transmit(entity)
+        self.sum_weight -= weight
+
+        self.transmitted_symbols += transmitted_symbols
+        self.transmitted_node = relation
+
+        # report current communication efficiency (knowledge flow velocity/productivity) per symbol
+        # print - weight / transmitted_symbols
+        print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
+
+    def tell_story(self, topn=10):
         '''
         Runs the simulation of the knowledge flow
         simultaneously evaluating its productivity (velocity of the chanel)
 
         topn <int> defines the size of the story requested in terms of the number of concepts communicated
-
         '''
-        ranking = rank_nodes(top_keywords)
-        sum_weight = 0
+        self.ranking = rank_nodes(self.top_keywords)
+        self.sum_weight = 0
+        self.transmitted_node = []
+        self.transmitted_symbols = 0
 
+        self.tell_greedy(topn)
+
+        print "\nTotal: communicated", self.sum_weight, "information units via", self.transmitted_symbols, "symbols"
+
+    def tell_clusters(self, topn):
+        '''
+        Clustering approach to storytelling is based on an optimistic assumption that the conversation will last at least k number of turns.
+        This way the agent can design an optimal combination of entities assuming k number of turns is available.
+        '''
+        
+        # group topn ranked nodes by attribute
+        clusters = defaultdict(list)
+        clusters_weights = defaultdict(int)
+        clusters_length = defaultdict(int)
+
+        # cluster entities around facets
         for i in range(topn):
+            # unpack rank
             transmitted_symbols = 0
             # retrieve the node
-            weight, relation = ranking.get()
+            weight, relation = self.ranking.get()
             facet, entity = relation
+            clusters[facet].append(entity)
+            clusters_weights[facet] += weight
+            clusters_length[facet] += len(entity)
+        
+        # rank clusters
+        top_clusters = PriorityQueue()
+        for facet, entities in top_clusters.items():
+            rank = clusters_weights[facet] / (len(facet) + clusters_length[facet])
+            # top_clusters.put(rank, )
 
-            # communicate the node
-            transmitted_symbols += self.transmit(facet)
-            transmitted_symbols += self.transmit(entity)
-            sum_weight -= weight
-
-            self.transmitted_symbols += transmitted_symbols
-            self.transmitted_node = relation
-
-            # report current communication efficiency (knowledge flow velocity/productivity) per symbol
-            # print - weight / transmitted_symbols
-            print "\t", sum_weight / self.transmitted_symbols, "information units per symbol"
-
-        print "Total: communicated", sum_weight, "information units via", self.transmitted_symbols, "symbols"
-        # print sum_weight / self.transmitted_symbols, "information units per symbol"
+    def tell_greedy(self, topn):
+        '''
+        Greedy approach to storytelling based on the pessimistic assumption that the conversation can be interupted any time.
+        '''
+        # iterate over top n entities
+        for i in range(topn):
+            # retrieve the node
+            weight, relation = self.ranking.get()
+            self.communicate_node(weight, relation)
 
 
 def get_top_nodes(topn=20):
