@@ -68,7 +68,10 @@ def test_rank_nodes(topn=20):
     ranking = rank_nodes(top_keywords)
     # show topn ranked nodes
     for i in range(topn):
-        print ranking.get()
+        # unpack rank
+        weight, relation = ranking.get()
+        facet, entity = relation
+        print "%s is the most popular %s" % (entity, facet)
 
 
 def test_sample_items():
