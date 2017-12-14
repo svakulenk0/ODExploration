@@ -162,7 +162,7 @@ class DialogAgent():
             facet_queue.put(facet)
 
         # process top clusters
-        while facet_queue.full():
+        while not facet_queue.empty():
             facet = facet_queue.get()
             for node in clusters[facet]:
                 self.communicate_node(node)
