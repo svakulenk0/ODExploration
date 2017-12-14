@@ -107,6 +107,11 @@ class DialogAgent():
         simulate communication channel
         '''
         if message not in self.transmitted_node:
+            # report previous node as a message
+            if self.transmitted_symbols:
+                self.transmitted_messages += 1
+                print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
+                print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
             print message
             return len(message)
         return 0
@@ -116,11 +121,6 @@ class DialogAgent():
         weight, relation = node
         facet, entity = relation
         transmitted_symbols += self.transmit(facet)
-        if transmitted_symbols and self.transmitted_symbols:
-            # report previous node as a message
-            self.transmitted_messages += 1
-            print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
-            print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
         transmitted_symbols += self.transmit(entity)
         self.sum_weight -= weight
 
