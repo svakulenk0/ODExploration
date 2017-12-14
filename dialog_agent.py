@@ -111,7 +111,7 @@ class DialogAgent():
             return len(message)
         return 0
 
-    def communicate_node(self, weight, relation):
+    def communicate_node(self, node):
         transmitted_symbols = 0
         facet, entity = relation
         transmitted_symbols += self.transmit(facet)
@@ -162,7 +162,6 @@ class DialogAgent():
             facet_queue.put(facet)
 
         # process top clusters
-        print clusters[facet]
         while not facet_queue.empty():
             facet = facet_queue.get()
             for node in clusters[facet]:
@@ -175,8 +174,7 @@ class DialogAgent():
         # iterate over top n entities
         for i in range(topn):
             # retrieve the node
-            weight, relation = self.ranking.get()
-            self.communicate_node(weight, relation)
+            self.communicate_node(self.ranking.get())
 
 
 def get_top_nodes(topn=20):
