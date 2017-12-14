@@ -101,6 +101,14 @@ class DialogAgent():
     def __init__(self, top_keywords=top_keywords):
         # keep track of the last transmitted node attribute to save space in the bucket
         self.top_keywords = top_keywords
+        # normalization constant for estimating the total information space size
+        self.space_size = 10140
+
+    def report_message_stats(self):
+        self.transmitted_messages += 1
+        print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
+        print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
+        print "\t", self.sum_weight / self.space_size, "% of the information space covered"
 
     def transmit(self, message, report=False):
         '''
@@ -109,9 +117,7 @@ class DialogAgent():
         if message not in self.transmitted_node:
             # report previous node as a message
             if self.transmitted_symbols and report:
-                self.transmitted_messages += 1
-                print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
-                print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
+                self.report_message_stats()
             print message
             return len(message)
         return 0
@@ -146,9 +152,7 @@ class DialogAgent():
         
         self.tell_clusters(topn)
         # report final message
-        self.transmitted_messages += 1
-        print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
-        print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
+        self.report_message_stats()
 
         # report story stats
         print "\nTotal: communicated", self.sum_weight, "information units via", self.transmitted_symbols, "symbols in", self.transmitted_messages, "messages"
