@@ -30,21 +30,22 @@ class ESClient():
         result = self.es.search(index=self.index, size=limit, body={"query": {"match": {field: value}}})['hits']['hits']
         return result
 
-    def top(self):
+    def top(self, n=2028):
         '''
-        returns the most popular entities
+        returns n most popular entities
         '''
         result = self.es.search(index=self.index, body={"query": {"match_all": {}}, "aggs": {
-                "title": {"terms": {"field": "raw.title.keyword"}},
-                "license": {"terms": {"field": "raw.license_id.keyword"}},
-                "categorization": {"terms": {"field": "raw.categorization.keyword"}},
-                "tags": {"terms": {"field": "raw.tags.name.keyword"}},
-                "organization": {"terms": {"field": "raw.organization.name.keyword"}}
+                "title": {"terms": {"field": "raw.title.keyword", "size" : n}},
+                "license": {"terms": {"field": "raw.license_id.keyword", "size" : n}},
+                "categorization": {"terms": {"field": "raw.categorization.keyword", "size" : n}},
+                "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : n}},
+                "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : n}}
             }})
         return result['aggregations']
 
     def count(self):
         '''
+        returns cardinality (number of entities for each of the attributes)
         '''
         result = self.es.search(index=self.index, body={"query": {"match_all": {}}, "aggs": {
                 "licenses": {"cardinality": {"field": "raw.license_id.keyword"}},
