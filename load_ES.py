@@ -30,7 +30,7 @@ class ESClient():
         result = self.es.search(index=self.index, size=limit, body={"query": {"match": {field: value}}})['hits']['hits']
         return result
 
-    def top(self, n=2028):
+    def top(self, n=2914):
         '''
         returns n most popular entities
         '''
