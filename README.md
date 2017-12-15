@@ -1,25 +1,31 @@
 # ODExploration
 
+## Motivation
+
+If you love #government #data but hate faceted search and csv tables? How to make your database talk? How to squeeze a table into a sequence of characters?
+
+
 ## Dataset
 
 Datasets metadata of the Austrian Government Open Data portal (data.gv.at)
 
 2,028 items
 5 attributes: title, license, organization, categorization, tags (array)
-3,064 entities
 
 2,028 items * 5 attributes (representation layers) = 10,140 information units
 
 
 ## Approach
 
-1. Index table (or crawl the knowledge graph)
+1. Index table (crawl the knowledge graph)
 
 2. Entity ranking
 
-        2.1 Count (estimate percentage of the information space occupied by the entity)
+        2.1 Frequency count (estimate percentage of the information space occupied by the entity)
 
 3. Storytelling
+
+The agent is designed to talk as long as the user is listening.
 
 a) Storytelling approaches
 
@@ -29,7 +35,6 @@ a) Storytelling approaches
         
         3.2. Clustering approach to storytelling is based on an optimistic assumption that the conversation will last at least k number of turns. This way the agent can design an optimal combination of entities assuming k number of turns is available.
 
-The agent is designed to talk as long as the user is listening.
 
 b) Optimization criteria (performance metrics of the story quality)
 
