@@ -10,11 +10,6 @@ System (Expert) actions extracted from transcripts
 
 '''
 
-# transition probabilities of replies to user intents with system actions
-intent2action = {
-        'greeting': ['greeting']
-    }
-
 actions = {
             'greeting': [
                 "Hey",
