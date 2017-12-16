@@ -6,9 +6,12 @@ Create sample utterances from data
 '''
 from Queue import PriorityQueue
 from collections import defaultdict
+import numpy as np
 
 from load_ES import ESClient
-from aggregations import counts, top_keywords
+from aggregations import counts, top_keywords, all_keywords
+from user_intents import intents, match_intent
+from system_actions import actions
 
 
 def list_facets_counts():
@@ -65,6 +68,56 @@ def rank_nodes(top_keywords):
     return q
 
 
+def gini(x):
+    '''
+    = Relative mean absolute difference (rmad) / 2
+    from https://stackoverflow.com/questions/39512260/calculating-gini-coefficient-in-python-numpy
+    '''
+    # (Warning: This is a concise implementation, but it is O(n**2)
+    # in time and memory, where n = len(x).  *Don't* pass in huge
+    # samples!)
+
+    # Mean absolute difference
+    mad = np.abs(np.subtract.outer(x, x)).mean()
+    # Relative mean absolute difference
+    rmad = mad/np.mean(x)
+    # Gini coefficient
+    g = 0.5 * rmad
+    return abs(g)
+
+
+def test_gini():
+    # high inequality
+    a = np.zeros((1000))
+    a[0] = 1.0
+    assert gini(a) > 0.99
+    # uniform
+    s = np.random.uniform(-1,0,1000)
+    assert gini(s) > 0.32
+    # equally homogeneous
+    b = np.ones((1000))
+    assert gini(b) == 0
+
+
+def gini_facets(top_keywords):
+    '''
+    analyse skewness of the distribution among the entites within the attribute
+    compute a score for each attribute characterizing the skewness
+    of the information mass distribution
+    to quantify the discriminatory power of the individual factors (attributes)
+    '''
+    #  iterate over attributes
+    facets_rank = PriorityQueue()
+    for facet, counts in top_keywords.items():
+        # top entities count distribution of the attribute
+        distribution = [entity['doc_count'] for entity in counts['buckets']]
+        # print distribution
+        skewness = gini(distribution)
+        facets_rank.put((-skewness, facet))
+
+    return facets_rank
+
+
 TEMPLATES = {
                 'single': ["%s is the most popular %s"],
                 'multiple': [
@@ -103,12 +156,33 @@ class DialogAgent():
         self.top_keywords = top_keywords
         # normalization constant for estimating the total information space size
         self.space_size = 10140
+        self.basket_limit = 5
+        self.conversation_history = []
+        # transition probabilities of replies to user intents with system actions
+        self.intent2action = {
+                'greeting': ['greeting', self.tell_story]
+            }
+    
+    def chat(self, greeting):
+        # show default greeting
+        print greeting
+        self.conversation_history.append('greeting')
+
+        user_message = raw_input()
+        # match user input to all possible intents
+        for intent in intents:
+            if match_intent(user_message, intent):
+                # pick the 1st matching system action
+                for action in self.intent2action[intent]:
+                    if action not in self.conversation_history:
+                        if action not in actions:
+                            action()
 
     def report_message_stats(self):
         self.transmitted_messages += 1
-        print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
         print "\t", self.sum_weight / self.transmitted_messages, "information units per message"
-        print "\t%.2f of the information space communicated" % (self.sum_weight / float(self.space_size))
+        print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
+        print "\t%.2f of the information space communicated\n" % (self.sum_weight / float(self.space_size))
 
     def transmit(self, message, report=False):
         '''
@@ -136,7 +210,25 @@ class DialogAgent():
         # report current communication efficiency (knowledge flow velocity/productivity) per symbol
         # print - weight / transmitted_symbols
 
-    def tell_story(self, topn=10):
+    def tell_facet(self, facet):
+        '''
+        show the first entities of the facet
+        '''
+        for entity in top_keywords[facet]['buckets'][:self.basket_limit]:
+            self.communicate_node((-entity['doc_count'], (facet, entity['key'])))
+            # print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
+            # print "\t%.2f of the information space communicated\n" % (self.sum_weight / float(self.space_size))
+
+    def tell_facets(keywords=all_keywords):
+        # iterate over ranked facets
+        facets_rank = gini_facets(keywords)
+        while not facets_rank.empty():
+            weight, facet = facets_rank.get()
+            self.tell_facet(facet)
+            # report final message
+            self.report_message_stats()
+
+    def tell_story(self, topn=20):
         '''
         Runs the simulation of the knowledge flow
         simultaneously evaluating its productivity (velocity of the chanel)
@@ -149,8 +241,9 @@ class DialogAgent():
         self.transmitted_node = []
         self.transmitted_symbols = 0
         self.transmitted_messages = 0
-        
+
         self.tell_clusters(topn)
+
         # report final message
         self.report_message_stats()
 
@@ -163,7 +256,6 @@ class DialogAgent():
         Clustering approach to storytelling is based on an optimistic assumption that the conversation will last at least k number of turns.
         This way the agent can design an optimal combination of entities assuming k number of turns is available.
         '''
-        
         # group topn ranked nodes by attribute
         clusters = defaultdict(list)
         facet_queue = []
@@ -181,7 +273,7 @@ class DialogAgent():
 
         # process top clusters
         for facet in facet_queue:
-            for node in clusters[facet]:
+            for node in clusters[facet][:self.basket_limit]:
                 self.communicate_node(node)
             # communicate one cluster per message
             # self.transmitted_messages += 1
@@ -220,13 +312,25 @@ def test_sample_items():
 
 
 def test_story_teller():
-    story_size = 10  # n_concepts
+    story_size = 20  # n_concepts
     chatbot = DialogAgent()
     chatbot.tell_story(story_size)
 
 
+def test_gini_index():
+    facets_rank = gini_facets(all_keywords)
+    while not facets_rank.empty():
+        # weight, facet
+        print facets_rank.get()
+
+
+def test_chat():
+    chatbot = DialogAgent()
+    chatbot.chat(greeting="Hi, nice to meet you!")
+
+
 def main():
-    test_story_teller()
+    test_chat()
 
 
 if __name__ == '__main__':
