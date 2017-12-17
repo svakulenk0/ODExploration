@@ -72,13 +72,13 @@ def test_aggregation_stats(index=INDEX):
     # print db.count()
 
 
-def test_search(index=INDEX):
+def test_search(index=INDEX, n_samples=5):
     db = ESClient(index)
     results = db.search("finanzen")
-    print len(results), "results"
-    for result in results:
+    for result in results[:n_samples]:
         print result['_source']['raw']['categorization']
         print result['_source']['raw']['title']
+    print len(results), "results"
 
 
 if __name__ == '__main__':
