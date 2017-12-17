@@ -85,9 +85,9 @@ def test_aggregation_stats(index=INDEX):
     # print db.count()
 
 
-def test_describe_subset(index=INDEX, n_samples=5):
+def test_describe_subset(index=INDEX, top_n=2):
     db = ESClient(index)
-    results = db.describe_subset("finanzen")
+    results = db.describe_subset("finanzen", n=2)
     print json.dumps(results, indent=4, sort_keys=True)
 
 
