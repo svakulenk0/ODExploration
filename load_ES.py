@@ -10,7 +10,7 @@ from elasticsearch import Elasticsearch
 
 
 INDEX = 'odexploration'
-
+N = 2914
 
 class ESClient():
 
@@ -26,15 +26,15 @@ class ESClient():
         result = self.es.search(index=self.index, body={"query": {"match_all": {}}})['hits']['hits'][0]
         print json.dumps(result, indent=4, sort_keys=True)
 
-    def search(self, keywords):
-        result = self.es.search(index=self.index, body={"query": {"match": {"_all": keywords}}})['hits']['hits']
+    def search(self, keywords, limit=N):
+        result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})['hits']['hits']
         return result
 
-    def search_by(self, field, value, limit):
+    def search_by(self, field, value, limit=N):
         result = self.es.search(index=self.index, size=limit, body={"query": {"match": {field: value}}})['hits']['hits']
         return result
 
-    def top(self, n=2914):
+    def top(self, n=N):
         '''
         returns n most popular entities
         '''
@@ -77,6 +77,7 @@ def test_search(index=INDEX):
     results = db.search("finanzen")
     print len(results), "results"
     for result in results:
+        print result['_source']['raw']['categorization']
         print result['_source']['raw']['title']
 
 
