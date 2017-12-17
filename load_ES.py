@@ -26,8 +26,8 @@ class ESClient():
         result = self.es.search(index=self.index, body={"query": {"match_all": {}}})['hits']['hits'][0]
         print json.dumps(result, indent=4, sort_keys=True)
 
-    def search(self, keywords, limit=5):
-        result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})['hits']['hits']
+    def search(self, keywords):
+        result = self.es.search(index=self.index, body={"query": {"match": {"_all": keywords}}})['hits']['hits']
         return result
 
     def search_by(self, field, value, limit):
@@ -74,7 +74,10 @@ def test_aggregation_stats(index=INDEX):
 
 def test_search(index=INDEX):
     db = ESClient(index)
-    print db.search("finanzen")
+    results = db.search("finanzen")
+    print len(results), "results"
+    for result in results:
+        print result['_source']['raw']['title']
 
 
 if __name__ == '__main__':
