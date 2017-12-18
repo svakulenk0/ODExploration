@@ -373,7 +373,7 @@ def test_story_teller():
 def test_sample_subset(index=INDEX, top_n=2):
     db = ESClient(index)
     keyword = "I would like to know more about finanzen"
-    stats = db.describe_subset(keyword, top_n=2)
+    stats = db.describe_subset(keyword)
     # pick the most populated attributes
     facets_rank = gini_facets(stats)
     while not facets_rank.empty():
