@@ -290,16 +290,21 @@ class DialogAgent():
                     if not duplicate_detected:
                         # print x, entity['doc_count']/float(N_DOCS)
                         entities.append(x)
-            print 'S:', build_phrase(facet, entities, i, message)
+            if entities:
+                print 'S:', build_phrase(facet, entities, i, message)
 
-            if show_sample:
-                # show sample datasets
-                for top_entity in entities:
-                    items = self.db.sample_subset(keywords=query, facet_in=facet, entity=top_entity, limit=5)
-                    examples = []
-                    for item in items:
-                        examples.append(item["_source"]['raw']['title'])
-                print 'S: For example:\n', TEMPLATES['join'][2].join(examples)
+                if show_sample:
+                    # show sample datasets
+                    for top_entity in entities:
+                        items = self.db.sample_subset(keywords=query, facet_in=facet, entity=top_entity, limit=5)
+                        examples = []
+                        for item in items:
+                            examples.append(item["_source"]['raw']['title'])
+                    print 'S: For example:\n', TEMPLATES['join'][2].join(examples)
+            else:
+                print 'S:', actions['bool_data']['empty_set']
+
+            
 
     def list_keywords(self, k=1, keywords=all_keywords, message="In this Open Data portal there are many datasets with "):
         '''
@@ -454,7 +459,7 @@ def test_gini_index():
 
 def test_chat():
     chatbot = DialogAgent()
-    chatbot.chat(greeting=None, simulate=False)
+    chatbot.chat(greeting="Welcome, I will show you around data.gv.at", simulate=False)
 
 
 def test_gini():
