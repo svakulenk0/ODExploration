@@ -105,7 +105,7 @@ def gini_facets(top_keywords, threshold):
         distribution = [entity['doc_count'] for entity in counts['buckets']]
         # print distribution
         skewness = gini(distribution)
-        cutoff = np.sum(distribution) * threshold
+        cutoff = np.sum(distribution) * (1 - threshold)
         facets_rank.put((-skewness, (facet, cutoff)))
 
     return facets_rank
