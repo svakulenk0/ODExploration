@@ -12,6 +12,14 @@ from elasticsearch import Elasticsearch
 INDEX = 'odexploration'
 N = 2914
 
+FIELDS = {
+    "title": "raw.title",
+    "license": "raw.license_id",
+    "categorization": "raw.categorization",
+    "tags": "raw.tags.name",
+    "organization": "raw.organization.name",
+}
+
 class ESClient():
 
     def __init__(self, index=INDEX):
@@ -34,7 +42,7 @@ class ESClient():
         result = self.es.search(index=self.index, size=limit,
             body={"query": {"bool": {"must": [
                                                 {"match": {"_all": keywords}},
-                                                {"match": {facet_in: entity}}
+                                                {"match": {FIELDS[facet_in]: entity}}
                                             ]
             }}})['hits']['hits']
         return result
