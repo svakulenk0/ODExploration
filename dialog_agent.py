@@ -118,7 +118,7 @@ TEMPLATES = {
                         "The most popular %ss are: %s",
                         "%s are the most popular among %ss"
                     ],
-                'join': [", ", " and "],
+                'join': [", ", " and ", "\n"],
             }
 
 
@@ -204,7 +204,7 @@ class DialogAgent():
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
-        self.describe_sample(keywords=stats, k=1, message="There are ", query=query)
+        self.describe_sample(keywords=stats, k=1, message="Sure, there are many datasets about ", query=query)
 
     def report_message_stats(self):
         self.transmitted_messages += 1
@@ -292,7 +292,7 @@ class DialogAgent():
                 examples = []
                 for item in items:
                     examples.append(item["_source"]['raw']['title'])
-            print 'S: For example:', TEMPLATES['join'][0].join(examples)
+            print 'S: For example:', TEMPLATES['join'][2].join(examples)
 
     def list_keywords(self, k=1, keywords=all_keywords, message="In this Open Data portal there are many datasets with "):
         '''
