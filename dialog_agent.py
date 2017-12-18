@@ -386,8 +386,8 @@ def test_sample_subset(index=INDEX, top_n=2):
     print facet, top_entity
     items = db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
     for item in items:
-        print item["_source"]FIELDS[facet_unique]
-        print item["_source"]FIELDS["organization"]
+        print item["_source"][FIELDS[facet_unique]]
+        print item["_source"][FIELDS["organization"]]
 
 
 def test_gini_index():
