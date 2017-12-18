@@ -362,7 +362,7 @@ def test_story_teller():
     chatbot.tell_story(story_size)
 
 
-def test_sample_subset(index=INDEX, top_n=1, limit=3, threshold=0.02):
+def test_sample_subset(index=INDEX, top_n=2, limit=3, threshold=0.02):
     db = ESClient(index)
     query = "I would like to know more about finanzen"
     stats = db.describe_subset(query)
@@ -400,7 +400,7 @@ def test_sample_subset(index=INDEX, top_n=1, limit=3, threshold=0.02):
         items = db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
         for item in items:
             print item["_source"]['raw']['title']
-            print item["_source"]['raw']["organization"]['name']
+            # print item["_source"]['raw']["organization"]['name']
 
 
 def test_gini_index():
