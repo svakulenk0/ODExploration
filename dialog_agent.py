@@ -391,7 +391,7 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3, threshold=0.99):
                         duplicate_detected = True
                         continue
                 if not duplicate_detected:
-                    print x, print entity['doc_count']
+                    print x, entity['doc_count']
                     entities.append(x)
 
         print facet, entities
