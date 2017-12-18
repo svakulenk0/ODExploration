@@ -270,6 +270,7 @@ class DialogAgent():
                 # self.communicate_node((-entity['doc_count'], (facet, entity['key'])))
             entities = []
             for entity in keywords[facet]['buckets'][:self.basket_limit]:
+                x = entity['key']
                 if entity['doc_count'] / float(N_DOCS) > threshold:
                     # filter out similar entities
                     duplicate_detected = False
