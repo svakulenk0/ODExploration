@@ -288,7 +288,7 @@ class DialogAgent():
 
             # show sample datasets
             for top_entity in entities:
-                items = db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
+                items = self.db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
                 examples = []
                 for item in items:
                     examples.append(item["_source"]['raw']['title'])
