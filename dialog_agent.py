@@ -366,7 +366,7 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3):
     query = "I would like to know more about finanzen"
     stats = db.describe_subset(query)
     # pick the most populated attributes
-    facets_rank = gini_facets(stats, threshold=0.9)
+    facets_rank = gini_facets(stats, threshold=0.1)
     for k in range(top_n):
         # get the top facets
         weight, (facet, cutoff) = facets_rank.get()
