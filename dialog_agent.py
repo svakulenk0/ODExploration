@@ -199,8 +199,14 @@ class DialogAgent():
                             action()
                         else:
                             print 'S:', actions[action][0]
-        # 4. listen to the user
-        user_message = raw_input()
+
+        # 4. users turn
+        if simulate:
+            user_message = "I would like to know more about finanzen"
+            print 'U:', user_message
+        else:
+            user_message = raw_input()
+        
         # 5. search
         self.search_db(user_message)
 
@@ -364,6 +370,17 @@ def test_story_teller():
     chatbot.tell_story(story_size)
 
 
+def test_sample_subset(index=INDEX, top_n=2):
+    db = ESClient(index)
+    keyword = "I would like to know more about finanzen"
+    stats = db.describe_subset(keyword, top_n=2)
+    # pick the most populated attributes
+    facets_rank = gini_facets(all_keywords)
+    while not facets_rank.empty():
+        # weight, facet
+        print facets_rank.get()
+
+
 def test_gini_index():
     facets_rank = gini_facets(all_keywords)
     while not facets_rank.empty():
@@ -377,7 +394,7 @@ def test_chat():
 
 
 def main():
-    test_chat()
+    test_sample_subset()
 
 
 if __name__ == '__main__':
