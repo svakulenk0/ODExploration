@@ -127,7 +127,11 @@ def build_phrase(facet, entities, pattern, start):
     Function to build a sentence using data from the pre-defined templates
     '''
     if len(entities) > 1:
-        entities_string = TEMPLATES['join'][0].join(entities)
+        if len(entities) == 2:
+            conjunction = TEMPLATES['join'][1]
+        else:
+            conjunction = TEMPLATES['join'][0]
+        entities_string = conjunction.join(entities)
         sentence = TEMPLATES['multiple'][pattern] % (facet, entities_string)
         # sentence = TEMPLATES['multiple'][0] % (facet, TEMPLATES['join'][0].join(entities))
     else:
@@ -290,7 +294,7 @@ class DialogAgent():
             if show_sample:
                 # show sample datasets
                 for top_entity in entities:
-                    items = self.db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
+                    items = self.db.sample_subset(keywords=query, facet_in=facet, entity=top_entity, limit=5)
                     examples = []
                     for item in items:
                         examples.append(item["_source"]['raw']['title'])
