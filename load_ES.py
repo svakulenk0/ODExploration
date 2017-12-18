@@ -86,8 +86,10 @@ def test_aggregation_stats(index=INDEX):
 
 
 def test_describe_subset(index=INDEX, top_n=2):
+    keyword = "finanzen"
+    keyword = "I would like to know more about finanzen"
     db = ESClient(index)
-    results = db.describe_subset("finanzen", n=2)
+    results = db.describe_subset(keyword, n=2)
     print json.dumps(results, indent=4, sort_keys=True)
 
 
