@@ -8,7 +8,7 @@ from Queue import PriorityQueue
 from collections import defaultdict
 import numpy as np
 
-from load_ES import ESClient, INDEX
+from load_ES import ESClient, INDEX, FIELDS
 from aggregations import counts, top_keywords, all_keywords
 from user_intents import intents, match_intent
 from system_actions import actions
@@ -370,21 +370,24 @@ def test_story_teller():
     chatbot.tell_story(story_size)
 
 
-def test_sample_subset(index=INDEX, top_n=2, facet_unique='title'):
+def test_sample_subset(index=INDEX, top_n=2):
     db = ESClient(index)
     query = "I would like to know more about finanzen"
     stats = db.describe_subset(query)
     # pick the most populated attributes
     facets_rank = gini_facets(stats)
-    # get the first facet
+    # get the first top facet
     weight, facet = facets_rank.get()
+    # get the first bottom (last) facet by distribution
+    weight, facet_unique = facets_rank.reverse().get()
     entities = [entity['key'] for entity in stats[facet]['buckets'][:top_n]]
     # print entities
     top_entity = entities[0]
     print facet, top_entity
     items = db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
     for item in items:
-        print item["_source"]["raw"]["title"]
+        print item["_source"]FIELDS[facet_unique]
+        print item["_source"]FIELDS["organization"]
 
 
 def test_gini_index():
