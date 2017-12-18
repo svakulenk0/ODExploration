@@ -370,7 +370,7 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3, threshold=0.95):
     facets_rank = gini_facets(stats)
     for k in range(top_n):
         # get the top facets
-        weight, (facet, cutoff) = facets_rank.get()
+        weight, facet = facets_rank.get()
         print weight, facet
         # get the first bottom (last) facet by distribution
         # weight, facet_unique = facets_rank.reverse().get()
@@ -379,19 +379,19 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3, threshold=0.95):
         entities = []
         for entity in stats[facet]['buckets'][:limit]:
             x = entity['key']
-            if entity['doc_count'] > cutoff:
-                # filter out similar entities
-                duplicate_detected = False
-                for reported in entities:
-                    # Edit distance of largest common substring (scaled)
-                    partial = fuzz.partial_ratio(reported, x)
-                    # print reported, x, partial
-                    if partial == 100:
-                        duplicate_detected = True
-                        continue
-                if not duplicate_detected:
-                    print x, entity['doc_count']/N_DOCS
-                    entities.append(x)
+            # if entity['doc_count'] > cutoff:
+            # filter out similar entities
+            duplicate_detected = False
+            for reported in entities:
+                # Edit distance of largest common substring (scaled)
+                partial = fuzz.partial_ratio(reported, x)
+                # print reported, x, partial
+                if partial == 100:
+                    duplicate_detected = True
+                    continue
+            if not duplicate_detected:
+                print x, entity['doc_count']/N_DOCS
+                entities.append(x)
 
         print facet, entities
 
