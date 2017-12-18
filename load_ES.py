@@ -11,7 +11,7 @@ from elasticsearch import Elasticsearch
 
 INDEX = 'odexploration'
 N = 2914
-
+N_DOCS = 2028
 FIELDS = {
     "title": "raw.title",
     "license": "raw.license_id",

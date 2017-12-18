@@ -10,7 +10,7 @@ from collections import defaultdict
 import numpy as np
 from fuzzywuzzy import fuzz
 
-from load_ES import ESClient, INDEX, FIELDS
+from load_ES import ESClient, INDEX, FIELDS, N_DOCS
 from aggregations import counts, top_keywords, all_keywords
 from user_intents import intents, match_intent
 from system_actions import actions
@@ -91,7 +91,7 @@ def gini(x):
     return abs(g)
 
 
-def gini_facets(top_keywords, threshold):
+def gini_facets(top_keywords):
     '''
     analyse skewness of the distribution among the entites within the attribute
     compute a score for each attribute characterizing the skewness
@@ -105,8 +105,7 @@ def gini_facets(top_keywords, threshold):
         distribution = [entity['doc_count'] for entity in counts['buckets']]
         # print distribution
         skewness = gini(distribution)
-        cutoff = np.sum(distribution) * (1 - threshold)
-        facets_rank.put((-skewness, (facet, cutoff)))
+        facets_rank.put((-skewness, facet))
 
     return facets_rank
 
@@ -368,7 +367,7 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3, threshold=0.95):
     query = "I would like to know more about finanzen"
     stats = db.describe_subset(query)
     # pick the most populated attributes
-    facets_rank = gini_facets(stats, threshold=threshold)
+    facets_rank = gini_facets(stats)
     for k in range(top_n):
         # get the top facets
         weight, (facet, cutoff) = facets_rank.get()
@@ -391,7 +390,7 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3, threshold=0.95):
                         duplicate_detected = True
                         continue
                 if not duplicate_detected:
-                    print x, entity['doc_count']
+                    print x, entity['doc_count']/N_DOCS
                     entities.append(x)
 
         print facet, entities
