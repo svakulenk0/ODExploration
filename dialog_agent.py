@@ -212,7 +212,7 @@ class DialogAgent():
     def search_db(self, query):
         stats = self.db.describe_subset(query)
         # rank facets of the exploration set
-        facets_rank = gini_facets(keywords)
+        facets_rank = gini_facets(stats)
         self.describe_set(keywords=stats, k=1, message="There are many datasets with related ",
                           query=query, show_sample=True, facets_rank=facets_rank)
 
