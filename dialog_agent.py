@@ -196,7 +196,7 @@ class DialogAgent():
                 for action in self.intent2action[intent]:
                     if action not in self.conversation_history:
                         if action not in actions.keys():
-                            self.action()
+                            action()
                         else:
                             print 'S:', actions[action][0]
         # 4. listen to the user
@@ -206,7 +206,7 @@ class DialogAgent():
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
-        self.tell_facets(stats)
+        tell_facets(stats)
 
     def report_message_stats(self):
         self.transmitted_messages += 1
@@ -249,7 +249,7 @@ class DialogAgent():
             # print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
             # print "\t%.2f of the information space communicated\n" % (self.sum_weight / float(self.space_size))
 
-    def tell_facets(self, stats=all_keywords):
+    def tell_facets(stats=all_keywords):
         # iterate over ranked facets
         facets_rank = gini_facets(stats)
         while not facets_rank.empty():
