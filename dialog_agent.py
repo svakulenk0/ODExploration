@@ -275,7 +275,7 @@ class DialogAgent():
             facets_rank = self.facets_rank
         # iterate over ranked facets
         for i in range(k):
-            weight, facet = facets_rank
+            weight, facet = facets_rank.get()
 
             # for entity in keywords[facet]['buckets'][:self.basket_limit]:
                 # self.communicate_node((-entity['doc_count'], (facet, entity['key'])))
