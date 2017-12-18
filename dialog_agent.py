@@ -70,6 +70,7 @@ def rank_nodes(top_keywords):
 
 def gini(x):
     '''
+    coefficient of variation (CV) ?
     = Relative mean absolute difference (rmad) / 2
     from https://stackoverflow.com/questions/39512260/calculating-gini-coefficient-in-python-numpy
     '''
@@ -77,29 +78,18 @@ def gini(x):
     # in time and memory, where n = len(x).  *Don't* pass in huge
     # samples!)
 
-    # Mean absolute difference
+    # Mean absolute difference (standard deviation?)
     mad = np.abs(np.subtract.outer(x, x)).mean()
-    # Relative mean absolute difference
-    rmad = mad/np.mean(x)
+    # Relative mean absolute difference (average)
+    mean = np.mean(x)
+    # print mean
+    rmad = mad/mean
     # Gini coefficient
     g = 0.5 * rmad
     return abs(g)
 
 
-def test_gini():
-    # high inequality
-    a = np.zeros((1000))
-    a[0] = 1.0
-    assert gini(a) > 0.99
-    # uniform
-    s = np.random.uniform(-1,0,1000)
-    assert gini(s) > 0.32
-    # equally homogeneous
-    b = np.ones((1000))
-    assert gini(b) == 0
-
-
-def gini_facets(top_keywords):
+def gini_facets(top_keywords, threshold=0.5):
     '''
     analyse skewness of the distribution among the entites within the attribute
     compute a score for each attribute characterizing the skewness
@@ -113,7 +103,8 @@ def gini_facets(top_keywords):
         distribution = [entity['doc_count'] for entity in counts['buckets']]
         # print distribution
         skewness = gini(distribution)
-        facets_rank.put((-skewness, facet))
+        cutoff = np.sum(distribution) * threshold
+        facets_rank.put((-skewness, (facet, cutoff)))
 
     return facets_rank
 
@@ -375,16 +366,16 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3):
     query = "I would like to know more about finanzen"
     stats = db.describe_subset(query)
     # pick the most populated attributes
-    facets_rank = gini_facets(stats)
+    facets_rank = gini_facets(stats, threshold=0.5)
     for k in range(top_n):
         # get the top facets
-        weight, facet = facets_rank.get()
+        weight, (facet, cutoff) = facets_rank.get()
         print weight, facet
         # get the first bottom (last) facet by distribution
         # weight, facet_unique = facets_rank.reverse().get()
 
         # filter only most populated (important) entities based on ['doc_count'] values
-        entities = [(entity['key'], entity['doc_count']) for entity in stats[facet]['buckets'][:limit]]
+        entities = [(entity['key'], entity['doc_count']) for entity in stats[facet]['buckets'][:limit] if entity['doc_count'] > cutoff]
 
         print facet, entities
 
@@ -406,6 +397,19 @@ def test_gini_index():
 def test_chat():
     chatbot = DialogAgent()
     chatbot.chat(greeting=None)
+
+
+def test_gini():
+    # high inequality
+    a = np.zeros((1000))
+    a[0] = 1.0
+    assert gini(a) > 0.99
+    # uniform
+    s = np.random.uniform(-1,0,1000)
+    assert gini(s) > 0.32
+    # equally homogeneous
+    b = np.ones((1000))
+    assert gini(b) == 0
 
 
 def main():
