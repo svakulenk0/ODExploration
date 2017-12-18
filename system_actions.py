@@ -18,9 +18,14 @@ actions = {
                 "Yo",
                 "Hello",
                 "Hi! How can I help you?",
-                "Hi, i would like to present you my new website full of data sets!",
+                "Hi, i would like to present you my website full of data sets!",
                 "how are you ? ^^"
                 ],
+
+            'bool_data': [
+                'empty_set': ["Sorry, nothing found."]
+
+            ]
 
             'confirm': [
                 "Yes, I can help you with that.",
