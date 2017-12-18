@@ -376,15 +376,15 @@ def test_sample_subset(index=INDEX, top_n=2, facet_unique='title'):
     stats = db.describe_subset(query)
     # pick the most populated attributes
     facets_rank = gini_facets(stats)
-    while not facets_rank.empty():
-        weight, facet = facets_rank.get()
-        entities = [entity['key'] for entity in stats[facet]['buckets'][:top_n]]
-        # print entities
-        top_entity = entities[0]
-        print facet, top_entity
-        items = db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
-        for item in items:
-            print item["_source"]["raw"]["title"]
+    # get the first facet
+    weight, facet = facets_rank.get()
+    entities = [entity['key'] for entity in stats[facet]['buckets'][:top_n]]
+    # print entities
+    top_entity = entities[0]
+    print facet, top_entity
+    items = db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
+    for item in items:
+        print item["_source"]["raw"]["title"]
 
 
 def test_gini_index():
