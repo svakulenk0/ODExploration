@@ -381,7 +381,8 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3):
         for entity in stats[facet]['buckets'][:limit]:
             x = entity['key']
             if entity['doc_count'] > cutoff:
-                # do not report similar entities
+                # filter out similar entities
+                duplicate_detected = False
                 for reported in entities:
                     # Edit distance of largest common substring (scaled)
                     partial = fuzz.partial_ratio(reported, x)
