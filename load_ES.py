@@ -89,8 +89,8 @@ def test_aggregation_stats(index=INDEX):
 def test_describe_subset(index=INDEX, top_n=2):
     db = ESClient(index)
 
-    keyword = "finanzen"
-    results = db.describe_subset(keyword, n=2)
+    # keyword = "finanzen"
+    # results = db.describe_subset(keyword, n=2)
 
     keyword = "I would like to know more about finanzen"
     results = db.describe_subset(keyword, n=2)
