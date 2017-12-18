@@ -204,7 +204,7 @@ class DialogAgent():
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
-        self.list_keywords(keywords=stats, k=2, message="There are ")
+        self.describe_sample(keywords=stats, k=2, message="There are ")
 
     def report_message_stats(self):
         self.transmitted_messages += 1
@@ -255,6 +255,35 @@ class DialogAgent():
     #         self.tell_facet(facet)
     #         # report final message
     #         self.report_message_stats()
+    
+    def describe_sample(self, k=1, keywords=all_keywords, threshold=0.02,
+                        message="In this Open Data portal there are many datasets with "):
+        '''
+        pick k facets from the gini index-based ranking queue
+        '''
+        # iterate over ranked facets
+        facets_rank = gini_facets(keywords)
+        for i in range(k):
+            weight, facet = facets_rank.get()
+
+            # for entity in keywords[facet]['buckets'][:self.basket_limit]:
+                # self.communicate_node((-entity['doc_count'], (facet, entity['key'])))
+            entities = []
+            for entity in keywords[facet]['buckets'][:self.basket_limit]:
+                if entity['doc_count'] / float(N_DOCS) > threshold:
+                    # filter out similar entities
+                    duplicate_detected = False
+                    for reported in entities:
+                        # Edit distance of largest common substring (scaled)
+                        partial = fuzz.partial_ratio(reported, x)
+                        # print reported, x, partial
+                        if partial == 100:
+                            duplicate_detected = True
+                            continue
+                    if not duplicate_detected:
+                        # print x, entity['doc_count']/float(N_DOCS)
+                        entities.append(x)
+            print 'S:', build_phrase(facet, entities, i, message)
 
     def list_keywords(self, k=1, keywords=all_keywords, message="In this Open Data portal there are many datasets with "):
         '''
