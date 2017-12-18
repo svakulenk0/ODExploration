@@ -193,6 +193,14 @@ Total: communicated 4724 information units via 232 symbols in 4 messages
 
 * facets ranked by Gini index
 
+
+(-0.75768675768675775, u'categorization')
+(-0.69880119880119884, u'license')
+(-0.67403120441801634, u'tags')
+(-0.64241991430320344, u'organization')
+(-0.019027233611292091, u'title')
+
+
 categorization
 finanzen-und-rechnungswesen
 umwelt
