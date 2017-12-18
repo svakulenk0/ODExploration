@@ -377,8 +377,10 @@ def test_sample_subset(index=INDEX, top_n=2):
     # pick the most populated attributes
     facets_rank = gini_facets(stats)
     while not facets_rank.empty():
-        # weight, facet
-        print facets_rank.get()
+        weight, facet = facets_rank.get()
+        print weight, facet
+        entities = [entity['key'] for entity in keywords[facet]['buckets'][:self.basket_limit]]
+        print entities
 
 
 def test_gini_index():
