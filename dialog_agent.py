@@ -379,7 +379,7 @@ def test_sample_subset(index=INDEX, top_n=2):
     while not facets_rank.empty():
         weight, facet = facets_rank.get()
         print weight, facet
-        entities = [entity['key'] for entity in stats[facet]['buckets'][:self.basket_limit]]
+        entities = [entity['key'] for entity in stats[facet]['buckets'][:top_n]]
         print entities
 
 
