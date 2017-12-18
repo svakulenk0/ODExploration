@@ -10,7 +10,7 @@ If you love #government #data but hate faceted search and csv tables? How to mak
 Datasets metadata of the Austrian Government Open Data portal (data.gv.at)
 
 2,028 items
-5 attributes: title, license, organization, categorization, tags (array)
+5 attributes: title, license, organization, categorization, tags (array 2,028+886)
 
 2,028 items * 5 attributes (representation layers) = 10,140 information units
 
@@ -64,9 +64,6 @@ We also design an information theory-inspired measure of information units per s
 (-186, (u'categorization', u'{umwelt}'))
 
 
-Experiment_1: max story size = 10 entities
-
-
 * greedy approach: max counts first priority queue
 
 license
@@ -116,6 +113,8 @@ Total: communicated 3949 information units via 180 symbols in 6 messages
 
 * clustering approach: group the top entities by attribute
 
+** story_size = 10
+
 license
 cc-by-at-30
     1852 information units per message
@@ -149,6 +148,103 @@ umwelt
 
 Total: communicated 3949 information units via 162 symbols in 4 messages
     0.39 of the information space covered
+
+
+** story_size = 20
+
+license
+cc-by-at-30
+    1852 information units per message
+    102 information units per symbol
+    0.18 of the information space communicated
+
+organization
+stadt-linz
+stadt-wien
+land-oberoesterreich
+land-salzburg
+stadt-innsbruck
+    1535 information units per message
+    31 information units per symbol
+    0.30 of the information space communicated
+
+tags
+linz
+haushalt
+außerordentlicher
+ordentlicher
+finanzen
+    1347 information units per message
+    26 information units per symbol
+    0.40 of the information space communicated
+
+categorization
+finanzen-und-rechnungswesen
+umwelt
+bevoelkerung
+geographie-und-planung
+    1181 information units per message
+    20 information units per symbol
+    0.47 of the information space communicated
+
+
+Total: communicated 4724 information units via 232 symbols in 4 messages
+    0.47 of the information space covered
+
+* facets ranked by Gini index
+
+categorization
+finanzen-und-rechnungswesen
+umwelt
+bevoelkerung
+geographie-und-planung
+verkehr-und-technik
+    794 information units per message
+    7 information units per symbol
+    0.08 of the information space communicated
+
+license
+cc-by-at-30
+cc-by
+other-pd
+cc-by-sa
+    1398 information units per message
+    20 information units per symbol
+    0.28 of the information space communicated
+
+tags
+linz
+haushalt
+außerordentlicher
+ordentlicher
+finanzen
+    1255 information units per message
+    19 information units per symbol
+    0.37 of the information space communicated
+
+organization
+stadt-linz
+stadt-wien
+land-oberoesterreich
+land-salzburg
+stadt-innsbruck
+    1246 information units per message
+    18 information units per symbol
+    0.49 of the information space communicated
+
+title
+Denkmalliste Steiermark
+Denkmalliste Wien
+Ehescheidungen
+Polytechnische Schule
+Sonderschulen
+    999 information units per message
+    13 information units per symbol
+    0.49 of the information space communicated
+
+
+Total: communicated 4995 information units via 365 symbols in 5 messages
+    0.49 of the information space covered
 
 
 ## References
