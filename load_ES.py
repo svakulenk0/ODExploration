@@ -39,19 +39,22 @@ class ESClient():
         return result
 
     def sample_subset(self, keywords, facet_in, entity, limit=2):
+        query = [{"match": {FIELDS[facet_in]: entity}}]
+        if keywords:
+            query.append({"match": {"_all": keywords}})
         result = self.es.search(index=self.index, size=limit,
-            body={"query": {"bool": {"must": [
-                                                {"match": {"_all": keywords}},
-                                                {"match": {FIELDS[facet_in]: entity}}
-                                            ]
-            }}})['hits']['hits']
+            body={"query": {"bool": {"must": query}}})['hits']['hits']
         return result
 
-    def describe_subset(self, keywords, top_n=N, limit=N):
+    def describe_subset(self, keywords=None, top_n=N, limit=N):
         '''
         get stats for the search subsample of the information space
         '''
-        result = self.es.search(index=self.index, explain=True, size=limit, body={"query": {"match": {"_all": keywords}}, "aggs": {
+        if keywords:
+            query = {"match": {"_all": keywords}}
+        else:
+            {"match_all": {}}
+        result = self.es.search(index=self.index, explain=True, size=limit, body={"query": query, "aggs": {
                 "title": {"terms": {"field": "raw.title.keyword", "size" : top_n}},
                 "license": {"terms": {"field": "raw.license_id.keyword", "size" : top_n}},
                 "categorization": {"terms": {"field": "raw.categorization.keyword", "size" : top_n}},

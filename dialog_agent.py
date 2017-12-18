@@ -256,7 +256,7 @@ class DialogAgent():
     #         # report final message
     #         self.report_message_stats()
     
-    def describe_set(self, query={}, k=1, keywords=all_keywords, threshold=0.02,
+    def describe_set(self, query=None, k=1, keywords=all_keywords, threshold=0.02,
                         message="In this Open Data portal there are many datasets with "):
         '''
         pick k facets from the gini index-based ranking queue
