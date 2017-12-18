@@ -6,7 +6,9 @@ Create sample utterances from data
 '''
 from Queue import PriorityQueue
 from collections import defaultdict
+
 import numpy as np
+from fuzzywuzzy import fuzz
 
 from load_ES import ESClient, INDEX, FIELDS
 from aggregations import counts, top_keywords, all_keywords
