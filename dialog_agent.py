@@ -370,7 +370,7 @@ def test_story_teller():
     chatbot.tell_story(story_size)
 
 
-def test_sample_subset(index=INDEX, top_n=4, limit=1):
+def test_sample_subset(index=INDEX, top_n=4, limit=3):
     db = ESClient(index)
     query = "I would like to know more about finanzen"
     stats = db.describe_subset(query)
