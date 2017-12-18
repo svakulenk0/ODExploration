@@ -370,7 +370,7 @@ def test_story_teller():
     chatbot.tell_story(story_size)
 
 
-def test_sample_subset(index=INDEX, top_n=2, limit=3):
+def test_sample_subset(index=INDEX, top_n=4, limit=1):
     db = ESClient(index)
     query = "I would like to know more about finanzen"
     stats = db.describe_subset(query)
@@ -379,6 +379,7 @@ def test_sample_subset(index=INDEX, top_n=2, limit=3):
     for k in range(top_n):
         # get the top facets
         weight, facet = facets_rank.get()
+        print weight, facet
         # get the first bottom (last) facet by distribution
         # weight, facet_unique = facets_rank.reverse().get()
         entities = [entity['key'] for entity in stats[facet]['buckets'][:top_n]]
