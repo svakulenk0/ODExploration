@@ -35,7 +35,7 @@ class ESClient():
         get stats for the search subsample of the information space
         '''
         result = self.es.search(index=self.index, explain=True, body={"query": {"match": {"_all": keywords}}, "aggs": {
-                "title": {"terms": {"field": "raw.title.keyword", "size" : 400}},
+                "title": {"terms": {"field": "raw.title.keyword", "size" : 800}},
                 "license": {"terms": {"field": "raw.license_id.keyword", "size" : n}},
                 "categorization": {"terms": {"field": "raw.categorization.keyword", "size" : n}},
                 "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : n}},
