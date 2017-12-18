@@ -41,6 +41,7 @@ class ESClient():
                 "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : n}},
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : n}}
             }})
+        print result['max_score']
         return result['aggregations']
 
     def search_by(self, field, value, limit=N):
@@ -86,11 +87,14 @@ def test_aggregation_stats(index=INDEX):
 
 
 def test_describe_subset(index=INDEX, top_n=2):
-    keyword = "finanzen"
-    keyword = "I would like to know more about finanzen"
     db = ESClient(index)
+    
+    keyword = "finanzen"
     results = db.describe_subset(keyword, n=2)
-    print json.dumps(results, indent=4, sort_keys=True)
+
+    keyword = "I would like to know more about finanzen"
+    results = db.describe_subset(keyword, n=2)
+    # print json.dumps(results, indent=4, sort_keys=True)
 
 
 def test_search(index=INDEX, n_samples=5):
