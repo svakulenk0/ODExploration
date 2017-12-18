@@ -362,7 +362,7 @@ def test_story_teller():
     chatbot.tell_story(story_size)
 
 
-def test_sample_subset(index=INDEX, top_n=4, limit=3, threshold=0.95):
+def test_sample_subset(index=INDEX, top_n=4, limit=3, threshold=0.02):
     db = ESClient(index)
     query = "I would like to know more about finanzen"
     stats = db.describe_subset(query)
@@ -379,19 +379,19 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3, threshold=0.95):
         entities = []
         for entity in stats[facet]['buckets'][:limit]:
             x = entity['key']
-            # if entity['doc_count'] > cutoff:
-            # filter out similar entities
-            duplicate_detected = False
-            for reported in entities:
-                # Edit distance of largest common substring (scaled)
-                partial = fuzz.partial_ratio(reported, x)
-                # print reported, x, partial
-                if partial == 100:
-                    duplicate_detected = True
-                    continue
-            if not duplicate_detected:
-                print x, entity['doc_count']/float(N_DOCS)
-                entities.append(x)
+            if entity['doc_count']/float(N_DOCS) > threshold:
+                # filter out similar entities
+                duplicate_detected = False
+                for reported in entities:
+                    # Edit distance of largest common substring (scaled)
+                    partial = fuzz.partial_ratio(reported, x)
+                    # print reported, x, partial
+                    if partial == 100:
+                        duplicate_detected = True
+                        continue
+                if not duplicate_detected:
+                    # print x, entity['doc_count']/float(N_DOCS)
+                    entities.append(x)
 
         print facet, entities
 
