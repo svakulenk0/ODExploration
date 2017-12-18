@@ -302,9 +302,8 @@ class DialogAgent():
                             examples.append(item["_source"]['raw']['title'])
                     print 'S: For example:\n', TEMPLATES['join'][2].join(examples)
             else:
-                print 'S:', actions['bool_data']['empty_set']
-
-            
+                # print 'S:', actions['bool_data']['empty_set'][0]
+                self.describe_set()
 
     def list_keywords(self, k=1, keywords=all_keywords, message="In this Open Data portal there are many datasets with "):
         '''
