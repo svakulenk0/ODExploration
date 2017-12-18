@@ -204,7 +204,7 @@ class DialogAgent():
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
-        self.list_keywords(keywords=stats, k=2)
+        self.list_keywords(keywords=stats, k=2, message="There are ")
 
     def report_message_stats(self):
         self.transmitted_messages += 1
@@ -256,13 +256,12 @@ class DialogAgent():
     #         # report final message
     #         self.report_message_stats()
 
-    def list_keywords(self, k=1, keywords=all_keywords):
+    def list_keywords(self, k=1, keywords=all_keywords, message="In this Open Data portal there are many datasets with "):
         '''
         pick k facets from the gini index-based ranking queue
         '''
         # iterate over ranked facets
         facets_rank = gini_facets(keywords)
-        message = "In this Open Data portal there are many datasets with "
         for i in range(k):
             weight, facet = facets_rank.get()
             # for entity in keywords[facet]['buckets'][:self.basket_limit]:
@@ -427,7 +426,7 @@ def test_gini():
 
 
 def main():
-    test_sample_subset()
+    test_chat()
 
 
 if __name__ == '__main__':
