@@ -30,6 +30,10 @@ class ESClient():
         result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})['hits']['hits']
         return result
 
+    def sample_subset(self, keywords, facet_in, entity, size=2):
+        result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords, facet_in: entity}}})['hits']['hits'][:size]
+        return result
+
     def describe_subset(self, keywords, top_n=N, limit=N):
         '''
         get stats for the search subsample of the information space
