@@ -8,7 +8,7 @@ from Queue import PriorityQueue
 from collections import defaultdict
 import numpy as np
 
-from load_ES import ESClient
+from load_ES import ESClient, INDEX
 from aggregations import counts, top_keywords, all_keywords
 from user_intents import intents, match_intent
 from system_actions import actions
@@ -121,6 +121,8 @@ def gini_facets(top_keywords):
 TEMPLATES = {
                 'single': ["%s is the most popular %s"],
                 'multiple': [
+                        "%s: %s",
+                        "The most popular %ss are: %s",
                         "The most popular %ss are: %s",
                         "%s are the most popular among %ss"
                     ],
@@ -128,15 +130,19 @@ TEMPLATES = {
             }
 
 
-def build_sentence(facet, entities, pattern=None):
+def build_phrase(facet, entities, pattern, start):
     '''
     Function to build a sentence using data from the pre-defined templates
     '''
     if len(entities) > 1:
-        sentence = TEMPLATES['multiple'][0] % (facet, TEMPLATES['join'][0].join(entities))
+        entities_string = TEMPLATES['join'][0].join(entities)
+        sentence = TEMPLATES['multiple'][pattern] % (facet, entities_string)
+        # sentence = TEMPLATES['multiple'][0] % (facet, TEMPLATES['join'][0].join(entities))
     else:
         sentence = TEMPLATES['single'][0] % (entities[0], facet)
-
+    # only the 1st sentence
+    if pattern == 0:
+        sentence = start + sentence
     return sentence
 
 
@@ -151,7 +157,9 @@ class DialogAgent():
     Chatbot talking data optimizing for knowledge transfer
     '''
 
-    def __init__(self, top_keywords=top_keywords):
+    def __init__(self, top_keywords=top_keywords, index=INDEX):
+        # establish connection to the
+        self.db = ESClient(index)
         # keep track of the last transmitted node attribute to save space in the bucket
         self.top_keywords = top_keywords
         # normalization constant for estimating the total information space size
@@ -160,23 +168,45 @@ class DialogAgent():
         self.conversation_history = []
         # transition probabilities of replies to user intents with system actions
         self.intent2action = {
-                'greeting': ['greeting', self.tell_story]
+                'greeting': ['greeting', self.list_keywords]
             }
-    
-    def chat(self, greeting):
-        # show default greeting
-        print greeting
+        # initialize story stats
+        self.transmitted_node = []
+        self.transmitted_symbols = 0
+        self.sum_weight = 0
+        self.transmitted_messages = 0
+
+    def chat(self, greeting="Hi, nice to meet you!", simulate=True):
+        # 1. show default greeting
+        if greeting:
+            print 'S:', greeting
         self.conversation_history.append('greeting')
 
-        user_message = raw_input()
-        # match user input to all possible intents
+        # 2. users turn
+        if simulate:
+            user_message = "HI"
+            print 'U:', user_message
+        else:
+            user_message = raw_input()
+        
+        # 3. match user input to all possible intents
         for intent in intents:
             if match_intent(user_message, intent):
                 # pick the 1st matching system action
                 for action in self.intent2action[intent]:
                     if action not in self.conversation_history:
-                        if action not in actions:
+                        if action not in actions.keys():
                             action()
+                        else:
+                            print 'S:', actions[action][0]
+        # 4. listen to the user
+        user_message = raw_input()
+        # 5. search
+        self.search_db(user_message)
+
+    def search_db(self, query):
+        stats = describe_subset(query)
+        self.tell_facets(stats)
 
     def report_message_stats(self):
         self.transmitted_messages += 1
@@ -219,14 +249,38 @@ class DialogAgent():
             # print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
             # print "\t%.2f of the information space communicated\n" % (self.sum_weight / float(self.space_size))
 
-    def tell_facets(keywords=all_keywords):
+    def tell_facets(stats=all_keywords):
         # iterate over ranked facets
-        facets_rank = gini_facets(keywords)
+        facets_rank = gini_facets(stats)
         while not facets_rank.empty():
             weight, facet = facets_rank.get()
             self.tell_facet(facet)
             # report final message
             self.report_message_stats()
+
+    def list_keywords(self, k=1, keywords=all_keywords):
+        '''
+        pick k facets from the gini index-based ranking queue
+        '''
+        # iterate over ranked facets
+        facets_rank = gini_facets(keywords)
+        message = "In this Open Data portal there are many datasets with "
+        for i in range(k):
+            weight, facet = facets_rank.get()
+            # for entity in keywords[facet]['buckets'][:self.basket_limit]:
+                # self.communicate_node((-entity['doc_count'], (facet, entity['key'])))
+            entities = [entity['key'] for entity in keywords[facet]['buckets'][:self.basket_limit]]
+            print 'S:', build_phrase(facet, entities, i, message)
+
+    def list_keywords_greedy(self, k=2):
+        '''
+        pick k nodes from the ranking queue using greedy approach
+        '''
+        self.ranking = rank_nodes(self.top_keywords)
+        for i in range(k):
+            weight, relation = self.ranking.get()
+            facet, entity = relation
+            print 'S:', build_phrase(facet,[entity])
 
     def tell_story(self, topn=20):
         '''
@@ -235,13 +289,6 @@ class DialogAgent():
 
         topn <int> defines the size of the story requested in terms of the number of concepts communicated
         '''
-        self.ranking = rank_nodes(self.top_keywords)
-        # initialize story stats
-        self.sum_weight = 0
-        self.transmitted_node = []
-        self.transmitted_symbols = 0
-        self.transmitted_messages = 0
-
         self.tell_clusters(topn)
 
         # report final message
@@ -304,7 +351,7 @@ def get_top_nodes(topn=20):
     
     # phrase topn ranked nodes
     for facet, entities in top_facets.items():
-        print build_sentence(facet, entities)
+        print build_phrase(facet, entities)
 
 
 def test_sample_items():
@@ -326,7 +373,7 @@ def test_gini_index():
 
 def test_chat():
     chatbot = DialogAgent()
-    chatbot.chat(greeting="Hi, nice to meet you!")
+    chatbot.chat(greeting=None)
 
 
 def main():
