@@ -375,7 +375,17 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3):
         # weight, facet_unique = facets_rank.reverse().get()
 
         # filter only most populated (important) entities based on ['doc_count'] values
-        entities = [(entity['key'], entity['doc_count']) for entity in stats[facet]['buckets'][:limit] if entity['doc_count'] > cutoff]
+        entities = []
+        for entity in stats[facet]['buckets'][:limit]:
+            if entity['doc_count'] > cutoff:
+                # do not report similar entities
+                for reported in entities:
+                    # Edit distance of largest common substring (scaled)
+                    partial = fuzz.partial_ratio(reported, entity)
+                    print reported, entity, partial
+                    if partial == 100:
+                        continue
+                entities.append(entity['key'])
 
         print facet, entities
 
