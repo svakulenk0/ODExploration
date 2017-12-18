@@ -41,7 +41,7 @@ class ESClient():
                 "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : n}},
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : n}}
             }})
-        print result['max_score']
+        print result
         return result['aggregations']
 
     def search_by(self, field, value, limit=N):
