@@ -375,7 +375,7 @@ def test_sample_subset(index=INDEX, top_n=2):
     keyword = "I would like to know more about finanzen"
     stats = db.describe_subset(keyword, top_n=2)
     # pick the most populated attributes
-    facets_rank = gini_facets(all_keywords)
+    facets_rank = gini_facets(stats)
     while not facets_rank.empty():
         # weight, facet
         print facets_rank.get()
