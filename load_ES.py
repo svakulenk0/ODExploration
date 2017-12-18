@@ -34,7 +34,7 @@ class ESClient():
         '''
         get stats for the search subsample of the information space
         '''
-        result = self.es.search(index=self.index, body={"query": {"match": {"_all": keywords}}, "aggs": {
+        result = self.es.search(index=self.index, explain=True, body={"query": {"match": {"_all": keywords}}, "aggs": {
                 "title": {"terms": {"field": "raw.title.keyword", "size" : n}},
                 "license": {"terms": {"field": "raw.license_id.keyword", "size" : n}},
                 "categorization": {"terms": {"field": "raw.categorization.keyword", "size" : n}},
@@ -88,7 +88,7 @@ def test_aggregation_stats(index=INDEX):
 
 def test_describe_subset(index=INDEX, top_n=2):
     db = ESClient(index)
-    
+
     keyword = "finanzen"
     results = db.describe_subset(keyword, n=2)
 
