@@ -197,14 +197,15 @@ class DialogAgent():
                             print 'S:', actions[action][0]
 
         # 4. users turn
-        if simulate:
-            user_message = "I would like to know more about finanzen"
-            print 'U:', user_message
-        else:
-            user_message = raw_input()
-        
-        # 5. search
-        self.search_db(user_message)
+        while True:
+            if simulate:
+                user_message = "I would like to know more about finanzen"
+                print 'U:', user_message
+            else:
+                user_message = raw_input()
+            
+            # 5. search
+            self.search_db(user_message)
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
@@ -453,7 +454,7 @@ def test_gini_index():
 
 def test_chat():
     chatbot = DialogAgent()
-    chatbot.chat(greeting=None)
+    chatbot.chat(greeting=None, simulate=False)
 
 
 def test_gini():
