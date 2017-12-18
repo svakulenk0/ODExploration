@@ -180,7 +180,7 @@ class DialogAgent():
 
         # 2. users turn
         if simulate:
-            user_message = "HI"
+            user_message = "Hi!"
             print 'U:', user_message
         else:
             user_message = raw_input()
@@ -298,7 +298,7 @@ class DialogAgent():
                     examples = []
                     for item in items:
                         examples.append(item["_source"]['raw']['title'])
-                print 'S: For example:', TEMPLATES['join'][2].join(examples)
+                print 'S: For example:\n', TEMPLATES['join'][2].join(examples)
 
     def list_keywords(self, k=1, keywords=all_keywords, message="In this Open Data portal there are many datasets with "):
         '''
