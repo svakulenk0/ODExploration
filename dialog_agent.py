@@ -160,7 +160,7 @@ class DialogAgent():
         self.conversation_history = []
         # transition probabilities of replies to user intents with system actions
         self.intent2action = {
-                'greeting': ['greeting', self.list_keywords]
+                'greeting': ['greeting', self.describe_set]
             }
         # initialize story stats
         self.transmitted_node = []
@@ -204,7 +204,7 @@ class DialogAgent():
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
-        self.describe_sample(keywords=stats, k=1, message="Sure, there are many datasets about ", query=query)
+        self.describe_set(keywords=stats, k=1, message="There are many datasets with related ", query=query)
 
     def report_message_stats(self):
         self.transmitted_messages += 1
@@ -256,7 +256,7 @@ class DialogAgent():
     #         # report final message
     #         self.report_message_stats()
     
-    def describe_sample(self, query={}, k=1, keywords=all_keywords, threshold=0.02,
+    def describe_set(self, query={}, k=1, keywords=all_keywords, threshold=0.02,
                         message="In this Open Data portal there are many datasets with "):
         '''
         pick k facets from the gini index-based ranking queue
