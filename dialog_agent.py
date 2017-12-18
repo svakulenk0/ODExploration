@@ -204,7 +204,7 @@ class DialogAgent():
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
-        self.describe_sample(keywords=stats, k=2, message="There are ", query=query)
+        self.describe_sample(keywords=stats, k=1, message="There are ", query=query)
 
     def report_message_stats(self):
         self.transmitted_messages += 1
