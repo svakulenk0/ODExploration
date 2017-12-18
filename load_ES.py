@@ -41,7 +41,7 @@ class ESClient():
                 "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : top_n}},
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
             }})
-        print result
+        # print result
         return result['aggregations']
 
     def search_by(self, field, value, limit=N):
@@ -93,7 +93,7 @@ def test_describe_subset(index=INDEX, top_n=2):
     # results = db.describe_subset(keyword, top_n=2)
 
     keyword = "I would like to know more about finanzen"
-    # results = db.describe_subset(keyword, top_n=2)
+    results = db.describe_subset(keyword, top_n=2)
     print json.dumps(results, indent=4, sort_keys=True)
     # pick the most representative documents from the subset
 
