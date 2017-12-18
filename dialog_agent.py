@@ -171,6 +171,8 @@ class DialogAgent():
         self.transmitted_symbols = 0
         self.sum_weight = 0
         self.transmitted_messages = 0
+        # cold start facet rank
+        self.facets_rank = gini_facets(keywords)
 
     def chat(self, greeting="Hi, nice to meet you!", simulate=True):
         # 1. show default greeting
@@ -209,8 +211,10 @@ class DialogAgent():
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
+        # rank facets of the exploration set
+        facets_rank = gini_facets(keywords)
         self.describe_set(keywords=stats, k=1, message="There are many datasets with related ",
-                          query=query, show_sample=True)
+                          query=query, show_sample=True, facets_rank=facets_rank)
 
     def report_message_stats(self):
         self.transmitted_messages += 1
@@ -263,14 +267,13 @@ class DialogAgent():
     #         self.report_message_stats()
     
     def describe_set(self, query=None, k=2, keywords=all_keywords, threshold=0.02, show_sample=False,
-                        message="In this Open Data portal there are many datasets with "):
+                        message="In this Open Data portal there are many datasets with ", facets_rank=self.facets_rank):
         '''
         pick k facets from the gini index-based ranking queue
         '''
         # iterate over ranked facets
-        facets_rank = gini_facets(keywords)
         for i in range(k):
-            weight, facet = facets_rank.get()
+            weight, facet = facets_rank
 
             # for entity in keywords[facet]['buckets'][:self.basket_limit]:
                 # self.communicate_node((-entity['doc_count'], (facet, entity['key'])))
