@@ -382,8 +382,12 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3):
         print weight, facet
         # get the first bottom (last) facet by distribution
         # weight, facet_unique = facets_rank.reverse().get()
-        entities = [entity['key'] for entity in stats[facet]['buckets'][:top_n]]
-        print facet, entities[:limit]
+
+        # filter only most populated (important) entities based on ['doc_count'] values
+        entities = [(entity['key'], entity['doc_count']) for entity in stats[facet]['buckets'][:limit]]
+
+        print facet, entities
+
         # top_entity = entities[0]
         # print facet, top_entity
         # items = db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
