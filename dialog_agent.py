@@ -205,7 +205,7 @@ class DialogAgent():
         self.search_db(user_message)
 
     def search_db(self, query):
-        stats = describe_subset(query)
+        stats = self.db.describe_subset(query)
         self.tell_facets(stats)
 
     def report_message_stats(self):
