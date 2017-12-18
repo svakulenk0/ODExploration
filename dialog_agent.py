@@ -379,15 +379,16 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3):
         # filter only most populated (important) entities based on ['doc_count'] values
         entities = []
         for entity in stats[facet]['buckets'][:limit]:
+            x = entity['key']
             if entity['doc_count'] > cutoff:
                 # do not report similar entities
                 for reported in entities:
                     # Edit distance of largest common substring (scaled)
-                    partial = fuzz.partial_ratio(reported, entity)
-                    print reported, entity, partial
+                    partial = fuzz.partial_ratio(reported, x)
+                    print reported, x, partial
                     if partial == 100:
                         continue
-                entities.append(entity['key'])
+                entities.append(x)
 
         print facet, entities
 
