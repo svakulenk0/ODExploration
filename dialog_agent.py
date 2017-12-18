@@ -386,8 +386,8 @@ def test_sample_subset(index=INDEX, top_n=4, limit=3):
                 for reported in entities:
                     # Edit distance of largest common substring (scaled)
                     partial = fuzz.partial_ratio(reported, x)
-                    print reported, x, partial
-                    if partial < 100:
+                    # print reported, x, partial
+                    if partial == 100:
                         duplicate_detected = True
                         continue
                 if not duplicate_detected:
