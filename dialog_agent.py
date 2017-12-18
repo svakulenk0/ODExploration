@@ -91,7 +91,7 @@ def gini(x):
     return abs(g)
 
 
-def gini_facets(top_keywords, threshold=0.5):
+def gini_facets(top_keywords, threshold):
     '''
     analyse skewness of the distribution among the entites within the attribute
     compute a score for each attribute characterizing the skewness
@@ -363,12 +363,12 @@ def test_story_teller():
     chatbot.tell_story(story_size)
 
 
-def test_sample_subset(index=INDEX, top_n=4, limit=3):
+def test_sample_subset(index=INDEX, top_n=4, limit=3, threshold=0.9):
     db = ESClient(index)
     query = "I would like to know more about finanzen"
     stats = db.describe_subset(query)
     # pick the most populated attributes
-    facets_rank = gini_facets(stats, threshold=0.1)
+    facets_rank = gini_facets(stats, threshold=threshold)
     for k in range(top_n):
         # get the top facets
         weight, (facet, cutoff) = facets_rank.get()
