@@ -172,7 +172,7 @@ class DialogAgent():
         self.sum_weight = 0
         self.transmitted_messages = 0
         # cold start facet rank
-        self.facets_rank = gini_facets(keywords)
+        self.facets_rank = gini_facets(all_keywords)
 
     def chat(self, greeting="Hi, nice to meet you!", simulate=True):
         # 1. show default greeting
