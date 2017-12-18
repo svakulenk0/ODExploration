@@ -22,10 +22,9 @@ actions = {
                 "how are you ? ^^"
                 ],
 
-            'bool_data': [
+            'bool_data': {
                 'empty_set': ["Sorry, nothing found."]
-
-            ],
+                },
 
             'confirm': [
                 "Yes, I can help you with that.",
