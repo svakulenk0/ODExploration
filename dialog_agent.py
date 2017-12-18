@@ -204,7 +204,8 @@ class DialogAgent():
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
-        self.describe_set(keywords=stats, k=1, message="There are many datasets with related ", query=query)
+        self.describe_set(keywords=stats, k=1, message="There are many datasets with related ",
+                          query=query, show_sample=True)
 
     def report_message_stats(self):
         self.transmitted_messages += 1
@@ -256,7 +257,7 @@ class DialogAgent():
     #         # report final message
     #         self.report_message_stats()
     
-    def describe_set(self, query=None, k=1, keywords=all_keywords, threshold=0.02,
+    def describe_set(self, query=None, k=2, keywords=all_keywords, threshold=0.02, show_sample=False,
                         message="In this Open Data portal there are many datasets with "):
         '''
         pick k facets from the gini index-based ranking queue
@@ -286,13 +287,14 @@ class DialogAgent():
                         entities.append(x)
             print 'S:', build_phrase(facet, entities, i, message)
 
-            # show sample datasets
-            for top_entity in entities:
-                items = self.db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
-                examples = []
-                for item in items:
-                    examples.append(item["_source"]['raw']['title'])
-            print 'S: For example:', TEMPLATES['join'][2].join(examples)
+            if show_sample:
+                # show sample datasets
+                for top_entity in entities:
+                    items = self.db.sample_subset(keywords=query, facet_in=facet, entity=top_entity)
+                    examples = []
+                    for item in items:
+                        examples.append(item["_source"]['raw']['title'])
+                print 'S: For example:', TEMPLATES['join'][2].join(examples)
 
     def list_keywords(self, k=1, keywords=all_keywords, message="In this Open Data portal there are many datasets with "):
         '''
