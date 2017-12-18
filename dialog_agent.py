@@ -206,7 +206,7 @@ class DialogAgent():
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
-        tell_facets(stats)
+        self.list_keywords(keywords=stats, k=2)
 
     def report_message_stats(self):
         self.transmitted_messages += 1
@@ -249,14 +249,14 @@ class DialogAgent():
             # print "\t", self.sum_weight / self.transmitted_symbols, "information units per symbol"
             # print "\t%.2f of the information space communicated\n" % (self.sum_weight / float(self.space_size))
 
-    def tell_facets(stats=all_keywords):
-        # iterate over ranked facets
-        facets_rank = gini_facets(stats)
-        while not facets_rank.empty():
-            weight, facet = facets_rank.get()
-            self.tell_facet(facet)
-            # report final message
-            self.report_message_stats()
+    # def tell_facets(self, stats=all_keywords):
+    #     # iterate over ranked facets
+    #     facets_rank = gini_facets(stats)
+    #     while not facets_rank.empty():
+    #         weight, facet = facets_rank.get()
+    #         self.tell_facet(facet)
+    #         # report final message
+    #         self.report_message_stats()
 
     def list_keywords(self, k=1, keywords=all_keywords):
         '''
