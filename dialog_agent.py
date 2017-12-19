@@ -111,7 +111,7 @@ def gini_facets(top_keywords):
 
 
 TEMPLATES = {
-                'single': ["%s is the most popular %s"],
+                'single': ["%s as the most popular %s"],
                 'multiple': [
                         "%s: %s",
                         "The most popular %ss are: %s",
@@ -207,13 +207,16 @@ class DialogAgent():
                 user_message = raw_input()
             
             # 5. search
-            self.search_db(user_message)
+            if len(user_message) > 2:
+                self.search_db(user_message)
+            else:
+                self.describe_set(message="Also, there are many datasets with ")
 
     def search_db(self, query):
         stats = self.db.describe_subset(query)
         # rank facets of the exploration set
         facets_rank = gini_facets(stats)
-        self.describe_set(keywords=stats, k=1, message="There are many datasets with related ",
+        self.describe_set(keywords=stats, k=1, message="There are many datasets with ",
                           query=query, show_sample=True, facets_rank=facets_rank)
 
     def report_message_stats(self):
