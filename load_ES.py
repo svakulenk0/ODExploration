@@ -132,4 +132,4 @@ def test_search(index=INDEX, n_samples=5):
 
 
 if __name__ == '__main__':
-    test_describe_subset()
+    test_top_docs_search()
