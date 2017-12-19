@@ -208,8 +208,10 @@ class DialogAgent():
             
             # 5. search
             if len(user_message) > 2:
-                self.search_db(user_message)
+                # self.search_db(user_message)
+                show_top_docs(user_message)
             else:
+                # fall back to storytelling
                 self.describe_set(message="Also, there are many datasets with ")
 
     def search_db(self, query):
@@ -268,7 +270,15 @@ class DialogAgent():
     #         self.tell_facet(facet)
     #         # report final message
     #         self.report_message_stats()
-    
+
+    def show_top_docs(query, index=INDEX, top_n=2, n_samples=5):
+        results = self.db.describe_subset(keywords=query, top_n=top_n)
+        # show the top docs
+        examples = []
+        for item in results['hits']['hits'][:n_samples]:
+            examples.append(item["_source"]['raw']['title'])
+        print 'S: For example:\n', TEMPLATES['join'][2].join(examples)
+
     def describe_set(self, query=None, k=2, keywords=all_keywords, threshold=0.02, show_sample=False,
                         message="In this Open Data portal there are many datasets with ", facets_rank=False):
         '''
