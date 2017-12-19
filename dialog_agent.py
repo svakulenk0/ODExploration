@@ -209,7 +209,7 @@ class DialogAgent():
             # 5. search
             if len(user_message) > 2:
                 # self.search_db(user_message)
-                show_top_docs(user_message)
+                self.show_top_docs(user_message)
             else:
                 # fall back to storytelling
                 self.describe_set(message="Also, there are many datasets with ")
@@ -271,7 +271,7 @@ class DialogAgent():
     #         # report final message
     #         self.report_message_stats()
 
-    def show_top_docs(query, index=INDEX, top_n=2, n_samples=5):
+    def show_top_docs(self, query, index=INDEX, top_n=2, n_samples=5):
         results = self.db.describe_subset(keywords=query, top_n=top_n)
         # show the top docs
         examples = []
