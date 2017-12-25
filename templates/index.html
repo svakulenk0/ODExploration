@@ -12,7 +12,7 @@
         <p class="botText"><span>Hi! I'm Open Data Chatbot.</span></p>
       </div>
       <div id="userInput">
-        <input id="textInput" type="text" name="msg" placeholder="Message">
+        <input id="textInput" type="text" name="msg" placeholder="Message" autofocus>
         <!-- <input id="buttonInput" type="submit" value="Send"> -->
       </div>
       <script>
@@ -25,9 +25,11 @@
           $.get("/get", { msg: rawText }).done(function(data) {
             var botHtml = '<p class="botText"><span>' + data + '</span></p>';
             $("#chatbox").append(botHtml);
-            // add button as a suggested user response
-            var botButton = '<input id="btn" type="submit" value="More">';
-            $("#chatbox").append(botButton);
+            // add buttons for available exploration direction
+            var botSimilar = '<input class="botBtn" id="similarInput" type="submit" value="Similar">';
+            $("#chatbox").append(botSimilar);
+            var botOther = '<input class="botBtn" id="otherInput" type="submit" value="Other">';
+            $("#chatbox").append(botOther);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
@@ -36,9 +38,12 @@
                 getBotResponse();
             }
         });
-        $("#buttonInput").click(function() {
+        $("#similarInput").click(function() {
             getBotResponse();
-        })
+        });
+        $("a").click(function() {
+            getBotResponse();
+        });
       </script>
     </div>
   </body>
