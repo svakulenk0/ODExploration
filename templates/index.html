@@ -14,7 +14,7 @@
       <div id="userInput">
         <!-- add buttons for available exploration direction -->
         <input id="facets" class="botBtn" type="submit" value="Facets">
-        <input id="otherInput" class="botBtn" type="submit" value="Skip">
+        <input id="otherInput" class="botBtn" type="submit" value="Next">
         <input id="pivotInput" class="botBtn" type="submit" value="Pivot">
         <input id="similarInput" class="botBtn" type="submit" value="More">
         <input id="textInput" type="text" name="msg" placeholder="Message" autofocus>
@@ -54,7 +54,7 @@
           });
         }
         function showDataset(datasetID) {
-          $.get("/show", { msg: datasetID }).done(function(data) {
+          $.get("/show").done(function(data) {
             var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
