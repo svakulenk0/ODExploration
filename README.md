@@ -4,6 +4,10 @@
 
 If you love #government #data but hate faceted search and csv tables? How to make your database talk? How to squeeze a table into a sequence of characters?
 
+## Requirements
+
+pip install -r requirements.txt
+
 
 ## Dataset
 
@@ -272,3 +276,4 @@ Voranschlag der Stadt Graz
 
 * [Online JSON viewer](http://jsonviewer.stack.hu) for ES mapping
 * Web UI is based on [flask-chatterbot](https://github.com/chamkank/flask-chatterbot)
+* [CSS Button Generator](http://css3buttongenerator.com)
