@@ -144,4 +144,4 @@ def test_get_CSV(index=INDEX_SERVER):
 
 
 if __name__ == '__main__':
-    test_get_response(index=INDEX_LOCAL)
+    test_get_CSV(index=INDEX_LOCAL)
