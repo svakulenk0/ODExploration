@@ -82,7 +82,7 @@ class DialogAgent():
         '''
         # get facet-entity subset of the dataset
         keywords = self.db.aggregate_entity(facet=self.facet, value=self.entity)
-        entity_rank = rank_entities(keywords)
+        entity_rank = self.rank_entities(keywords)
         count, (self.facet, self.entity) = self.entity_rank.get()
         return "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, self.entity, self.facet, self.spacing)
 
