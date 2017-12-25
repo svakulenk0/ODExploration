@@ -43,7 +43,7 @@ class DialogAgent():
         results = self.db.search_by(field=facet, value=entity, limit=size)
         for item in results:
             samples.append(item["_source"]["raw"]["title"])
-        return "For example:\n" + "\n".join(samples)
+        return "\nFor example:\n\n" + "\n".join(samples)
 
     def tell_story(self):
         response = ""
