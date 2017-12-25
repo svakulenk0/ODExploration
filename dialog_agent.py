@@ -50,8 +50,9 @@ class DialogAgent():
                 # get table
                 dataset_id = item["_source"]["raw"]["id"]
                 dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-                first_table = self.csv_db.search_by(facet='dataset_link', value=dataset_link)[0]
-                print first_table['_source']['no_rows'], 'rows'
+                tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
+                if tables:
+                    print tables[0]['_source']['no_rows'], 'rows'
                 # get columns
             # self.shown.add(title)
             samples.append(self.title_decorator % title)
