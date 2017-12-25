@@ -40,7 +40,7 @@ class DialogAgent():
         show a sample of items for an entity
         '''
         samples = []
-        results = self.db.search_by(field=facet, value=entity, limit=size)
+        results = self.db.search_by(facet=facet, value=entity, limit=size)
         for item in results:
             samples.append(item["_source"]["raw"]["title"])
         return "\nFor example:\n\n" + "\n".join(samples)
