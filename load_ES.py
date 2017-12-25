@@ -144,8 +144,9 @@ def test_search_csv():
     dataset_link = "http://www.data.gv.at/katalog/dataset/80607cc6-8fc1-4b2e-8517-716de8f1ba63"
     print dataset_link
     csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
-    csv_db.show_one()
-    # tables = csv_db.search_by(facet='dataset_link', value=dataset_link)
+    # csv_db.show_one()
+    tables = csv_db.search_by(facet='dataset_link', value=dataset_link)
+    print tables
     # if tables:
         # print tables[0]['_source']['no_rows'], 'rows'
 
