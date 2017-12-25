@@ -95,7 +95,6 @@ class DialogAgent():
             # reset already shown items
             # self.shown = set()
         count, (facet, entity) = self.entity_rank.get()
-        print facet, entity
         response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, entity, facet, self.spacing)
         # show examples
         self.items = self.db.search_by(facet=facet, value=entity)
