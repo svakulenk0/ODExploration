@@ -47,8 +47,8 @@ class DialogAgent():
 
     def tell_story(self):
         response = ""
-        count, (entity, facet) = self.entity_rank.get()
-        response += "There are %s datasets with %s as %s\n" % (-count, facet, entity)
+        count, (facet, entity) = self.entity_rank.get()
+        response += "There are %s datasets with %s as %s\n" % (-count, entity, facet)
         # show examples TODO
         response += self.sample_items(facet, entity, size=5)
         return response
