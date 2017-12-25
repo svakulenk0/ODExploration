@@ -19,6 +19,7 @@ N = 2914
 N_DOCS = 2028
 
 FIELDS = {
+    "dataset_id": "raw.id",
     "title": "raw.title",
     "license": "raw.license_id",
     "categorization": "raw.categorization",

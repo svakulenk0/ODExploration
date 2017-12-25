@@ -26,6 +26,12 @@ def get_bot_response():
     return str(chatbot.get_response(userText).encode('utf8'))
 
 
+@app.route("/show")
+def show_dataset():
+    dataset_id = request.args.get('msg')
+    return str(chatbot.show_dataset(dataset_id).encode('utf8'))
+
+
 @app.route("/more")
 def get_more_items():
     samples = chatbot.sample_items(size=10)
