@@ -26,6 +26,7 @@ class DialogAgent():
         # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
         self.facet_decorator = "<button class='item' onclick=showEntities('%s')>%s</button>"
         self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
+        self.items = []
 
     def rank_entities(self, entity_counts=all_keywords):
         '''
@@ -74,15 +75,18 @@ class DialogAgent():
         show a sample of items for an entity
         '''
         samples = []
-        for item in self.items[self.page:self.page+size]:
-            # get title
-            title = item["_source"]["raw"]["title"]
-            dataset_id = item["_source"]["raw"]["id"]
-            dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-            formats = set([resource['format'] for resource in item["_source"]["raw"]["resources"]])
-            samples.append(self.item_decorator % (dataset_link, title, " ".join(formats)))
-        self.page += size
-        return self.spacing.join(samples)
+        if self.items:
+            for item in self.items[self.page:self.page+size]:
+                # get title
+                title = item["_source"]["raw"]["title"]
+                dataset_id = item["_source"]["raw"]["id"]
+                dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
+                formats = set([resource['format'] for resource in item["_source"]["raw"]["resources"]])
+                samples.append(self.item_decorator % (dataset_link, title, " ".join(formats)))
+            self.page += size
+            return self.spacing.join(samples)
+        else:
+            return self.tell_story()
 
     def summarize_items(self):
         '''
