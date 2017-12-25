@@ -18,7 +18,6 @@ class DialogAgent():
     def __init__(self, index=INDEX_SERVER, sample=True, spacing='<br>'):
         # establish connection to the ES index
         self.db = ESClient(index)
-        self.start = True
         self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
         # initialize a priority queue to store nodes ranking
         self.entity_rank = PriorityQueue()
@@ -90,6 +89,7 @@ class DialogAgent():
             # reset already shown items
             # self.shown = set()
         count, (facet, entity) = self.entity_rank.get()
+        print facet, entity
         response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, entity, facet, self.spacing)
         # show examples
         self.items = self.db.search_by(facet=facet, value=entity)
