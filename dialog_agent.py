@@ -46,7 +46,7 @@ class DialogAgent():
             dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
             entities.append(self.link_decorator % (dataset_link, title))
             # get the set of formats
-            formats = set([resource['format'] for resource in item["_source"]["raw"]["resources"]])
+            formats = set([resource['format'] for resource in items[0]["_source"]["raw"]["resources"]])
             entities.extend(formats)
             
             if 'CSV' in formats:
