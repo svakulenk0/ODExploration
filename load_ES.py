@@ -140,5 +140,14 @@ def test_search(index=INDEX, n_samples=5):
     print len(results), "results"
 
 
+def test_search_csv():
+    dataset_link = "http://www.data.gv.at/katalog/dataset/80607cc6-8fc1-4b2e-8517-716de8f1ba63"
+    print dataset_link
+    csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
+    tables = csv_db.search_by(facet='dataset_link', value=dataset_link)
+    if tables:
+        print tables[0]['_source']['no_rows'], 'rows'
+
+
 if __name__ == '__main__':
-    test_top_docs_search()
+    test_search_csv()
