@@ -107,7 +107,7 @@ class DialogAgent():
         self.aggregations = results['aggregations']
         # show only new items
         # self.items = list(set([item["_source"]["raw"]["title"] for item in items]) - self.shown)
-        if self.items[]:
+        if self.items:
             self.page = 0
             sampled_titles = self.sample_items(size=5)
             response += "%sFor example:%s" % (self.spacing, self.spacing*2) + sampled_titles
