@@ -74,7 +74,14 @@ class ESClient():
 
     def search_by(self, facet, value, limit=N):
         field = FIELDS[facet]
-        result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value))['hits']['hits']
+        query = '%s="%s"' % (field, value)
+        result = self.es.search(index=self.index, explain=True , size=limit, body={"query": query, "aggs": {
+                "title": {"terms": {"field": "raw.title.keyword", "size" : top_n}},
+                "license": {"terms": {"field": "raw.license_id.keyword", "size" : top_n}},
+                "categorization": {"terms": {"field": "raw.categorization.keyword", "size" : top_n}},
+                "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : top_n}},
+                "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
+            }})
         return result
 
     def top(self, n=N):

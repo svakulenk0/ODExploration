@@ -13,8 +13,9 @@
       </div>
       <div id="userInput">
         <!-- add buttons for available exploration direction -->
-        <input id="similarInput" class="botBtn" type="submit" value="Similar">
-        <input id="otherInput" class="botBtn" type="submit" value="Other">
+        <input id="otherInput" class="botBtn" type="submit" value="Skip">
+        <input id="pivotInput" class="botBtn" type="submit" value="Pivot">
+        <input id="similarInput" class="botBtn" type="submit" value="More">
         <input id="textInput" type="text" name="msg" placeholder="Message" autofocus>
       </div>
       <script>
@@ -51,6 +52,13 @@
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
+        function summarizeItems() {
+          $.get("/summary").done(function(data) {
+            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+            $("#chatbox").append(botHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          });
+        }
         $("#textInput").keypress(function(e) {
             if(e.which == 13) {
                 getBotResponse();
@@ -61,6 +69,9 @@
         });
         $("#otherInput").click(function() {
             getDifferentItems();
+        });
+        $("#pivotInput").click(function() {
+            summarizeItems();
         });
       </script>
     </div>
