@@ -21,6 +21,11 @@ a {
     color: hotpink;
 }
 
+a:hover { 
+    background-color: yellow;
+    cursor: pointer;
+}
+
 #chatbox {
     margin-left: auto;
     margin-right: auto;
