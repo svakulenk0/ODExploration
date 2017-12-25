@@ -40,7 +40,7 @@ class DialogAgent():
 
     def show_dataset(self, dataset_id):
         entities = []
-        items = self.db.search_by(facet='dataset_id', value=dataset_id)[0]
+        items = self.db.search_by(facet='dataset_id', value=dataset_id)
         if items:
             title = items[0]["_source"]["raw"]["title"]
             dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
@@ -120,7 +120,7 @@ def test_rank_nodes(topn=5):
         print chatbot.entity_rank.get()
 
 
-def test_get_response(index=INDEX_LOCAL, n_turns=5):
+def test_get_response(index=INDEX_SERVER, n_turns=5):
     chatbot = DialogAgent(index, spacing='\n')
     for i in range(n_turns):
         user_message = "ok"
@@ -147,4 +147,4 @@ def test_get_CSV(index=INDEX_SERVER):
 
 
 if __name__ == '__main__':
-    test_get_CSV(index=INDEX_LOCAL)
+    test_get_response()
