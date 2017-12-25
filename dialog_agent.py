@@ -35,10 +35,23 @@ class DialogAgent():
                 # insert into the priority queue (max weight items to go first)
                 self.entity_rank.put((-entity['doc_count'], (facet, entity['key'])))
 
+    def sample_items(self, facet, entity, size):
+        '''
+        show a sample of items for an entity
+        '''
+        samples = []
+        results = self.db.search_by(field=facet, value=entity, limit=size)
+        for item in results:
+            examples.append(item["_source"]["raw"]["title"])
+        return "For example:\n", "\n".join(examples)
+
     def tell_story(self):
+        response = ""
         count, (entity, facet) = self.entity_rank.get()
-        return "There are %s datasets with %s as %s" % (-count, facet, entity)
+        response += "There are %s datasets with %s as %s\n" % (-count, facet, entity)
         # show examples TODO
+        response += self.sample_items(facet, entity, size=5)
+        return response
 
     def get_response(self, user_request):
         return self.tell_story()
