@@ -254,7 +254,21 @@ Sonderschulen
 Total: communicated 4995 information units via 365 symbols in 5 messages
     0.49 of the information space covered
 
+### Error analysis
+
+* search: results irrelevant to the user query
+
+U: stadt wien
+S: There are many datasets with tags: linz, haushalt, außerordentlicher, finanzen
+S: For example:
+Rechnungsabschluss der Stadt Wien: Ausgabenart Zeitreihe Wien
+Offener Haushalt Budgetdaten Wien
+Erläuterungen Subventionen Amtsbericht
+Voranschlag der Landeshauptstadt Salzburg 2014
+Voranschlag der Stadt Graz
+
 
 ## References
 
 * [Online JSON viewer](http://jsonviewer.stack.hu) for ES mapping
+* Web UI is based on [flask-chatterbot](https://github.com/chamkank/flask-chatterbot)
