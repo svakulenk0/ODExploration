@@ -13,6 +13,7 @@
       </div>
       <div id="userInput">
         <!-- add buttons for available exploration direction -->
+        <input id="facets" class="botBtn" type="submit" value="Facets">
         <input id="otherInput" class="botBtn" type="submit" value="Skip">
         <input id="pivotInput" class="botBtn" type="submit" value="Pivot">
         <input id="similarInput" class="botBtn" type="submit" value="More">
@@ -33,6 +34,13 @@
         }
         function getDifferentItems() {
           $.get("/get").done(function(data) {
+            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+            $("#chatbox").append(botHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          });
+        }
+        function showFacets() {
+          $.get("/facets").done(function(data) {
             var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
@@ -63,6 +71,9 @@
             if(e.which == 13) {
                 getBotResponse();
             }
+        });
+        $("#facets").keypress(function(e) {
+            showFacets();
         });
         $("#similarInput").click(function() {
             getMoreItems();

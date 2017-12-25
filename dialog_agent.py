@@ -24,6 +24,7 @@ class DialogAgent():
         self.spacing = spacing
         self.summary_facet = None
         # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
+        self.facet_decorator = "<button class='item' onclick=showEntities('%s')>%s</button>"
         self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
 
     def rank_entities(self, entity_counts=all_keywords):
@@ -39,6 +40,12 @@ class DialogAgent():
                 # insert into the priority queue (max weight items to go first)
                 entity_rank.put((-entity['doc_count'], (facet, entity['key'])))
         return entity_rank
+
+    def show_facets(self):
+        facets = []
+        for facet, counts in entity_counts.items():
+            facets.append(self.facet_decorator % (facet, facet))
+        return self.facets.join(samples)
 
     # def show_dataset(self, dataset_id):
     #     entities = []

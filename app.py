@@ -31,6 +31,11 @@ def show_dataset():
     return str(chatbot.show_dataset(dataset_id).encode('utf8'))
 
 
+@app.route("/facets")
+def show_facets():
+    return str(chatbot.show_facets().encode('utf8'))
+
+
 @app.route("/summary")
 def summarize_items():
     return str(chatbot.summarize_items().encode('utf8'))
