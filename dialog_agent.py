@@ -23,8 +23,8 @@ class DialogAgent():
         # initialize a priority queue to store nodes ranking
         self.entity_rank = PriorityQueue()
         self.spacing = spacing
-        self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
-        self.link_decorator = "<a href='%s'>%s</a>"
+        # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
+        self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
 
     def rank_entities(self, entity_counts=all_keywords):
         '''
@@ -69,8 +69,9 @@ class DialogAgent():
             # get title
             title = item["_source"]["raw"]["title"]
             dataset_id = item["_source"]["raw"]["id"]
-            # self.shown.add(title)
-            samples.append(self.title_decorator % (dataset_id, title))
+            dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
+            formats = set([resource['format'] for resource in item["_source"]["raw"]["resources"]])
+            samples.append(self.item_decorator % (dataset_link, title, " ".join(formats)))
         self.page += size
         return self.spacing.join(samples)
 
@@ -104,13 +105,24 @@ class DialogAgent():
             return self.show_top_entities()
 
     def tell_story(self):
-        # if self.start:
-        #     return self.show_facets()
-        # else:
         return self.show_top_entities()
 
+    def search(self, query, n_samples=5):
+        self.items = self.db.search(keywords=query)
+        if self.items:
+            self.page = 0
+            # show the top docs
+            sampled_titles = self.sample_items(size=5)
+            return sampled_titles
+        # fall back
+        else:
+            return self.tell_story()
+
     def get_response(self, user_request):
-        return self.tell_story()
+        if len(user_request) < 3:
+            return self.tell_story()
+        else:
+            return self.search(user_request)
 
 
 def test_rank_nodes(topn=5):
