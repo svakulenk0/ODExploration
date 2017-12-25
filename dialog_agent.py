@@ -19,8 +19,8 @@ class DialogAgent():
         # establish connection to the ES index
         self.db = ESClient(index)
         self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
-        # initialize a priority queue to store nodes ranking
-        self.entity_rank = PriorityQueue()
+        # initialize a priority queue to store entity ranking
+        self.entity_rank = self.rank_entities()
         self.spacing = spacing
         # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
         self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
@@ -29,35 +29,37 @@ class DialogAgent():
         '''
         rank entities with facets from ES index by the item count
         '''
+        entity_rank = PriorityQueue()
         #  iterate over attributes
         for facet, counts in entity_counts.items():
             entities = counts['buckets']
             # iterate over top entities of the attribute
             for entity in entities:
                 # insert into the priority queue (max weight items to go first)
-                self.entity_rank.put((-entity['doc_count'], (facet, entity['key'])))
+                entity_rank.put((-entity['doc_count'], (facet, entity['key'])))
+        return entity_rank
 
-    def show_dataset(self, dataset_id):
-        entities = []
-        items = self.db.search_by(facet='dataset_id', value=dataset_id)
-        if items:
-            title = items[0]["_source"]["raw"]["title"]
-            dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-            entities.append(self.link_decorator % (dataset_link, title))
-            # get the set of formats
-            formats = set([resource['format'] for resource in items[0]["_source"]["raw"]["resources"]])
-            entities.extend(formats)
+    # def show_dataset(self, dataset_id):
+    #     entities = []
+    #     items = self.db.search_by(facet='dataset_id', value=dataset_id)
+    #     if items:
+    #         title = items[0]["_source"]["raw"]["title"]
+    #         dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
+    #         entities.append(self.link_decorator % (dataset_link, title))
+    #         # get the set of formats
+    #         formats = set([resource['format'] for resource in items[0]["_source"]["raw"]["resources"]])
+    #         entities.extend(formats)
 
-            if 'CSV' in formats:
-                # get table
-                tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
-                if tables:
-                    table = tables[0]['_source']
-                    if 'no_rows' in table.keys():
-                        facet = 'no_rows'
-                        entities.append('%s: %s' % (facet, table[facet]))
+    #         if 'CSV' in formats:
+    #             # get table
+    #             tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
+    #             if tables:
+    #                 table = tables[0]['_source']
+    #                 if 'no_rows' in table.keys():
+    #                     facet = 'no_rows'
+    #                     entities.append('%s: %s' % (facet, table[facet]))
             
-            return self.spacing + self.spacing.join(entities)
+    #         return self.spacing + self.spacing.join(entities)
 
     def sample_items(self, size):
         '''
@@ -78,26 +80,18 @@ class DialogAgent():
         '''
         show summary statistics of the subset
         '''
-        pass
-
-    def show_facets(self, entity_counts=all_keywords):
-        facets = []
-        for facet, counts in entity_counts.items():
-            facets.append(facet)
-        self.start = False
-        return self.spacing.join(facets)
+        # get facet-entity subset of the dataset
+        keywords = self.db.aggregate_entity(facet=self.facet, value=self.entity)
+        entity_rank = rank_entities(keywords)
+        count, (self.facet, self.entity) = self.entity_rank.get()
+        return "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, self.entity, self.facet, self.spacing)
 
     def show_top_entities(self):
         response = ""
-        if self.entity_rank.empty():
-            # reset initialize the rank for entity facet pairs by count from db
-            self.rank_entities()
-            # reset already shown items
-            # self.shown = set()
-        count, (facet, entity) = self.entity_rank.get()
-        response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, entity, facet, self.spacing)
+        count, (self.facet, self.entity) = self.entity_rank.get()
+        response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, self.entity, self.facet, self.spacing)
         # show examples
-        self.items = self.db.search_by(facet=facet, value=entity)
+        self.items = self.db.search_by(facet=self.facet, value=self.entity)
         # show only new items
         # self.items = list(set([item["_source"]["raw"]["title"] for item in items]) - self.shown)
         if self.items:
