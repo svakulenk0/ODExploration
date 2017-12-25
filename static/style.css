@@ -17,10 +17,6 @@ h3 {
     text-align: center;
 }
 
-a {
-    color: hotpink;
-}
-
 a:hover { 
     background-color: yellow;
     cursor: pointer;
@@ -49,7 +45,7 @@ a:hover {
 }
 
 .item {
-  font: bold 11px Arial;
+  font: bold 15px Arial;
   text-decoration: none;
   background-color: #EEEEEE;
   color: #333333;
@@ -112,7 +108,7 @@ a:hover {
 
 .botText span {
     background-color: #4340ef;
-    padding: 10px;
+    /*padding: 10px;*/
     border-radius: 2px;
 }
 

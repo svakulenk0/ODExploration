@@ -20,26 +20,26 @@
       <script>
         function getBotResponse() {
           var rawText = $("#textInput").val();
-          var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+          var userHtml = '<div class="userText"><span>' + rawText + '</span></div>';
           $("#textInput").val("");
           $("#chatbox").append(userHtml);
           document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           $.get("/get", { msg: rawText }).done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></p>';
+            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
         function getDifferentItems() {
           $.get("/get").done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></p>';
+            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
         function getMoreItems() {
           $.get("/more").done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></p>';
+            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
