@@ -48,7 +48,7 @@ class DialogAgent():
             # get the set of formats
             formats = set([resource['format'] for resource in items[0]["_source"]["raw"]["resources"]])
             entities.extend(formats)
-            
+
             if 'CSV' in formats:
                 # get table
                 tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
@@ -142,7 +142,7 @@ def test_get_response(index=INDEX_SERVER, n_turns=5):
 
 def test_get_CSV(index=INDEX_SERVER):
     chatbot = DialogAgent(index, spacing='\n')
-    dataset_id = '94c1d9b8-4e57-4e51-a22c-3681de46b723'
+    dataset_id = '71cb70af-2d7a-4b6d-811c-489f254a0353'
     print chatbot.show_dataset(dataset_id)
 
 
