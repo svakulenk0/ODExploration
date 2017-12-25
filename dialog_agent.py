@@ -22,6 +22,7 @@ class DialogAgent():
         # initialize a priority queue to store entity ranking
         self.entity_rank = self.rank_entities()
         self.spacing = spacing
+        self.summary_facet = None
         # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
         self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
 
@@ -82,7 +83,7 @@ class DialogAgent():
         '''
         # get facet-entity subset of the dataset
         keywords = self.db.aggregate_entity(facet=self.facet, value=self.entity)
-        if not self.summary_facet or self.summary_facet != self.facet:
+        if self.summary_facet != self.facet:
             self.summary_rank = self.rank_entities(keywords)
             self.summary_facet = self.facet
         count, (facet, entity) = self.summary_rank.get()
