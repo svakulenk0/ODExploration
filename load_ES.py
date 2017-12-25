@@ -24,7 +24,7 @@ FIELDS = {
     "categorization": "raw.categorization",
     "tags": "raw.tags.name",
     "organization": "raw.organization.name",
-    "dataset_link": "_source.dataset.dataset_link",
+    "dataset_link": "dataset.dataset_link",
 }
 
 
