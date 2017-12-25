@@ -19,16 +19,17 @@ class DialogAgent():
         # establish connection to the ES index
         self.db = ESClient(index)
         self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
-        # initialize a priority queue to store nodes ranking
-        self.entity_rank = PriorityQueue()
+        # initialize a priority queue and store entity ranking
+        self.entity_rank = self.rank_entities()
         self.spacing = spacing
         # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
         self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
 
-    def rank_entities(self, entity_counts=all_keywords, entity_rank=self.entity_rank):
+    def rank_entities(self, entity_counts=all_keywords):
         '''
         rank entities with facets from ES index by the item count
         '''
+        entity_rank = PriorityQueue()
         #  iterate over attributes
         for facet, counts in entity_counts.items():
             entities = counts['buckets']
@@ -80,7 +81,7 @@ class DialogAgent():
         show summary statistics of the subset
         '''
         # reset initialize the rank for entity facet pairs by count from db
-        entity_rank = self.rank_entities(entity_counts=self.aggregations, entity_rank=PriorityQueue())
+        entity_rank = self.rank_entities(entity_counts=self.aggregations)
         count, (facet, entity) = self.entity_rank.get()
         return "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, entity, facet, self.spacing)
 
@@ -93,11 +94,6 @@ class DialogAgent():
 
     def show_top_entities(self):
         response = ""
-        if self.entity_rank.empty():
-            # reset initialize the rank for entity facet pairs by count from db
-            self.rank_entities()
-            # reset already shown items
-            # self.shown = set()
         count, (facet, entity) = self.entity_rank.get()
         print facet, entity
         response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, entity, facet, self.spacing)
