@@ -40,22 +40,25 @@ class DialogAgent():
 
     def show_dataset(self, dataset_id):
         entities = []
-        item = self.db.search_by(facet='dataset_id', value=dataset_id)[0]
-        title = item["_source"]["raw"]["title"]
-        dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-        entities.append(self.link_decorator % (dataset_link, title))
-        # get the set of formats
-        formats = set([resource['format'] for resource in item["_source"]["raw"]["resources"]])
-        entities.extend(formats)
-        if 'CSV' in formats:
-            # get table
-            tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
-            if tables:
-                table = tables[0]['_source']
-                if 'no_rows' in table.keys():
-                    facet = 'no_rows'
-                    entities.append('%s: %s' % (facet, table[facet]))
-        return self.spacing + self.spacing.join(entities)
+        items = self.db.search_by(facet='dataset_id', value=dataset_id)[0]
+        if items:
+            title = items[0]["_source"]["raw"]["title"]
+            dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
+            entities.append(self.link_decorator % (dataset_link, title))
+            # get the set of formats
+            formats = set([resource['format'] for resource in item["_source"]["raw"]["resources"]])
+            entities.extend(formats)
+            
+            if 'CSV' in formats:
+                # get table
+                tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
+                if tables:
+                    table = tables[0]['_source']
+                    if 'no_rows' in table.keys():
+                        facet = 'no_rows'
+                        entities.append('%s: %s' % (facet, table[facet]))
+            
+            return self.spacing + self.spacing.join(entities)
 
     def sample_items(self, size):
         '''
@@ -139,7 +142,7 @@ def test_get_response(index=INDEX_LOCAL, n_turns=5):
 
 def test_get_CSV(index=INDEX_SERVER):
     chatbot = DialogAgent(index, spacing='\n')
-    dataset_id = 'fbb1e8e0-ffd8-45dc-9f60-f49cc0d49227'
+    dataset_id = '703659da-1b0f-4e0c-8e7c-5cd4aca2d448'
     print chatbot.show_dataset(dataset_id)
 
 
