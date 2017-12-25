@@ -12,8 +12,10 @@
         <p class="botText"><span>Hi! I'm Open Data Chatbot.</span></p>
       </div>
       <div id="userInput">
+        <!-- add buttons for available exploration direction -->
+        <input id="similarInput" class="botBtn" type="submit" value="Similar">
+        <input id="otherInput" class="botBtn" type="submit" value="Other">
         <input id="textInput" type="text" name="msg" placeholder="Message" autofocus>
-        <!-- <input id="buttonInput" type="submit" value="Send"> -->
       </div>
       <script>
         function getBotResponse() {
@@ -23,13 +25,22 @@
           $("#chatbox").append(userHtml);
           document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           $.get("/get", { msg: rawText }).done(function(data) {
-            var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+            var botHtml = '<div class="botText"><span>' + data + '</span></p>';
             $("#chatbox").append(botHtml);
-            // add buttons for available exploration direction
-            var botSimilar = '<input class="botBtn" id="similarInput" type="submit" value="Similar">';
-            $("#chatbox").append(botSimilar);
-            var botOther = '<input class="botBtn" id="otherInput" type="submit" value="Other">';
-            $("#chatbox").append(botOther);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          });
+        }
+        function getDifferentItems() {
+          $.get("/get").done(function(data) {
+            var botHtml = '<div class="botText"><span>' + data + '</span></p>';
+            $("#chatbox").append(botHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          });
+        }
+        function getMoreItems() {
+          $.get("/more").done(function(data) {
+            var botHtml = '<div class="botText"><span>' + data + '</span></p>';
+            $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
@@ -39,7 +50,10 @@
             }
         });
         $("#similarInput").click(function() {
-            getBotResponse();
+            getMoreItems();
+        });
+        $("#otherInput").click(function() {
+            getDifferentItems();
         });
         $("a").click(function() {
             getBotResponse();
