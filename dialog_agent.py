@@ -119,10 +119,10 @@ class DialogAgent():
             return self.tell_story()
 
     def get_response(self, user_request):
-        if len(user_request) < 3:
-            return self.tell_story()
-        else:
+        if user_request and len(user_request) > 2:
             return self.search(user_request)
+        else:
+            return self.tell_story()
 
 
 def test_rank_nodes(topn=5):
