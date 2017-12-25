@@ -84,7 +84,6 @@ class DialogAgent():
         keywords = self.db.aggregate_entity(facet=self.facet, value=self.entity)
         entity_rank = self.rank_entities(keywords)
         count, (facet, entity) = entity_rank.get()
-        count, (facet, entity) = entity_rank.get()
         return "%sAmong %s there are %s datasets with %s as %s%s" % (self.spacing, self.entity, -count, entity, facet, self.spacing)
 
     def show_top_entities(self):

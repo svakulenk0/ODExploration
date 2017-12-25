@@ -74,13 +74,15 @@ class ESClient():
 
     def aggregate_entity(self, facet, value, top_n=N, limit=N):
         field = FIELDS[facet]
-        result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value), body={"aggs": {
+        facets = {
                 "title": {"terms": {"field": "raw.title.keyword", "size" : top_n}},
                 "license": {"terms": {"field": "raw.license_id.keyword", "size" : top_n}},
                 "categorization": {"terms": {"field": "raw.categorization.keyword", "size" : top_n}},
                 "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : top_n}},
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
-            }})
+                }
+        facets.pop(facet, None)
+        result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value), body={"aggs": facets})
         return result['aggregations']
 
     def search_by(self, facet, value, limit=N):
