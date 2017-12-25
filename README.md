@@ -19,6 +19,10 @@ Datasets metadata of the Austrian Government Open Data portal (data.gv.at)
 2,028 items * 5 attributes (representation layers) = 10,140 information units
 
 
+
+https://www.data.gv.at/katalog/dataset/b6385a14-b39c-4a00-a262-a8c2308759a6
+
+
 ## Approach
 
 1. Index table (crawl the knowledge graph)
