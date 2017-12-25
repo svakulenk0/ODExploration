@@ -72,7 +72,7 @@ class ESClient():
             }})
         return result  #['aggregations']
 
-    def search_by(self, facet, value, limit=N):
+    def search_by(self, facet, value, limit=N, top_n=N):
         field = FIELDS[facet]
         query = '%s="%s"' % (field, value)
         result = self.es.search(index=self.index, explain=True , size=limit, body={"query": query, "aggs": {
