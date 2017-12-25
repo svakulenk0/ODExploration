@@ -18,7 +18,7 @@ class DialogAgent():
     def __init__(self, sample=True, spacing='<br>'):
         # establish connection to the ES index
         self.db = ESClient(INDEX)
-        self.csv_db = ESClient(INDEX_CSV)
+        self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
         # initialize a priority queue to store nodes ranking
         self.entity_rank = PriorityQueue()
         self.spacing = spacing

@@ -9,21 +9,29 @@ import json
 from elasticsearch import Elasticsearch
 
 
-INDEX = 'odexploration'
+INDEX_LOCAL = 'data_gv_at'
+INDEX_SERVER = 'odexploration'
+INDEX_CSV = 'autcsv'
+
+INDEX = INDEX_SERVER
+
 N = 2914
 N_DOCS = 2028
+
 FIELDS = {
     "title": "raw.title",
     "license": "raw.license_id",
     "categorization": "raw.categorization",
     "tags": "raw.tags.name",
     "organization": "raw.organization.name",
+    "dataset_link": "dataset.dataset_link",
 }
+
 
 class ESClient():
 
-    def __init__(self, index=INDEX):
-        self.es = Elasticsearch()
+    def __init__(self, index=INDEX, host='localhost', port=9200):
+        self.es = Elasticsearch(hosts=[{"host": host, "port": port}])
         self.index = index
 
     def check_n_items(self):
