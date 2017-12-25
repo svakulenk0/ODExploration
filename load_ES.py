@@ -63,7 +63,8 @@ class ESClient():
             }})
         return result  #['aggregations']
 
-    def search_by(self, field, value, limit=N):
+    def search_by(self, facet, value, limit=N):
+        field = FIELDS[facet]
         result = self.es.search(index=self.index, size=limit, body={"query": {"match": {field: value}}})['hits']['hits']
         return result
 
