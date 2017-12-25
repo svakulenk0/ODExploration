@@ -17,6 +17,10 @@ h3 {
     text-align: center;
 }
 
+a { 
+    color: hotpink;
+}
+
 a:hover { 
     background-color: yellow;
     cursor: pointer;
