@@ -17,6 +17,10 @@ h3 {
     text-align: center;
 }
 
+a {
+    color: hotpink;
+}
+
 #chatbox {
     margin-left: auto;
     margin-right: auto;
@@ -39,7 +43,7 @@ h3 {
     font-size: 17px;
 }
 
-#btn {
+.botBtn {
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
   background-image: -moz-linear-gradient(top, #3498db, #2980b9);
@@ -57,7 +61,7 @@ h3 {
   text-decoration: none;
 }
 
-#btn:hover {
+.botBtn:hover {
   background: #3cb0fd;
   background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
   background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
