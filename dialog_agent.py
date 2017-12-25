@@ -6,7 +6,7 @@ Dialog agent class
 '''
 from Queue import PriorityQueue
 
-from load_ES import ESClient, INDEX, INDEX_CSV
+from load_ES import ESClient, INDEX_LOCAL, INDEX_SERVER, INDEX_CSV
 from aggregations import all_keywords
 
 
@@ -15,14 +15,14 @@ class DialogAgent():
     Chatbot implementing get_response method
     '''
 
-    def __init__(self, sample=True, spacing='<br>'):
+    def __init__(self, index=INDEX_LOCAL, sample=True, spacing='<br>'):
         # establish connection to the ES index
-        self.db = ESClient(INDEX)
+        self.db = ESClient(index)
         self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
         # initialize a priority queue to store nodes ranking
         self.entity_rank = PriorityQueue()
         self.spacing = spacing
-        self.title_decorator = "<a class='item'>%s</a>"
+        self.title_decorator = "<a class='item' href='%s'>%s</a>"
 
     def rank_entities(self, entity_counts=all_keywords):
         '''
@@ -44,21 +44,21 @@ class DialogAgent():
         for item in self.items[self.page:self.page+size]:
             # get title
             title = item["_source"]["raw"]["title"]
-            # get the set of formats
-            formats = set([resource['format'] for resource in item["_source"]["raw"]["resources"]])
-            if 'CSV' in formats:
-                # get table
-                dataset_id = item["_source"]["raw"]["id"]
-                dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-                print dataset_link
-                tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
-                if tables:
-                    table = tables[0]['_source']
-                    if 'no_rows' in table.keys():
-                        print table['no_rows'], 'rows'
+            # # get the set of formats
+            # formats = set([resource['format'] for resource in item["_source"]["raw"]["resources"]])
+            # if 'CSV' in formats:
+            #     # get table
+            dataset_id = item["_source"]["raw"]["id"]
+            dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
+            #     print dataset_link
+            #     tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
+            #     if tables:
+            #         table = tables[0]['_source']
+            #         if 'no_rows' in table.keys():
+            #             print table['no_rows'], 'rows'
                 # get columns
             # self.shown.add(title)
-            samples.append(self.title_decorator % title)
+            samples.append(self.title_decorator % (dataset_link, title))
         self.page += size
         return self.spacing.join(samples)
 
@@ -70,7 +70,7 @@ class DialogAgent():
             # reset already shown items
             self.shown = set()
         count, (facet, entity) = self.entity_rank.get()
-        response += "There are %s datasets with %s as %s%s" % (-count, entity, facet, self.spacing)
+        response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, entity, facet, self.spacing)
         # show examples
         self.items = self.db.search_by(facet=facet, value=entity)
         # show only new items
@@ -95,8 +95,8 @@ def test_rank_nodes(topn=5):
         print chatbot.entity_rank.get()
 
 
-def test_get_response(n_turns=5):
-    chatbot = DialogAgent(spacing='\n')
+def test_get_response(index, n_turns=5):
+    chatbot = DialogAgent(index, spacing='\n')
     for i in range(n_turns):
         user_message = "ok"
         # user says
@@ -116,4 +116,4 @@ def test_get_response(n_turns=5):
 
 
 if __name__ == '__main__':
-    test_get_response()
+    test_get_response(index=INDEX_LOCAL)
