@@ -5,9 +5,32 @@ svakulenko
 Dialog agent class
 '''
 from Queue import PriorityQueue
+import numpy as np
 
 from load_ES import ESClient, INDEX_LOCAL, INDEX_SERVER, INDEX_CSV
 from aggregations import all_keywords
+
+
+
+def gini(x):
+    '''
+    coefficient of variation (CV) ?
+    = Relative mean absolute difference (rmad) / 2
+    from https://stackoverflow.com/questions/39512260/calculating-gini-coefficient-in-python-numpy
+    '''
+    # (Warning: This is a concise implementation, but it is O(n**2)
+    # in time and memory, where n = len(x).  *Don't* pass in huge
+    # samples!)
+
+    # Mean absolute difference (standard deviation?)
+    mad = np.abs(np.subtract.outer(x, x)).mean()
+    # Relative mean absolute difference (average)
+    mean = np.mean(x)
+    # print mean
+    rmad = mad/mean
+    # Gini coefficient
+    g = 0.5 * rmad
+    return abs(g)
 
 
 class DialogAgent():
@@ -15,18 +38,22 @@ class DialogAgent():
     Chatbot implementing get_response method
     '''
 
-    def __init__(self, index=INDEX_SERVER, sample=True, spacing='<br>'):
+    def __init__(self, index=INDEX_LOCAL, sample=True, spacing='<br>'):
         # establish connection to the ES index
         self.db = ESClient(index)
         self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
         # initialize a priority queue to store entity ranking
+        self.facets_rank = self.gini_facets()
         self.entity_rank = self.rank_entities()
         self.spacing = spacing
         self.summary_facet = None
+        self.keyword = None
         # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
         self.facet_decorator = "<button class='item' onclick=showEntities('%s')>%s</button>"
+        self.entity_decorator = "<button class='item' onclick=showSamples('%s','%s')>%s</button>"
         self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
         self.items = []
+        self.basket_limit = 5
 
     def rank_entities(self, entity_counts=all_keywords):
         '''
@@ -47,6 +74,23 @@ class DialogAgent():
         for facet, counts in all_keywords.items():
             facets.append(self.facet_decorator % (facet, facet))
         return self.spacing.join(facets)
+
+    def gini_facets(self):
+        '''
+        analyse skewness of the distribution among the entites within the attribute
+        compute a score for each attribute characterizing the skewness
+        of the information mass distribution
+        to quantify the discriminatory power of the individual factors (attributes)
+        '''
+        #  iterate over attributes
+        facets_rank = PriorityQueue()
+        for facet, counts in all_keywords.items():
+            # top entities count distribution of the attribute
+            distribution = [entity['doc_count'] for entity in counts['buckets']]
+            # print distribution
+            skewness = gini(distribution)
+            facets_rank.put((-skewness, facet))
+        return facets_rank
 
     # def show_dataset(self, dataset_id):
     #     entities = []
@@ -93,36 +137,63 @@ class DialogAgent():
         show summary statistics of the subset
         '''
         # get facet-entity subset of the dataset
-        keywords = self.db.aggregate_entity(facet=self.facet, value=self.entity)
-        if self.summary_facet != self.facet:
-            self.summary_rank = self.rank_entities(keywords)
-            self.summary_facet = self.facet
-        count, (facet, entity) = self.summary_rank.get()
-        return "%sAmong %s there are %s datasets with %s as %s%s" % (self.spacing, self.entity, -count, entity, facet, self.spacing)
+        if self.keyword:
+            counts = self.db.describe_subset(keywords=self.keyword)
+            if self.summary_facet != self.keyword:
+                self.summary_rank = self.rank_entities(counts)
+                self.summary_facet = self.keyword
+            count, (facet, entity) = self.summary_rank.get()
+            entity = self.entity_decorator % (facet, entity, entity)
+            facet = self.facet_decorator % (facet, facet)
+            return "There are %s datasets with %s as %s%s" % (-count, entity, facet, self.spacing)
+        elif self.facet:
+            counts = self.db.aggregate_entity(facet=self.facet, value=self.entity)
+            if self.summary_facet != self.facet:
+                self.summary_rank = self.rank_entities(counts)
+                self.summary_facet = self.facet
+            count, (facet, entity) = self.summary_rank.get()
+            entity = self.entity_decorator % (facet, entity, entity)
+            return "%sAmong %s there are %s datasets with %s as %s%s" % (self.spacing, self.entity, -count, entity, facet, self.spacing)
+
+    def search_by(self, facet, entity, size=5):
+        # show examples
+        items = self.db.search_by(facet=facet, value=entity)
+        # show only new items
+        # self.items = list(set([item["_source"]["raw"]["title"] for item in items]) - self.shown)
+        if items:
+            self.items = items
+            self.facet = facet
+            self.entity = entity
+
+            self.page = 0
+            sampled_titles = self.sample_items(size=size)
+            return "%sAmong %s there are%s" % (self.spacing, entity, self.spacing) + sampled_titles
 
     def show_top_entities(self):
         response = ""
-        count, (self.facet, self.entity) = self.entity_rank.get()
+        count, (facet, entity) = self.entity_rank.get()
         response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, self.entity, self.facet, self.spacing)
-        # show examples
-        self.items = self.db.search_by(facet=self.facet, value=self.entity)
-        # show only new items
-        # self.items = list(set([item["_source"]["raw"]["title"] for item in items]) - self.shown)
-        if self.items:
-            self.page = 0
-            sampled_titles = self.sample_items(size=5)
-            response += "%sFor example:%s" % (self.spacing, self.spacing*2) + sampled_titles
-            return response
+        result = self.search_by(facet, entity)
+        if result:
+            return response + result
         else:
             # try another entity
             return self.show_top_entities()
 
+    def show_top_facets(self):
+        count, facet = self.facets_rank.get()
+        entities = []
+        for entity in all_keywords[facet]['buckets'][:self.basket_limit]:
+            entities.append(self.entity_decorator % (facet, entity['key'], entity['key']))
+        return "%s:%s%s" % (facet, self.spacing, self.spacing.join(entities))
+
     def tell_story(self):
-        return self.show_top_entities()
+        return self.show_top_facets()
 
     def search(self, query, n_samples=5):
         self.items = self.db.search(keywords=query)
         if self.items:
+            self.keyword = query
             self.page = 0
             # show the top docs
             sampled_titles = self.sample_items(size=5)

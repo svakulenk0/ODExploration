@@ -70,7 +70,7 @@ class ESClient():
                 "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : top_n}},
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
             }})
-        return result  #['aggregations']
+        return result['aggregations']
 
     def aggregate_entity(self, facet, value, top_n=N, limit=N):
         field = FIELDS[facet]

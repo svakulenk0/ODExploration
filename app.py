@@ -36,6 +36,13 @@ def show_facets():
     return str(chatbot.show_facets().encode('utf8'))
 
 
+@app.route("/samples")
+def show_samples():
+    facet = request.args.get('facet')
+    entity = request.args.get('entity')
+    return str(chatbot.search_by(facet, entity).encode('utf8'))
+
+
 @app.route("/summary")
 def summarize_items():
     return str(chatbot.summarize_items().encode('utf8'))
