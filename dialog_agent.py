@@ -46,7 +46,7 @@ class DialogAgent():
         facets = []
         for facet, counts in all_keywords.items():
             facets.append(self.facet_decorator % (facet, facet))
-        return facets.join(facets)
+        return self.spacing.join(facets)
 
     # def show_dataset(self, dataset_id):
     #     entities = []
