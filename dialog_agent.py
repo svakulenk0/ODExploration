@@ -142,7 +142,7 @@ def test_get_response(index=INDEX_SERVER, n_turns=5):
 
 def test_get_CSV(index=INDEX_SERVER):
     chatbot = DialogAgent(index, spacing='\n')
-    dataset_id = '703659da-1b0f-4e0c-8e7c-5cd4aca2d448'
+    dataset_id = '94c1d9b8-4e57-4e51-a22c-3681de46b723'
     print chatbot.show_dataset(dataset_id)
 
 
