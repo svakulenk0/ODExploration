@@ -13,7 +13,7 @@
       </div>
       <div id="userInput">
         <input id="textInput" type="text" name="msg" placeholder="Message">
-        <input id="buttonInput" type="submit" value="Send">
+        <!-- <input id="buttonInput" type="submit" value="Send"> -->
       </div>
       <script>
         function getBotResponse() {
@@ -25,6 +25,9 @@
           $.get("/get", { msg: rawText }).done(function(data) {
             var botHtml = '<p class="botText"><span>' + data + '</span></p>';
             $("#chatbox").append(botHtml);
+            // add button as a suggested user response
+            var botButton = '<input id="btn" type="submit" value="More">';
+            $("#chatbox").append(botButton);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
@@ -34,7 +37,7 @@
             }
         });
         $("#buttonInput").click(function() {
-          getBotResponse();
+            getBotResponse();
         })
       </script>
     </div>
