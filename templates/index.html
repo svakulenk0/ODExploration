@@ -54,7 +54,7 @@
           });
         }
         function showDataset(datasetID) {
-          $.get("/show").done(function(data) {
+          $.get("/show", { msg: datasetID }).done(function(data) {
             var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
