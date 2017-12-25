@@ -15,7 +15,7 @@ class DialogAgent():
     Chatbot implementing get_response method
     '''
 
-    def __init__(self, index=INDEX_LOCAL, sample=True, spacing='<br>'):
+    def __init__(self, index=INDEX_SERVER, sample=True, spacing='<br>'):
         # establish connection to the ES index
         self.db = ESClient(index)
         self.start = True
@@ -88,7 +88,7 @@ class DialogAgent():
             # reset initialize the rank for entity facet pairs by count from db
             self.rank_entities()
             # reset already shown items
-            self.shown = set()
+            # self.shown = set()
         count, (facet, entity) = self.entity_rank.get()
         response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, entity, facet, self.spacing)
         # show examples

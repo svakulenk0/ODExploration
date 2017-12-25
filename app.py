@@ -12,7 +12,6 @@ from dialog_agent import DialogAgent
 app = Flask(__name__)
 
 chatbot = DialogAgent()
-# chatbot.chat(greeting="Welcome, I will show you around data.gv.at", simulate=False)
 
 
 @app.route("/")
