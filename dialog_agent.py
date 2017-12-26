@@ -11,6 +11,8 @@ from load_ES import ESClient, INDEX_LOCAL, INDEX_SERVER, INDEX_CSV
 from aggregations import all_keywords
 
 
+INDEX = INDEX_LOCAL
+
 
 def gini(x):
     '''
@@ -38,7 +40,7 @@ class DialogAgent():
     Chatbot implementing get_response method
     '''
 
-    def __init__(self, index=INDEX_SERVER, sample=True, spacing='<br>'):
+    def __init__(self, index=INDEX, sample=True, spacing='<br>'):
         # establish connection to the ES index
         self.db = ESClient(index)
         self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
@@ -52,7 +54,16 @@ class DialogAgent():
         self.facet_decorator = "<button class='item' onclick=showEntities('%s')>%s</button>"
         self.entity_decorator = "<button class='item' onclick=showSamples('%s','%s')>%s</button>"
         self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
+
+        # container for current entities
+        self.entities = []
+
+        # container for current items
         self.items = []
+
+        # cursor for interating over the list of entities and items
+        self.page = 0
+
         self.basket_limit = 5
 
     def rank_entities(self, entity_counts=all_keywords):
@@ -114,9 +125,9 @@ class DialogAgent():
             
     #         return self.spacing + self.spacing.join(entities)
 
-    def sample_items(self, size):
+    def sample_nodes(self, size):
         '''
-        show a sample of items for an entity
+        show a sample of items or entities
         '''
         samples = []
         if self.items:
@@ -129,6 +140,8 @@ class DialogAgent():
                 samples.append(self.item_decorator % (dataset_link, title, " ".join(formats)))
             self.page += size
             return self.spacing.join(samples)
+        if self.page < len(self.entities):
+            return self.show_facet_entities()
         else:
             return self.tell_story()
 
@@ -155,6 +168,11 @@ class DialogAgent():
             entity = self.entity_decorator % (facet, entity, entity)
             return "%sAmong %s there are %s datasets with %s as %s%s" % (self.spacing, self.entity, -count, entity, facet, self.spacing)
 
+    def subset(self, facet, entity):
+        response = "%sFor %s there are%s" % (self.spacing, entity, self.spacing)
+        response += self.search_by(facet, entity)
+        return response
+
     def search_by(self, facet, entity, size=5):
         # show examples
         items = self.db.search_by(facet=facet, value=entity)
@@ -166,29 +184,53 @@ class DialogAgent():
             self.entity = entity
 
             self.page = 0
-            sampled_titles = self.sample_items(size=size)
-            return "%sFor %s there are%s" % (self.spacing, entity, self.spacing) + sampled_titles
+            sampled_titles = self.sample_nodes(size=size)
+            return sampled_titles
 
     def show_top_entities(self):
         response = ""
         count, (facet, entity) = self.entity_rank.get()
-        response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, self.entity, self.facet, self.spacing)
+        response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, entity, facet, self.spacing)
+        # show sample dataset titles for the facet-entity combination
         result = self.search_by(facet, entity)
+        response += "%sFor example%s" % (self.spacing, self.spacing) 
         if result:
             return response + result
         else:
             # try another entity
             return self.show_top_entities()
 
-    def show_top_facets(self):
+    def show_top_facet(self):
         count, facet = self.facets_rank.get()
+        self.entities = all_keywords[facet]['buckets']
+        self.items = []
+        self.page = 0
+        self.facet = facet
+        return self.show_facet_entities()
+
+    def show_facet_entities(self):
+        '''
+        show top entities of the facet
+        '''
         entities = []
-        for entity in all_keywords[facet]['buckets'][:self.basket_limit]:
-            entities.append(self.entity_decorator % (facet, entity['key'], entity['key']))
-        return "%s:%s%s" % (facet, self.spacing, self.spacing.join(entities))
+        # start listing entities
+        response = ""
+        if self.page == 0:
+            response +=  "%sThere are %d different %s:%s" % (self.spacing, len(self.entities), self.facet, self.spacing)
+        for entity in self.entities[self.page:self.page+self.basket_limit]:
+            entities.append(self.entity_decorator % (self.facet, entity['key'], entity['key']))
+        self.page += self.basket_limit
+        response += self.spacing.join(entities)
+        return response
 
     def tell_story(self):
-        return self.show_top_facets()
+        # show facets and entities starting from the most important/frequent ones
+        if not self.facets_rank.empty():
+            # iterate over the facets rank
+            return self.show_top_facet()
+        else:
+            # iterate over the entities rank
+            return self.show_top_entities()
 
     def search(self, query, n_samples=5):
         self.items = self.db.search(keywords=query)
@@ -196,16 +238,21 @@ class DialogAgent():
             self.keyword = query
             self.page = 0
             # show the top docs
-            sampled_titles = self.sample_items(size=5)
+            sampled_titles = self.sample_nodes(size=5)
             return sampled_titles
         # fall back
         else:
             return self.tell_story()
 
     def get_response(self, user_request):
+        '''
+        main entry for the dialog agent response
+        '''
         if user_request and len(user_request) > 2:
+            # perform search using the user input as the query string
             return self.search(user_request)
         else:
+            # show facets and entities of the dataset
             return self.tell_story()
 
 
@@ -232,7 +279,7 @@ def test_get_response(index=INDEX_SERVER, n_turns=5):
             print "more"
             # get more samples
             # bot says
-            print chatbot.sample_items(size=10)
+            print chatbot.sample_nodes(size=10)
             print '\n'
 
 

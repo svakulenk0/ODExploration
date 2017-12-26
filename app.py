@@ -40,7 +40,7 @@ def show_facets():
 def show_samples():
     facet = request.args.get('facet')
     entity = request.args.get('entity')
-    return str(chatbot.search_by(facet, entity).encode('utf8'))
+    return str(chatbot.subset(facet, entity).encode('utf8'))
 
 
 @app.route("/summary")
@@ -49,8 +49,8 @@ def summarize_items():
 
 
 @app.route("/more")
-def get_more_items():
-    samples = chatbot.sample_items(size=10)
+def get_more():
+    samples = chatbot.sample_nodes(size=10)
     if samples:
         return str(samples.encode('utf8'))
     else:
