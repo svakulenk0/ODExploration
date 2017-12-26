@@ -110,27 +110,16 @@ class DialogAgent():
             facets_rank.put((-skewness, facet))
         return facets_rank
 
-    # def show_dataset(self, dataset_id):
-    #     entities = []
-    #     items = self.db.search_by(facet='dataset_id', value=dataset_id)
-    #     if items:
-    #         title = items[0]["_source"]["raw"]["title"]
-    #         dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-    #         entities.append(self.link_decorator % (dataset_link, title))
-    #         # get the set of formats
-    #         formats = set([resource['format'] for resource in items[0]["_source"]["raw"]["resources"]])
-    #         entities.extend(formats)
-
-    #         if 'CSV' in formats:
-    #             # get table
-    #             tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
-    #             if tables:
-    #                 table = tables[0]['_source']
-    #                 if 'no_rows' in table.keys():
-    #                     facet = 'no_rows'
-    #                     entities.append('%s: %s' % (facet, table[facet]))
-            
-    #         return self.spacing + self.spacing.join(entities)
+    def show_dataset(self, dataset_link):
+        # get table
+        tables = []
+        tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
+        if tables:
+            table = tables[0]['_source']
+            if 'no_rows' in table.keys():
+                facet = 'no_rows'
+                tables.append('%s: %s' % (facet, table[facet]))
+        return self.spacing + self.spacing.join(tables)
 
     def sample_nodes(self, size):
         '''
