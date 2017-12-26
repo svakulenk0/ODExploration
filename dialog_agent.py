@@ -213,7 +213,8 @@ class DialogAgent():
         formats = Counter()
         for resource in item["_source"]["raw"]["resources"]:
             formats[resource['format']] += 1
-        response = self.item_decorator % (dataset_link, title, str(formats))
+        format_counts = ["%d %s" % (count, file_format) for (count, file_format) in formats.items]
+        response = self.item_decorator % (dataset_link, title, ' '.join(format_counts))
         # if 'CSV' in formats.keys():
         #     # get table
         #     tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
