@@ -167,7 +167,7 @@ class DialogAgent():
 
             self.page = 0
             sampled_titles = self.sample_items(size=size)
-            return "%sAmong %s there are%s" % (self.spacing, entity, self.spacing) + sampled_titles
+            return "%sFor %s there are%s" % (self.spacing, entity, self.spacing) + sampled_titles
 
     def show_top_entities(self):
         response = ""
