@@ -85,6 +85,23 @@ class ESClient():
         result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value), body={"aggs": facets})
         return result['aggregations']
 
+    def summarize_subset(self, facets_values, top_n=N, limit=N):
+        facets = {
+                "title": {"terms": {"field": "raw.title.keyword", "size" : top_n}},
+                "license": {"terms": {"field": "raw.license_id.keyword", "size" : top_n}},
+                "categorization": {"terms": {"field": "raw.categorization.keyword", "size" : top_n}},
+                "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : top_n}},
+                "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
+                }
+        query = []
+        for facet, value in facets_values:
+            field = FIELDS[facet]
+            query.append({"match": {field: value}})
+            # remove facet from aggregation
+            facets.pop(facet, None)
+        result = self.es.search(index=self.index, size=limit, body={"query": {"bool": {"must": query}}, "aggs": facets})
+        return result['aggregations']
+
     def search_by(self, facet, value, limit=N):
         field = FIELDS[facet]
         result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value))['hits']['hits']

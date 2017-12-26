@@ -11,7 +11,7 @@ from load_ES import ESClient, INDEX_LOCAL, INDEX_SERVER, INDEX_CSV
 from aggregations import all_keywords
 
 
-INDEX = INDEX_LOCAL
+INDEX = INDEX_SERVER
 
 
 def gini(x):
@@ -68,6 +68,8 @@ class DialogAgent():
         self.basket_limit = 5
         # keep focus on the current listing
         self.focus = None
+        # store currently pivoted facets
+        self.facets_values = []
 
     def rank_entities(self, entity_counts=all_keywords):
         '''
@@ -166,7 +168,8 @@ class DialogAgent():
             facet = self.facet_decorator % (facet, facet)
             return "There are %s datasets with %s as %s%s" % (-count, entity, facet, self.spacing)
         elif self.facet:
-            counts = self.db.aggregate_entity(facet=self.facet, value=self.entity)
+            self.facets_values.append((self.facet, self.entity))
+            counts = self.db.summarize_subset(facets_values=self.facets_values)
             if self.summary_facet != self.facet:
                 self.summary_rank = self.rank_entities(counts)
                 self.summary_facet = self.facet
@@ -190,10 +193,12 @@ class DialogAgent():
         return self.spacing.join(entities)
 
     def pivot(self, facet, entity):
+        # start pivoting
         self.facet = facet
         self.entity = entity
         self.page = 0
-        counts = self.db.aggregate_entity(facet=self.facet, value=self.entity)
+        self.facets_values.append((self.facet, self.entity))
+        counts = self.db.summarize_subset(facets_values=self.facets_values)
         # order entities
         self.summary_rank = self.rank_entities(counts)
         self.focus = "pivot"
