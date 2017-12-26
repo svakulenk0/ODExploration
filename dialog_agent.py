@@ -51,7 +51,7 @@ class DialogAgent():
         self.spacing = spacing
         self.summary_facet = None
         self.keyword = None
-        # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
+        self.table_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>%s"
         self.facet_decorator = "<button class='item' onclick=showEntities('%s')>%s</button>"
         # self.entity_decorator = "<button class='item' onclick=showSamples('%s','%s')>%s</button>"
         self.entity_decorator = "<button class='item' onclick=pivotEntity({%s})>%s</button>"
@@ -214,15 +214,19 @@ class DialogAgent():
         for resource in item["_source"]["raw"]["resources"]:
             formats[resource['format']] += 1
         format_counts = ["%d %s" % (count, file_format) for (file_format, count) in formats.most_common(self.basket_limit)]
-        response = self.item_decorator % (dataset_link, title, ' '.join(format_counts))
-        # if 'CSV' in formats.keys():
-        #     # get table
-        #     tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
-        #     if tables:
-        #         table = tables[0]['_source']
-        #         if 'no_rows' in table.keys():
-        #             facet = 'no_rows'
-        #             response += ' %s: %s' % (facet, table[facet])
+        response = ""
+        if 'CSV' in formats.keys():
+            # get table
+            tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
+            if tables:
+                table = tables[0]['_source']
+                if 'no_rows' in table.keys():
+                    response = self.table_decorator % (dataset_link, title, ' '.join(format_counts))
+                    # facet = 'no_rows'
+                    # response += ' %s: %s' % (facet, table[facet])
+        # link to the portal
+        if response == "":
+            response = self.item_decorator % (dataset_link, title, ' '.join(format_counts))
         return response
 
     def show_sample(self, size):
