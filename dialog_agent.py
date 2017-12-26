@@ -11,7 +11,7 @@ from load_ES import ESClient, INDEX_LOCAL, INDEX_SERVER, INDEX_CSV
 from aggregations import all_keywords
 
 
-INDEX = INDEX_LOCAL
+INDEX = INDEX_SERVER
 
 
 def gini(x):
