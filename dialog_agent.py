@@ -119,7 +119,7 @@ class DialogAgent():
                 if 'no_rows' in table['_source'].keys():
                     facet = 'no_rows'
                     entities.append('%s %s: %s' % (table['_source']['dataset']['name'], facet, table['_source'][facet]))
-        return self.spacing + self.spacing.join(entities)
+        return self.spacing + self.spacing.join(entities.sort())
 
     def sample_nodes(self, size):
         '''
