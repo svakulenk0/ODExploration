@@ -4,7 +4,7 @@ svakulenko
 
 Flas web app for chatbot interface based on https://github.com/chamkank/flask-chatterbot
 '''
-
+import json
 from flask import Flask, render_template, request
 
 from dialog_agent import DialogAgent
@@ -44,9 +44,8 @@ def show_samples():
 
 @app.route("/pivot")
 def pivot_entity():
-    facet = request.args.get('facet')
-    entity = request.args.get('entity')
-    return str(chatbot.pivot(facet, entity).encode('utf8'))
+    facets_entities = json.loads(request.args.get('facets_entities'))
+    return str(chatbot.pivot(facets_entities).encode('utf8'))
 
 
 @app.route("/summary")

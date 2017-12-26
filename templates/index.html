@@ -59,8 +59,9 @@
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
-        function pivotEntity(facet, entity) {
-          $.get("/pivot", { facet: facet, entity: entity }).done(function(data) {
+        function pivotEntity(facets_entities) {
+          console.log(facets_entities)
+          $.get("/pivot", { facets_entities: JSON.stringify(facets_entities)}).done(function(data) {
             var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});

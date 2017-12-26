@@ -94,11 +94,12 @@ class ESClient():
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
                 }
         query = []
-        for facet, value in facets_values:
+        for facet, value in facets_values.items():
             field = FIELDS[facet]
             query.append({"match": {field: value}})
             # remove facet from aggregation
             facets.pop(facet, None)
+        print query
         result = self.es.search(index=self.index, size=limit, body={"query": {"bool": {"must": query}}, "aggs": facets})
         return result['aggregations']
 

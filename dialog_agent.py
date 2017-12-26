@@ -11,7 +11,7 @@ from load_ES import ESClient, INDEX_LOCAL, INDEX_SERVER, INDEX_CSV
 from aggregations import all_keywords
 
 
-INDEX = INDEX_SERVER
+INDEX = INDEX_LOCAL
 
 
 def gini(x):
@@ -53,7 +53,8 @@ class DialogAgent():
         # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
         self.facet_decorator = "<button class='item' onclick=showEntities('%s')>%s</button>"
         # self.entity_decorator = "<button class='item' onclick=showSamples('%s','%s')>%s</button>"
-        self.entity_decorator = "<button class='item' onclick=pivotEntity('%s','%s')>%s</button>"
+        self.entity_decorator = "<button class='item' onclick=pivotEntity({%s})>%s</button>"
+        # self.entity_decorator = "<button class='item' onclick=pivotEntity(%s)>%s</button>"
         self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
 
         # container for current entities
@@ -169,40 +170,48 @@ class DialogAgent():
             return "There are %s datasets with %s as %s%s" % (-count, entity, facet, self.spacing)
         elif self.facet:
             self.facets_values.append((self.facet, self.entity))
+            entities = " ".join([entity for (facet, entity) in self.facets_values])
             counts = self.db.summarize_subset(facets_values=self.facets_values)
             if self.summary_facet != self.facet:
                 self.summary_rank = self.rank_entities(counts)
                 self.summary_facet = self.facet
             count, (facet, entity) = self.summary_rank.get()
             entity = self.entity_decorator % (facet, entity, entity)
-            return "%sAmong %s there are %s datasets with %s as %s%s" % (self.spacing, self.entity, -count, entity, facet, self.spacing)
+            return "%sAmong %s there are %s datasets with %s as %s%s" % (self.spacing, entities, -count, entity, facet, self.spacing)
 
     def subset(self, facet, entity):
         response = "%sFor %s there are%s" % (self.spacing, entity, self.spacing)
         response += self.search_by(facet, entity)
         return response
 
-    def show_entities(self):
+    def show_entities(self, facets_values):
         # show top entities of the pivoted subset
         entities = []
         # start listing entities
         for i in range(self.basket_limit):
             count, (facet, entity) = self.summary_rank.get()
-            entity_button = self.entity_decorator % (facet, entity, entity)
-            entities.append("%s datasets with %s as %s" % (-count, entity_button, facet))
+            print facet, entity
+            facet_value = ["'%s':'%s'" % (facet, entity)]
+            # attach all previous pivoted entities
+            for _facet, _entity in facets_values.items():
+                facet_value.append("'%s':'%s'" % (_facet, _entity))
+            entity_button = self.entity_decorator % (','.join(facet_value), entity)
+            if -count > 1:
+                entities.append("%s datasets with %s as %s" % (-count, entity_button, facet))
+            else:
+                entities.append(entity_button)
         return self.spacing.join(entities)
 
-    def pivot(self, facet, entity):
+    def pivot(self, facets_values):
         # start pivoting
-        self.facet = facet
-        self.entity = entity
         self.page = 0
-        self.facets_values.append((self.facet, self.entity))
-        counts = self.db.summarize_subset(facets_values=self.facets_values)
+        print facets_values
+        counts = self.db.summarize_subset(facets_values=facets_values)
         # order entities
         self.summary_rank = self.rank_entities(counts)
         self.focus = "pivot"
-        return "%sAmong %s there are%s"  % (self.spacing, self.entity, self.spacing) + self.show_entities()
+        entities = ' '.join(facets_values.values())
+        return "%sAmong %s there are%s"  % (self.spacing, entities, self.spacing) + self.show_entities(facets_values)
 
     def search_by(self, facet, entity, size=5):
         # show examples
@@ -224,8 +233,8 @@ class DialogAgent():
         response += "%sThere are %s datasets with %s as %s%s" % (self.spacing, -count, entity, facet, self.spacing)
         # show sample dataset titles for the facet-entity combination
         result = self.search_by(facet, entity)
-        response += "%sFor example%s" % (self.spacing, self.spacing) 
         if result:
+            response += "%sFor example%s" % (self.spacing, self.spacing) 
             return response + result
         else:
             # try another entity
@@ -247,12 +256,16 @@ class DialogAgent():
         # start listing entities
         response = ""
         if self.page == 0:
-            response +=  "%sThere are %d different %s:%s" % (self.spacing, len(self.entities), self.facet, self.spacing)
+            response +=  "%sThere are %d different %s, e.g.:%s" % (self.spacing, len(self.entities), self.facet, self.spacing)
         for entity in self.entities[self.page:self.page+self.basket_limit]:
-            entities.append(self.entity_decorator % (self.facet, entity['key'], entity['key']))
-            # entities.append(self.entity_decorator %  entity['key'])
+            # facets_value = "[['%s', '%s']]" % (self.facet, entity['key'])
+            # facets_value = "['%s', '%s']" % (self.facet, entity['key'])
+            # entities.append(self.entity_decorator % (facets_value, entity['key']))
+            facet_value = "'%s':'%s'" % (self.facet, entity['key'])
+            entities.append(self.entity_decorator %  (facet_value, entity['key']))
         self.page += self.basket_limit
         response += self.spacing.join(entities)
+        print response
         return response
 
     def tell_story(self):
