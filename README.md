@@ -8,6 +8,20 @@ If you love #government #data but hate faceted search and csv tables? How to mak
 
 pip install -r requirements.txt
 
+## Run
+
+To start the chatbot web UI on localhost port 5008:
+
+python app.py
+
+## Stop
+
+Ctrl+C
+
+otherwise
+
+kill -9 $(sudo lsof -t -i:5008)
+
 
 ## Dataset
 
