@@ -52,7 +52,8 @@ class DialogAgent():
         self.keyword = None
         # self.title_decorator = "<button class='item' onclick=showDataset('%s')>%s</button>"
         self.facet_decorator = "<button class='item' onclick=showEntities('%s')>%s</button>"
-        self.entity_decorator = "<button class='item' onclick=showSamples('%s','%s')>%s</button>"
+        # self.entity_decorator = "<button class='item' onclick=showSamples('%s','%s')>%s</button>"
+        self.entity_decorator = "<button class='item' onclick=pivotEntity('%s','%s')>%s</button>"
         self.item_decorator = "<a class='item' href='%s'>%s</a>%s"
 
         # container for current entities
@@ -173,6 +174,23 @@ class DialogAgent():
         response += self.search_by(facet, entity)
         return response
 
+    def pivot(self, facet, entity):
+        self.facet = facet
+        self.entity = entity
+        self.page = 0
+        counts = self.db.aggregate_entity(facet=self.facet, value=self.entity)
+        if self.summary_facet != self.facet:
+            self.summary_rank = self.rank_entities(counts)
+            self.summary_facet = self.facet
+        # show top entities of the pivoted subset
+        entities = []
+        # start listing entities
+        for i in range(self.basket_limit):
+            count, (facet, entity) = self.summary_rank.get()
+            entity_button = self.entity_decorator % (facet, entity, entity)
+            entities.append("%s datasets with %s as %s" % (-count, entity_button, facet))
+        return "%sAmong %s there are%s"  % (self.spacing, self.entity, self.spacing) + self.spacing.join(entities)
+
     def search_by(self, facet, entity, size=5):
         # show examples
         items = self.db.search_by(facet=facet, value=entity)
@@ -219,6 +237,7 @@ class DialogAgent():
             response +=  "%sThere are %d different %s:%s" % (self.spacing, len(self.entities), self.facet, self.spacing)
         for entity in self.entities[self.page:self.page+self.basket_limit]:
             entities.append(self.entity_decorator % (self.facet, entity['key'], entity['key']))
+            # entities.append(self.entity_decorator %  entity['key'])
         self.page += self.basket_limit
         response += self.spacing.join(entities)
         return response

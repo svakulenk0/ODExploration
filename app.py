@@ -42,6 +42,12 @@ def show_samples():
     entity = request.args.get('entity')
     return str(chatbot.subset(facet, entity).encode('utf8'))
 
+@app.route("/pivot")
+def pivot_entity():
+    facet = request.args.get('facet')
+    entity = request.args.get('entity')
+    return str(chatbot.pivot(facet, entity).encode('utf8'))
+
 
 @app.route("/summary")
 def summarize_items():
