@@ -210,7 +210,16 @@ class DialogAgent():
         dataset_id = item["_source"]["raw"]["id"]
         dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
         formats = set([resource['format'] for resource in item["_source"]["raw"]["resources"]])
-        return self.item_decorator % (dataset_link, title, " ".join(formats))
+        response = self.item_decorator % (dataset_link, title, " ".join(formats))
+        if 'CSV' in formats:
+            # get table
+            tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
+            if tables:
+                table = tables[0]['_source']
+                if 'no_rows' in table.keys():
+                    facet = 'no_rows'
+                    response += ' %s: %s' % (facet, table[facet])
+        return response
 
     def show_sample(self, size):
         self.page = 0
