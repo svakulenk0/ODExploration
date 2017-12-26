@@ -112,14 +112,14 @@ class DialogAgent():
 
     def show_dataset(self, dataset_link):
         # get table
-        tables = []
         tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
         if tables:
-            table = tables[0]['_source']
-            if 'no_rows' in table.keys():
-                facet = 'no_rows'
-                tables.append('%s: %s' % (facet, table[facet]))
-        return self.spacing + self.spacing.join(tables)
+            entities = []
+            for table in tables:
+                if 'no_rows' in table['_source'].keys():
+                    facet = 'no_rows'
+                    entities.append('%s: %s' % (facet, table['_source'][facet]))
+        return self.spacing + self.spacing.join(entities)
 
     def sample_nodes(self, size):
         '''
