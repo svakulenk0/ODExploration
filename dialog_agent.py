@@ -38,7 +38,7 @@ class DialogAgent():
     Chatbot implementing get_response method
     '''
 
-    def __init__(self, index=INDEX_LOCAL, sample=True, spacing='<br>'):
+    def __init__(self, index=INDEX_SERVER, sample=True, spacing='<br>'):
         # establish connection to the ES index
         self.db = ESClient(index)
         self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
