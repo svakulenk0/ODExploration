@@ -11,7 +11,7 @@ from load_ES import ESClient, INDEX_LOCAL, INDEX_SERVER, INDEX_CSV
 from aggregations import all_keywords
 
 
-INDEX = INDEX_SERVER
+INDEX = INDEX_LOCAL
 
 
 def gini(x):
@@ -64,8 +64,10 @@ class DialogAgent():
 
         # cursor for interating over the list of entities and items
         self.page = 0
-
+        # maximum number of nodes revealed in one reply
         self.basket_limit = 5
+        # keep focus on the current listing
+        self.focus = None
 
     def rank_entities(self, entity_counts=all_keywords):
         '''
@@ -130,8 +132,10 @@ class DialogAgent():
         '''
         show a sample of items or entities
         '''
-        samples = []
-        if self.items:
+        if self.focus == 'pivot':
+            return self.show_entities()
+        elif self.items:
+            samples = []
             for item in self.items[self.page:self.page+size]:
                 # get title
                 title = item["_source"]["raw"]["title"]
@@ -141,7 +145,7 @@ class DialogAgent():
                 samples.append(self.item_decorator % (dataset_link, title, " ".join(formats)))
             self.page += size
             return self.spacing.join(samples)
-        if self.page < len(self.entities):
+        elif self.page < len(self.entities):
             return self.show_facet_entities()
         else:
             return self.tell_story()
@@ -151,6 +155,7 @@ class DialogAgent():
         show summary statistics of the subset
         '''
         # get facet-entity subset of the dataset
+        
         if self.keyword:
             counts = self.db.describe_subset(keywords=self.keyword)
             if self.summary_facet != self.keyword:
@@ -174,14 +179,7 @@ class DialogAgent():
         response += self.search_by(facet, entity)
         return response
 
-    def pivot(self, facet, entity):
-        self.facet = facet
-        self.entity = entity
-        self.page = 0
-        counts = self.db.aggregate_entity(facet=self.facet, value=self.entity)
-        if self.summary_facet != self.facet:
-            self.summary_rank = self.rank_entities(counts)
-            self.summary_facet = self.facet
+    def show_entities(self):
         # show top entities of the pivoted subset
         entities = []
         # start listing entities
@@ -189,7 +187,17 @@ class DialogAgent():
             count, (facet, entity) = self.summary_rank.get()
             entity_button = self.entity_decorator % (facet, entity, entity)
             entities.append("%s datasets with %s as %s" % (-count, entity_button, facet))
-        return "%sAmong %s there are%s"  % (self.spacing, self.entity, self.spacing) + self.spacing.join(entities)
+        return self.spacing.join(entities)
+
+    def pivot(self, facet, entity):
+        self.facet = facet
+        self.entity = entity
+        self.page = 0
+        counts = self.db.aggregate_entity(facet=self.facet, value=self.entity)
+        # order entities
+        self.summary_rank = self.rank_entities(counts)
+        self.focus = "pivot"
+        return "%sAmong %s there are%s"  % (self.spacing, self.entity, self.spacing) + self.show_entities()
 
     def search_by(self, facet, entity, size=5):
         # show examples
