@@ -93,15 +93,19 @@ class ESClient():
                 "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : top_n}},
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
                 }
-        query = []
+        fields = []
+        values = []
         for facet, value in facets_values.items():
             field = FIELDS[facet]
-            query.append({"match": {field: value}})
+            fields.append(field)
+            values.append(value)
+            # query.append({"match": {field: value}})
             # remove facet from aggregation
             facets.pop(facet, None)
-        print query
-        result = self.es.search(index=self.index, size=limit, body={"query": {"bool": {"must": query}}, "aggs": facets})
-        return result['aggregations']
+        result = self.es.search(index=self.index, size=limit, body={"query": {"query_string":
+                                {"fields": fields, "query": ' '.join(values), "default_operator": "AND"}},
+                                 "aggs": facets})
+        return result
 
     def search_by(self, facet, value, limit=N):
         field = FIELDS[facet]
