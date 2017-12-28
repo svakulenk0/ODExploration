@@ -44,7 +44,7 @@ class DialogAgent():
     def __init__(self, index=INDEX, sample=True, spacing='<br>'):
         # establish connection to the ES index
         self.db = ESClient(index)
-        self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
+        # self.csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
         # initialize a priority queue to store entity ranking
         self.facets_rank = self.gini_facets()
         self.entity_rank = self.rank_entities()
@@ -110,17 +110,17 @@ class DialogAgent():
             facets_rank.put((-skewness, facet))
         return facets_rank
 
-    def show_dataset(self, dataset_link):
-        # get table
-        tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
-        if tables:
-            entities = []
-            for table in tables:
-                if 'no_rows' in table['_source'].keys():
-                    facet = 'no_rows'
-                    entities.append('%s %s: %s' % (table['_source']['dataset']['name'], facet, table['_source'][facet]))
-            entities.sort()
-            return self.spacing + self.spacing.join(entities)
+    # def show_dataset(self, dataset_link):
+    #     # get table
+    #     tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
+    #     if tables:
+    #         entities = []
+    #         for table in tables:
+    #             if 'no_rows' in table['_source'].keys():
+    #                 facet = 'no_rows'
+    #                 entities.append('%s %s: %s' % (table['_source']['dataset']['name'], facet, table['_source'][facet]))
+    #         entities.sort()
+    #         return self.spacing + self.spacing.join(entities)
 
     def sample_nodes(self, size):
         '''
@@ -205,18 +205,18 @@ class DialogAgent():
             formats[resource['format']] += 1
         format_counts = ["%d %s" % (count, file_format) for (file_format, count) in formats.most_common(self.basket_limit)]
         response = ""
-        if 'CSV' in formats.keys():
-            # get table
-            tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
-            if tables:
-                table = tables[0]['_source']
-                if 'no_rows' in table.keys():
-                    response = self.table_decorator % (dataset_link, title, ' '.join(format_counts))
-                    # facet = 'no_rows'
-                    # response += ' %s: %s' % (facet, table[facet])
-        # link to the portal
-        if response == "":
-            response = self.item_decorator % (dataset_link, title, ' '.join(format_counts))
+        # if 'CSV' in formats.keys():
+        #     # get table
+        #     tables = self.csv_db.search_by(facet='dataset_link', value=dataset_link)
+        #     if tables:
+        #         table = tables[0]['_source']
+        #         if 'no_rows' in table.keys():
+        #             response = self.table_decorator % (dataset_link, title, ' '.join(format_counts))
+        #             # facet = 'no_rows'
+        #             # response += ' %s: %s' % (facet, table[facet])
+        # # link to the portal
+        # if response == "":
+        response = self.item_decorator % (dataset_link, title, ' '.join(format_counts))
         return response
 
     def show_sample(self, size):
