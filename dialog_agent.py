@@ -255,9 +255,9 @@ class DialogAgent():
                     return "%sAmong %s there are %d datasets%s"  % (self.spacing, entities, self.n_items, self.spacing) + summary
                 else:
                     return self.show_sample(size=self.basket_limit)
-        # else:
-        #     # fall back to story telling
-        #     return self.tell_story()
+        else:
+            # fall back to story telling
+            return self.tell_story()
 
     def search_by(self, facet, entity, size=5):
         # show examples
