@@ -305,12 +305,12 @@ class DialogAgent():
         response = ""
         if self.page == 0:
             response +=  "%sDatasets have %d different %s, e.g.:%s" % (self.spacing, len(self.entities), self.facet, self.spacing)
-            # for entity in self.entities[self.page:self.page+self.basket_limit]:
-            #     # facets_value = "[['%s', '%s']]" % (self.facet, entity['key'])
-            #     # facets_value = "['%s', '%s']" % (self.facet, entity['key'])
-            #     # entities.append(self.entity_decorator % (facets_value, entity['key']))
-            #     facet_value = "'%s':'%s'" % (self.facet, entity['key'])
-            #     entities.append(self.entity_decorator %  (facet_value, entity['key']))
+        for entity in self.entities[self.page:self.page+self.basket_limit]:
+            # facets_value = "[['%s', '%s']]" % (self.facet, entity['key'])
+            # facets_value = "['%s', '%s']" % (self.facet, entity['key'])
+            # entities.append(self.entity_decorator % (facets_value, entity['key']))
+            facet_value = "'%s':'%s'" % (self.facet, entity['key'])
+            entities.append(self.entity_decorator %  (facet_value, entity['key']))
         self.page += self.basket_limit
         response += self.spacing.join(entities)
         return response
