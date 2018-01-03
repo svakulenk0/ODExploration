@@ -5,6 +5,7 @@ svakulenko
 Get (graph) data from Lucene (ES)
 '''
 import json
+import string
 
 from elasticsearch import Elasticsearch
 
@@ -25,7 +26,7 @@ FIELDS = {
     "categorization": "raw.categorization",
     "tags": "raw.tags.name",
     "organization": "raw.organization.name",
-    "dataset_link": "dataset.dataset_link",
+    # "dataset_link": "dataset.dataset_link",
 }
 
 
@@ -93,18 +94,24 @@ class ESClient():
                 "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : top_n}},
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
                 }
-        fields = []
-        values = []
-        for facet, value in facets_values.items():
-            field = FIELDS[facet]
-            fields.append(field)
-            values.append(value)
-            # query.append({"match": {field: value}})
-            # remove facet from aggregation
-            facets.pop(facet, None)
-        result = self.es.search(index=self.index, size=limit, body={"query": {"query_string":
-                                {"fields": fields, "query": ' '.join(values), "default_operator": "AND"}},
-                                 "aggs": facets})
+        if facets_values:
+            fields = []
+            values = []
+            for facet, value in facets_values.items():
+                field = FIELDS[facet]
+                fields.append(field)
+                # clean up value string
+                value = value.encode('utf-8').translate(None, string.punctuation)
+                values.append(value)
+                # query.append({"match": {field: value}})
+                # remove facet from aggregation
+                facets.pop(facet, None)
+            result = self.es.search(index=self.index, size=limit, body={"query": {"query_string":
+                                    {"fields": fields, "query": ' '.join(values), "default_operator": "AND"}},
+                                     "aggs": facets})
+        else:
+            result = self.es.search(index=self.index, size=limit, body={"query": {"match_all": {}},
+                                     "aggs": facets})
         return result
 
     def search_by(self, facet, value, limit=N):
