@@ -122,7 +122,7 @@ top_keywords = {
           },
           {
             u'key': u'geographie-und-planung',
-            u'doc_count': 145
+            u'doc_count': 197
           },
           {
             u'key': u'verkehr-und-technik',
@@ -130,23 +130,15 @@ top_keywords = {
           },
           {
             u'key': u'verwaltung-und-politik',
-            u'doc_count': 94
+            u'doc_count': 166
           },
           {
             u'key': u'umwelt',
             u'doc_count': 83
           },
           {
-            u'key': u'verwaltung-und-politik',
-            u'doc_count': 72
-          },
-          {
             u'key': u'wirtschaft-und-tourismus',
             u'doc_count': 56
-          },
-          {
-            u'key': u'geographie-und-planung',
-            u'doc_count': 52
           }
         ],
         u'sum_other_doc_count': 851,
