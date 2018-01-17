@@ -1,66 +1,63 @@
 '''
 svakulenko
-3 Jan 2017
+17 Jan 2017
 
-User simulator class to evaluate dialog agent interaction performance.
+User simulator class to evaluate performance of the dialog agent
 '''
-from dialog_agent import DialogAgent
-from load_ES import ESClient, INDEX_LOCAL
+import random
 
+from aggregations import entities
+from dialog_agent import DialogAgent
 
 class Seeker():
     '''
+    User simulator class
     '''
-    def __init__(self, time, strategy):
-        # number of dialogue turns, time T
-        self.time = time
-        if strategy == 'bfs':
-            self.reply = self.bfs
-        elif strategy == 'dfs':
-            self.reply = self.dfs
+    def __init__(self):
+        # cognitive resource limit
+        self.l = 9
+        # initialize goal to a random concept from the information model
+        self.define_random_goal()
+        # selection strategy of the agent with respect to the set of actions
+        # offered by the agent
+        self.chat = self.reply_random
 
-    def bfs(self):
-        '''
-        ask for diversity in results, horizontal search
-        '''
-        return "other"
+    def define_random_goal(self):
+        entities_list = [entity['key'] for facet in entities.values() for entity in facet['buckets']]
+        self.goal = random.choice(entities_list)
 
-    def dfs(self):
-        '''
-        vertical search, get exhaustive list of results
-        '''
-        return "more"
+    def reply_random(self, concepts):
+        if self.goal not in concepts:
+            # the goal is not reached yet, continue exploration
+            action = random.choice(concepts)
+            return action
+        else:
+            return 'Yes'
 
 
-def test_BFS(index=INDEX_LOCAL):
+def test_define_random_goal():
+    user = Seeker()
+    print user.goal
+
+
+def simulate(n=2):
     '''
-    Default search strategy is breadth-first exploring all important facets
+    Simulate conversation between a user and a dialog agent
+    n <int> number of turns
     '''
-    chatbot = DialogAgent(index, spacing='\n')
-    user = Seeker(time=5, strategy='bfs')
-    for i in range(user.time):
-        # user says
-        user_message = user.reply()
-        print user_message
-        # bot says
-        print chatbot.get_response(user_message)
-        print '\n'
-
-
-def test_DFS(index=INDEX_LOCAL, n_turns=15):
-    '''
-    Default search strategy is breadth-first exploring all important facets
-    '''
-    chatbot = DialogAgent(index, spacing='\n')
-    user = Seeker(time=5, strategy='dfs')
-    for i in range(user.time):
-        # user says
-        user_message = user.reply()
-        print user_message
-        # bot says
-        print chatbot.get_response(user_message)
-        print '\n'
+    # initialize conversation partners
+    user = Seeker()
+    chatbot = DialogAgent()
+    action = {}
+    # start the conversation
+    # show default greeting
+    print 'A:', chatbot.greeting
+    for i in range(n):
+        actions = chatbot.chat(action)
+        print 'A:', actions
+        action = user.chat(actions)
+        print 'U:', action
 
 
 if __name__ == '__main__':
-    test_BFS()
+    simulate()
