@@ -7,10 +7,10 @@ Ranking for nodes and chunks of the information model
 from Queue import PriorityQueue
 from heapq import heappush, nlargest
 
-from aggregations import facets, entities, n_items
+from aggregations import entities, n_items
 
 
-def rank_nodes(facets, entities):
+def rank_nodes(entities):
     '''
     rank nodes from the database stats
     '''
@@ -18,8 +18,8 @@ def rank_nodes(facets, entities):
     q = PriorityQueue()
 
     # rank facets
-    for facet, count in facets.items():
-        q.put((- n_items / count['value'], facet))
+    # for facet, count in facets.items():
+    #     q.put((- n_items / count['value'], facet))
 
     #  rank entities
     for facet, counts in entities.items():
@@ -32,13 +32,13 @@ def rank_nodes(facets, entities):
     return q
 
 
-def chunk(facets, entities):
+def chunk(entities):
     chunks = []
 
     # facets chunk
-    facets_chunk = [facet for facet, count in facets.items()]
+    # facets_chunk = [facet for facet, count in facets.items()]
     # print facets_chunk
-    chunks.append(facets_chunk)
+    # chunks.append(facets_chunk)
 
     # entities chunk per facet
     for facet, counts in entities.items():
@@ -50,20 +50,20 @@ def chunk(facets, entities):
     return chunks
 
 
-def chunk_w_ranks(facets, entities):
+def chunk_w_ranks(entities):
     chunks = {}
 
     # facets chunk
-    chunks['facets'] = []
-    for facet, count in facets.items():
-        chunks['facets'].append((n_items/count['value'], facet))
+    # chunks['facets'] = []
+    # for facet, count in facets.items():
+    #     chunks['facets'].append((n_items/count['value'], facet))
 
     # entities chunk per facet
     for facet, counts in entities.items():
         chunks[facet] = []
         entities = counts['buckets']
         # save facet rank
-        chunks[facet].append((n_items/facets[facet]['value'], facet))
+        # chunks[facet].append((n_items/facets[facet]['value'], facet))
         # iterate over entities of the facet
         for entity in entities:
             chunks[facet].append((entity['doc_count'], entity['key']))
@@ -77,44 +77,44 @@ def rank_chunks(chunks, l, history=[]):
     history <list> set of nodes already transmitted
     '''
     concept_rank = PriorityQueue()
-    for group, chunk in chunks.items():
+    for facet, chunk in chunks.items():
         chunk_sum = 0
         concepts = []
         for rank, concept in chunk:
-            if len(concepts) > l:
-                break
             if concept not in history:
                 chunk_sum += rank
                 concepts.append(concept)
-        concept_rank.put((-chunk_sum, concepts))
+            if len(concepts) >= l:
+                break
+        concept_rank.put((-chunk_sum, {facet: concepts}))
     return concept_rank
 
 
-def test_rank_chunks(l=6, n=12):
+def test_rank_nodes(topn=20):
+    ranking = rank_nodes(entities)
+    for i in range(topn):
+        print ranking.get()
+
+def test_chunk(n=2):
+    print chunk(entities)[:n]
+
+
+def test_chunk_w_ranks(n=2):
+    print chunk_w_ranks(entities)
+
+
+def test_rank_chunks(l=3, n=2):
     '''
+    l <int> maximum size of the basket
     n <int> number of turns
     '''
-    chunks = chunk_w_ranks(facets, entities)
+    chunks = chunk_w_ranks(entities)
     history = []
     for i in range(n):
         chunks_rank = rank_chunks(chunks, l, history)
         message = chunks_rank.get()[1]
         print message
-        history.extend(message)
-
-
-def test_chunk(n=2):
-    print chunk(facets, entities)[:n]
-
-
-def test_chunk_w_ranks(n=2):
-    print chunk_w_ranks(facets, entities)[:n]
-
-
-def test_rank_nodes(topn=20):
-    ranking = rank_nodes(facets, entities)
-    for i in range(topn):
-        print ranking.get()
+        history.extend(message.values()[0])
 
 
 def main():
