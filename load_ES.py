@@ -110,8 +110,8 @@ class ESClient():
                 field = FIELDS[facet]
                 fields.append(field)
                 # clean up value string
-                value = value.encode('utf-8').translate(None, string.punctuation)
-                print value
+                # value = value.encode('utf-8').translate(None, string.punctuation)
+                # print value
                 values.append(value)
                 # query.append({"match": {field: value}})
                 # remove facet from aggregation
