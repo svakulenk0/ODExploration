@@ -14,6 +14,10 @@ To start the chatbot web UI on localhost port 5008:
 
 python app.py
 
+## Deploy
+
+gunicorn -w 4 app:app -b :5008
+
 ## Stop
 
 Ctrl+C
@@ -292,7 +296,8 @@ Voranschlag der Stadt Graz
 
 ## Search task
 
-Beliebteste Vornamen in Linz
+Beliebteste Vornamen in Linz:
+bevoelkerung -> stadt-linz -> geschlecht
 
 
 ## References
