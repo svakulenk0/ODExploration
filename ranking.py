@@ -51,52 +51,56 @@ def chunk(facets, entities):
 
 
 def chunk_w_ranks(facets, entities):
-    chunks = []
+    chunks = {}
 
     # facets chunk
-    facets_chunk = []
+    chunks['facets'] = []
     for facet, count in facets.items():
-        heappush(facets_chunk, (n_items/count['value'], facet))
-        # facets_chunk[facet] = n_items / count['value']
-    # print facets_chunk
-    chunks.append(facets_chunk)
+        chunks['facets'].append((n_items/count['value'], facet))
 
     # entities chunk per facet
     for facet, counts in entities.items():
-        facet_chunk = []
+        chunks[facet] = []
         entities = counts['buckets']
         # save facet rank
-        heappush(facet_chunk, (n_items/facets[facet]['value'], facet))
+        chunks[facet].append((n_items/facets[facet]['value'], facet))
         # iterate over entities of the facet
         for entity in entities:
-            heappush(facet_chunk, (entity['doc_count'], entity['key']))
-        # print facets_chunk
-        chunks.append(facet_chunk)
+            chunks[facet].append((entity['doc_count'], entity['key']))
     return chunks
 
 
-def rank_chunks(chunks, l):
+def rank_chunks(chunks, l, history=[]):
     '''
     ranks chunks by the total rank of the top l concepts
     l <int> limit of the cognitive resource defining the size of the chunk per message
     history <list> set of nodes already transmitted
     '''
-    concept_rank = []
-    for chunk in chunks:
+    concept_rank = PriorityQueue()
+    for group, chunk in chunks.items():
         chunk_sum = 0
         concepts = []
-        for rank, concept in nlargest(l, chunk):
-            chunk_sum += rank
-            concepts.append(concept)
-        heappush(concept_rank, (chunk_sum, concepts))
+        for rank, concept in chunk:
+            if len(concepts) > l:
+                break
+            if concept not in history:
+                chunk_sum += rank
+                concepts.append(concept)
+        concept_rank.put((-chunk_sum, concepts))
     return concept_rank
 
 
-def test_rank_chunks(l=4):
+def test_rank_chunks(l=6, n=12):
+    '''
+    n <int> number of turns
+    '''
     chunks = chunk_w_ranks(facets, entities)
-    chunks_rank = rank_chunks(chunks, l)
-    message = nlargest(1, chunks_rank)[0][1]
-    print message
+    history = []
+    for i in range(n):
+        chunks_rank = rank_chunks(chunks, l, history)
+        message = chunks_rank.get()[1]
+        print message
+        history.extend(message)
 
 
 def test_chunk(n=2):
