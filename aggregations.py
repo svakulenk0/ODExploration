@@ -11,7 +11,7 @@ facets = {
         u'value': 29
       },
       u'categorization': {
-        u'value': 117
+        u'value': 14
       },
       u'tags': {
         u'value': 2914
@@ -11807,472 +11807,61 @@ entities = {
     u'categorization': {
       u'buckets': [
         {
-          u'key': u'finanzen-und-rechnungswesen',
-          u'doc_count': 198
+          u'key': u'geographie-und-planung',
+          u'doc_count': 295
         },
         {
           u'key': u'umwelt',
-          u'doc_count': 186
+          u'doc_count': 327
+        },
+        {
+          u'key': u'finanzen-und-rechnungswesen',
+          u'doc_count': 246
+        },
+        {
+          u'key': u'verwaltung-und-politik',
+          u'doc_count': 255
         },
         {
           u'key': u'bevoelkerung',
-          u'doc_count': 154
+          u'doc_count': 213
         },
-        {
-          u'key': u'geographie-und-planung',
-          u'doc_count': 145
-        },
+        
         {
           u'key': u'verkehr-und-technik',
-          u'doc_count': 111
-        },
-        {
-          u'key': u'verwaltung-und-politik',
-          u'doc_count': 94
-        },
-        {
-          u'key': u'umwelt',
-          u'doc_count': 83
-        },
-        {
-          u'key': u'verwaltung-und-politik',
-          u'doc_count': 72
+          u'doc_count': 172
         },
         {
           u'key': u'wirtschaft-und-tourismus',
-          u'doc_count': 56
-        },
-        {
-          u'key': u'geographie-und-planung',
-          u'doc_count': 52
-        },
-        {
-          u'key': u'geographie-und-planung,umwelt',
-          u'doc_count': 51
-        },
-        {
-          u'key': u'geographie-und-planung',
-          u'doc_count': 47
+          u'doc_count': 101
         },
         {
           u'key': u'bildung-und-forschung',
-          u'doc_count': 46
-        },
-        {
-          u'key': u'finanzen-und-rechnungswesen',
-          u'doc_count': 46
-        },
-        {
-          u'key': u'{gesellschaft-und-soziales}',
-          u'doc_count': 46
-        },
-        {
-          u'key': u'bevoelkerung',
-          u'doc_count': 41
-        },
-        {
-          u'key': u'verwaltung-und-politik',
-          u'doc_count': 34
-        },
-        {
-          u'key': u'{sport-und-freizeit}',
-          u'doc_count': 34
-        },
-        {
-          u'key': u'{kunst-und-kultur}',
-          u'doc_count': 27
-        },
-        {
-          u'key': u'{kunst-und-kultur,verwaltung-und-politik,wirtschaft-und-tourismus}',
-          u'doc_count': 26
-        },
-        {
-          u'key': u'{verkehr-und-technik,verwaltung-und-politik}',
-          u'doc_count': 26
-        },
-        {
-          u'key': u'{umwelt,verkehr-und-technik}',
-          u'doc_count': 25
-        },
-        {
-          u'key': u'{land-und-forstwirtschaft}',
-          u'doc_count': 24
-        },
-        {
-          u'key': u'["verkehr-und-technik"]',
-          u'doc_count': 23
-        },
-        {
-          u'key': u'["finanzen-und-rechnungswesen", "verwaltung-und-politik"]',
-          u'doc_count': 22
-        },
-        {
-          u'key': u'{gesundheit}',
-          u'doc_count': 21
-        },
-        {
-          u'key': u'["bildung-und-forschung"]',
-          u'doc_count': 20
-        },
-        {
-          u'key': u'["bevoelkerung"]',
-          u'doc_count': 18
+          u'doc_count': 67
         },
         {
           u'key': u'gesellschaft-und-soziales',
-          u'doc_count': 14
-        },
-        {
-          u'key': u'{finanzen-und-rechnungswesen,wirtschaft-und-tourismus}',
-          u'doc_count': 14
-        },
-        {
-          u'key': u'["finanzen-und-rechnungswesen"]',
-          u'doc_count': 12
-        },
-        {
-          u'key': u'verkehr-und-technik',
-          u'doc_count': 12
-        },
-        {
-          u'key': u'wirtschaft-und-tourismus',
-          u'doc_count': 11
-        },
-        {
-          u'key': u'gesundheit',
-          u'doc_count': 10
-        },
-        {
-          u'key': u'kunst-und-kultur',
-          u'doc_count': 10
-        },
-        {
-          u'key': u'["gesundheit"]',
-          u'doc_count': 8
-        },
-        {
-          u'key': u'["wirtschaft-und-tourismus"]',
-          u'doc_count': 8
-        },
-        {
-          u'key': u'["gesellschaft-und-soziales", "wirtschaft-und-tourismus"]',
-          u'doc_count': 7
-        },
-        {
-          u'key': u'umwelt',
-          u'doc_count': 7
-        },
-        {
-          u'key': u'{finanzen-und-rechnungswesen,verwaltung-und-politik}',
-          u'doc_count': 7
-        },
-        {
-          u'key': u'["kunst-und-kultur"]',
-          u'doc_count': 6
-        },
-        {
-          u'key': u'{geographie-und-planung,verwaltung-und-politik}',
-          u'doc_count': 6
-        },
-        {
-          u'key': u'{arbeit}',
-          u'doc_count': 5
-        },
-        {
-          u'key': u'{finanzen-und-rechnungswesen,verwaltung-und-politik,wirtschaft-und-tourismus}',
-          u'doc_count': 5
-        },
-        {
-          u'key': u'{kunst-und-kultur,sport-und-freizeit}',
-          u'doc_count': 5
-        },
-        {
-          u'key': u'{sport-und-freizeit,verkehr-und-technik}',
-          u'doc_count': 5
-        },
-        {
-          u'key': u'["land-und-forstwirtschaft"]',
-          u'doc_count': 4
-        },
-        {
-          u'key': u'["umwelt", "wirtschaft-und-tourismus"]',
-          u'doc_count': 4
-        },
-        {
-          u'key': u'["verkehr-und-technik", "wirtschaft-und-tourismus"]',
-          u'doc_count': 4
-        },
-        {
-          u'key': u'{bevoelkerung,gesellschaft-und-soziales}',
-          u'doc_count': 4
-        },
-        {
-          u'key': u'{bildung-und-forschung,verwaltung-und-politik}',
-          u'doc_count': 4
-        },
-        {
-          u'key': u'{gesellschaft-und-soziales,gesundheit,verwaltung-und-politik}',
-          u'doc_count': 4
-        },
-        {
-          u'key': u'{umwelt,verwaltung-und-politik}',
-          u'doc_count': 4
-        },
-        {
-          u'key': u'["geographie-und-planung", "gesellschaft-und-soziales", "verwaltung-und-politik"]',
-          u'doc_count': 3
-        },
-        {
-          u'key': u'["gesellschaft-und-soziales", "gesundheit", "sport-und-freizeit"]',
-          u'doc_count': 3
-        },
-        {
-          u'key': u'["gesellschaft-und-soziales", "sport-und-freizeit"]',
-          u'doc_count': 3
-        },
-        {
-          u'key': u'{geographie-und-planung,sport-und-freizeit,umwelt,wirtschaft-und-tourismus}',
-          u'doc_count': 3
-        },
-        {
-          u'key': u'{geographie-und-planung,sport-und-freizeit}',
-          u'doc_count': 3
-        },
-        {
-          u'key': u'{gesundheit,sport-und-freizeit,umwelt}',
-          u'doc_count': 3
-        },
-        {
-          u'key': u'{verkehr-und-technik,wirtschaft-und-tourismus}',
-          u'doc_count': 3
-        },
-        {
-          u'key': u'["geographie-und-planung", "gesellschaft-und-soziales", "sport-und-freizeit"]',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'["geographie-und-planung", "verwaltung-und-politik"]',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'["gesellschaft-und-soziales", "bevoelkerung"]',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'["verwaltung-und-politik", "geographie-und-planung"]',
-          u'doc_count': 2
+          u'doc_count': 61
         },
         {
           u'key': u'sport-und-freizeit',
-          u'doc_count': 2
+          u'doc_count': 37
         },
         {
-          u'key': u'{arbeit,bevoelkerung,bildung-und-forschung,gesellschaft-und-soziales,umwelt,wirtschaft-und-tourismus}',
-          u'doc_count': 2
+          u'key': u'kunst-und-kultur',
+          u'doc_count': 69
         },
         {
-          u'key': u'{arbeit,bevoelkerung,gesellschaft-und-soziales,wirtschaft-und-tourismus}',
-          u'doc_count': 2
+          u'key': u'land-und-forstwirtschaft',
+          u'doc_count': 28
         },
         {
-          u'key': u'{bevoelkerung,bildung-und-forschung,geographie-und-planung,gesellschaft-und-soziales,umwelt}',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'{geographie-und-planung,land-und-forstwirtschaft,umwelt}',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'{gesellschaft-und-soziales,gesundheit}',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'{gesellschaft-und-soziales,verwaltung-und-politik}',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'{gesundheit,umwelt}',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'{sport-und-freizeit,umwelt}',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'{sport-und-freizeit,verwaltung-und-politik}',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'{verwaltung-und-politik,wirtschaft-und-tourismus}',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'{wirtschaft-und-tourismus,gesellschaft-und-soziales}',
-          u'doc_count': 2
-        },
-        {
-          u'key': u'["arbeit", "bevoelkerung"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["bevoelkerung", "finanzen-und-rechnungswesen"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["finanzen-und-rechnungswesen", "verwaltung-und-politik", "wirtschaft-und-tourismus"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["geographie-und-planung", "umwelt"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["gesellschaft-und-soziales", "gesundheit"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["gesellschaft-und-soziales", "kunst-und-kultur"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["gesellschaft-und-soziales"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["gesundheit", "sport-und-freizeit"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["gesundheit", "wirtschaft-und-tourismus"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["sport-und-freizeit", "wirtschaft-und-tourismus"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["sport-und-freizeit"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["umwelt", "kunst-und-kultur"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["verkehr-und-technik", "verwaltung-und-politik"]',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'["verwaltung-und-politik", "wirtschaft-und-tourismus"]',
-          u'doc_count': 1
+          u'key': u'gesundheit',
+          u'doc_count': 39
         },
         {
           u'key': u'arbeit',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'bildung-und-forschung',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{arbeit,bevoelkerung,gesellschaft-und-soziales}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{arbeit,bevoelkerung,verkehr-und-technik}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{bevoelkerung,arbeit,bildung-und-forschung}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{bevoelkerung,bildung-und-forschung,verkehr-und-technik}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{bevoelkerung,geographie-und-planung}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{bevoelkerung,sport-und-freizeit,umwelt,wirtschaft-und-tourismus}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{bevoelkerung,wirtschaft-und-tourismus}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{bildung-und-forschung,gesellschaft-und-soziales}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{finanzen-und-rechnungswesen,geographie-und-planung}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{finanzen-und-rechnungswesen,wirtschaft-und-tourismus,verkehr-und-technik}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{geographie-und-planung,umwelt,wirtschaft-und-tourismus}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{geographie-und-planung,verkehr-und-technik}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{geographie-und-planung,wirtschaft-und-tourismus}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{gesellschaft-und-soziales,kunst-und-kultur}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{gesellschaft-und-soziales,sport-und-freizeit,verwaltung-und-politik}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{gesellschaft-und-soziales,umwelt}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{gesellschaft-und-soziales,wirtschaft-und-tourismus,finanzen-und-rechnungswesen}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{gesundheit,verkehr-und-technik}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{kunst-und-kultur,sport-und-freizeit,verwaltung-und-politik,wirtschaft-und-tourismus}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{kunst-und-kultur,wirtschaft-und-tourismus}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{land-und-forstwirtschaft,sport-und-freizeit,umwelt}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{land-und-forstwirtschaft,sport-und-freizeit}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{umwelt,geographie-und-planung}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{umwelt,umwelt}',
-          u'doc_count': 1
-        },
-        {
-          u'key': u'{umwelt,wirtschaft-und-tourismus}',
-          u'doc_count': 1
+          u'doc_count': 5
         }
       ],
       u'sum_other_doc_count': 0,
