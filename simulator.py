@@ -27,11 +27,9 @@ class Seeker():
         self.goal = random.choice(entities_list)
 
     def reply_random(self, actions):
-        facet = actions.keys()[0]
-        concepts = actions.values()[0]
-        if self.goal not in concepts:
+        if self.goal not in actions:
             # the goal is not reached yet, continue exploration
-            action = {facet: random.choice(concepts)}
+            action = random.choice(actions)
             return action
         else:
             return 'Yes'
@@ -54,12 +52,17 @@ def simulate(n=2):
     # start the conversation
     # show default greeting
     print 'A:', chatbot.greeting
+    # start exploration
+    message, actions = chatbot.chat(action)
+    print 'A:', message
     for i in range(n):
-        message, actions = chatbot.chat(action)
-        print 'A:', message
+        # choose exploration direction
         if actions:
             action = user.chat(actions)
             print 'U:', action
+        # continue exploration
+        message, actions = chatbot.chat(action)
+        print 'A:', message
 
 
 if __name__ == '__main__':

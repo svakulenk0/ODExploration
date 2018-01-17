@@ -86,7 +86,7 @@ def rank_chunks(chunks, l, history=[]):
                 concepts.append(concept)
             if len(concepts) >= l:
                 break
-        concept_rank.put((-chunk_sum, {facet: concepts}))
+        concept_rank.put((-chunk_sum, (facet, concepts)))
     return concept_rank
 
 

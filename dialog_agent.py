@@ -29,18 +29,18 @@ class DialogAgent():
     def chat(self, action=None):
         # get subset of the information model, {} corresponds to the whole information space
         entities, n = self.db.summarize_subset(facets_values=action)
-        print n, "matched datasets"
         # form message
         if n > 0:
             # create chunks
             chunks = chunk_w_ranks(entities)
             # rank chunks
             chunks_rank = rank_chunks(chunks, self.l, self.history)
-            actions = chunks_rank.get()[1]
-            message = actions
+            facet, concepts = chunks_rank.get()[1]
+            message = "There are %d datasets with %s: %s" % (n, facet, ', '.join(concepts))
             # show message
             # print 'A:', message
-            self.history.extend(actions.values()[0])
+            self.history.extend(concepts)
+            actions = [{facet: concept} for concept in concepts]
             return message, actions
         else:
             return "No matching datasets found", {}
