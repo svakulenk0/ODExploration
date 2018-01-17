@@ -17,8 +17,6 @@ class DialogAgent():
     def __init__(self, index=INDEX):
         # establish connection to the database
         self.db = ESClient(index)
-        # partition the whole information space into coherent chunks
-        self.chunks = chunk_w_ranks(facets, entities)
         # concepts already communicated to the user
         self.history = []
         # ranking of concept chunks from the database
@@ -28,19 +26,24 @@ class DialogAgent():
         # maximum message size
         self.l = 4
 
-    def chat(self, action={}):
+    def chat(self, action=None):
         # get subset of the information model, {} corresponds to the whole information space
-        # create chunks
-        # chunk_w_ranks(facets, entities)
-
-        # rank chunks
-        chunks_rank = rank_chunks(self.chunks, self.l, self.history)
-        concepts = chunks_rank.get()[1]
-        # message = concepts
-        # show message
-        # print 'A:', message
-        self.history.extend(concepts)
-        return concepts
+        entities, n = self.db.summarize_subset(facets_values=action)
+        print n, "matched datasets"
+        # form message
+        if n > 0:
+            # create chunks
+            chunks = chunk_w_ranks(entities)
+            # rank chunks
+            chunks_rank = rank_chunks(chunks, self.l, self.history)
+            actions = chunks_rank.get()[1]
+            message = actions
+            # show message
+            # print 'A:', message
+            self.history.extend(actions.values()[0])
+            return message, actions
+        else:
+            return "No matching datasets found", {}
 
             # 4. users turn
             # if simulate:
