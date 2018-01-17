@@ -26,10 +26,12 @@ class Seeker():
         entities_list = [entity['key'] for facet in entities.values() for entity in facet['buckets']]
         self.goal = random.choice(entities_list)
 
-    def reply_random(self, concepts):
+    def reply_random(self, actions):
+        facet = actions.keys()[0]
+        concepts = actions.values()[0]
         if self.goal not in concepts:
             # the goal is not reached yet, continue exploration
-            action = random.choice(concepts)
+            action = {facet: random.choice(concepts)}
             return action
         else:
             return 'Yes'
@@ -48,15 +50,16 @@ def simulate(n=2):
     # initialize conversation partners
     user = Seeker()
     chatbot = DialogAgent()
-    action = {}
+    action = None
     # start the conversation
     # show default greeting
     print 'A:', chatbot.greeting
     for i in range(n):
-        actions = chatbot.chat(action)
-        print 'A:', actions
-        action = user.chat(actions)
-        print 'U:', action
+        message, actions = chatbot.chat(action)
+        print 'A:', message
+        if actions:
+            action = user.chat(actions)
+            print 'U:', action
 
 
 if __name__ == '__main__':
