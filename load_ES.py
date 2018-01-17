@@ -14,7 +14,7 @@ INDEX_LOCAL = 'data_gv_at'
 INDEX_SERVER = 'odexploration'
 INDEX_CSV = 'autcsv'
 
-INDEX = INDEX_SERVER
+INDEX = INDEX_LOCAL
 
 N = 2914
 N_DOCS = 2028
@@ -58,12 +58,17 @@ class ESClient():
 
     def describe_subset(self, keywords=None, top_n=N, limit=N):
         '''
-        get stats for the search subsample of the information space
+        get stats for a subset of the information space
+        Returns:
+        * field (entity) counts
+        * size of the matching subset
         '''
         if keywords:
+        # string search
             query = {"match": {"_all": keywords}}
         else:
-            {"match_all": {}}
+        # match all docs
+            query = {"match_all": {}}
         result = self.es.search(index=self.index, explain=True, size=limit, body={"query": query, "aggs": {
                 "title": {"terms": {"field": "raw.title.keyword", "size" : top_n}},
                 "license": {"terms": {"field": "raw.license_id.keyword", "size" : top_n}},
@@ -71,7 +76,7 @@ class ESClient():
                 "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : top_n}},
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
             }})
-        return result['aggregations']
+        return result['aggregations'], result['hits']['total']
 
     def aggregate_entity(self, facet, value, top_n=N, limit=N):
         field = FIELDS[facet]
@@ -87,6 +92,9 @@ class ESClient():
         return result['aggregations']
 
     def summarize_subset(self, facets_values, top_n=N, limit=N):
+        '''
+        facets_values <dict> of facets and entities to find the subset
+        '''
         facets = {
                 "title": {"terms": {"field": "raw.title.keyword", "size" : top_n}},
                 "license": {"terms": {"field": "raw.license_id.keyword", "size" : top_n}},
@@ -95,6 +103,7 @@ class ESClient():
                 "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
                 }
         if facets_values:
+            # search by entity
             fields = []
             values = []
             for facet, value in facets_values.items():
@@ -111,9 +120,10 @@ class ESClient():
                                     {"fields": fields, "query": ' '.join(values), "default_operator": "AND"}},
                                      "aggs": facets})
         else:
+            # search all
             result = self.es.search(index=self.index, size=limit, body={"query": {"match_all": {}},
                                      "aggs": facets})
-        return result
+        return result['aggregations'], result['hits']['total']
 
     def search_by(self, facet, value, limit=N):
         field = FIELDS[facet]
