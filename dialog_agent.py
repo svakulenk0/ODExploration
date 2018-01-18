@@ -5,7 +5,7 @@ svakulenko
 Dialog agent for the conversational browsing task
 '''
 
-from load_ES import ESClient, INDEX
+from load_ES import ESClient
 from ranking import chunk_w_ranks, rank_chunks
 from aggregations import facets, entities
 
@@ -14,9 +14,9 @@ class DialogAgent():
     Dialog agent for the conversational browsing task
     '''
 
-    def __init__(self, index=INDEX):
+    def __init__(self):
         # establish connection to the database
-        self.db = ESClient(index)
+        self.db = ESClient()
         # concepts already communicated to the user
         self.history = []
         # ranking of concept chunks from the database
@@ -26,9 +26,12 @@ class DialogAgent():
         # maximum message size
         self.l = 4
 
-    def chat(self, action=None):
+    def chat(self, action=[]):
         # get subset of the information model, {} corresponds to the whole information space
-        entities, n = self.db.summarize_subset(facets_values=action)
+        if action:
+            entities, n = self.db.summarize_subset(facets_values=[action])
+        else:
+            entities, n = self.db.summarize_subset()
         # form message
         if n > 0:
             # create chunks
@@ -40,7 +43,7 @@ class DialogAgent():
             # show message
             # print 'A:', message
             self.history.extend(concepts)
-            actions = [{facet: concept} for concept in concepts]
+            actions = [(facet, concept) for concept in concepts]
             return message, actions
         else:
             return "No matching datasets found", {}
