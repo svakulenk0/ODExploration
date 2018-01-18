@@ -33,7 +33,7 @@ class Seeker():
 
     def reply_random(self, actions):
         # check set intersect with the goal
-        # print self.goal
+        print self.goal
         print actions
         # concepts = [concept for action.val]
         if not set(self.goal) & set(actions):
@@ -72,6 +72,9 @@ def simulate(n=12):
         if actions:
             action = user.chat(actions)
             print 'U:', action
+            # success-stopping condition
+            if action == 'Yes':
+                break
         # continue exploration
         message, actions = chatbot.chat(action)
         print 'A:', message
