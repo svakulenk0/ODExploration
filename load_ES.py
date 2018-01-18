@@ -19,13 +19,13 @@ INDEX = INDEX_LOCAL
 N = 2914
 N_DOCS = 2028
 
-FIELDS = {
-    "dataset_id": "raw.id",
+FACETS = {
+    # "dataset_id": "raw.id",
     "title": "raw.title",
     "license": "raw.license_id",
     "categorization": "raw.categorization",
     "tags": "raw.tags.name",
-    "organization": "raw.organization.name",
+    "organization": "raw.organization.name"
     # "dataset_link": "dataset.dataset_link",
 }
 
@@ -49,7 +49,7 @@ class ESClient():
         return result
 
     def sample_subset(self, keywords, facet_in, entity, limit=2):
-        query = [{"match": {FIELDS[facet_in]: entity}}]
+        query = [{"match": {FACETS[facet_in]: entity}}]
         if keywords:
             query.append({"match": {"_all": keywords}})
         result = self.es.search(index=self.index, size=limit,
@@ -79,7 +79,7 @@ class ESClient():
         return result['aggregations'], result['hits']['total']
 
     def aggregate_entity(self, facet, value, top_n=N, limit=N):
-        field = FIELDS[facet]
+        field = FACETS[facet]
         facets = {
                 "title": {"terms": {"field": "raw.title.keyword", "size" : top_n}},
                 "license": {"terms": {"field": "raw.license_id.keyword", "size" : top_n}},
@@ -91,11 +91,51 @@ class ESClient():
         result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value), body={"aggs": facets})
         return result['aggregations']
 
-    def summarize_subset(self, facets_values, top_n=N, limit=N):
+    def get_random_doc(self):
+        doc = self.es.search(index=self.index, body={
+                                  "query": {
+                                    "function_score": {
+                                      "query": {
+                                        "match_all": {}
+                                      },
+                                      "functions": [
+                                        {
+                                          "random_score": {}
+                                        }
+                                      ]
+                                    }
+                                  }
+                                })['hits']['hits'][0]['_source']
+        return doc
+
+    def get_random_item(self):
+        doc = self.get_random_doc()
+        # print doc
+        item_entities = []
+        for facet, path in FACETS.items():
+            # find entity by traversing the dictionary of the item
+            entity = doc
+            ready = False
+            for element in path.split('.'):
+                # print element
+                if isinstance(entity, list):
+                    for e in entity:
+                        # item_entities.append(e[element])
+                        item_entities.append((facet, e[element]))
+                    ready = True
+                else:
+                    entity = entity[element]
+                # print entity
+            if not ready:
+                # item_entities.append(entity)
+                item_entities.append((facet, entity))
+        return item_entities
+
+    def summarize_subset(self, facets_values=None, top_n=N, limit=N):
         '''
         facets_values <dict> of facets and entities to find the subset
         '''
-        facets = {
+        paths = {
                 "title": {"terms": {"field": "raw.title.keyword", "size" : top_n}},
                 "license": {"terms": {"field": "raw.license_id.keyword", "size" : top_n}},
                 "categorization": {"terms": {"field": "raw.categorization.keyword", "size" : top_n}},
@@ -104,29 +144,32 @@ class ESClient():
                 }
         if facets_values:
             # search by entity
-            fields = []
+            facets = []
             values = []
-            for facet, value in facets_values.items():
-                field = FIELDS[facet]
-                fields.append(field)
+            # print facets_values
+            for facet, value in facets_values:
+                field = FACETS[facet]
+                facets.append(field)
                 # clean up value string
+                value = value.replace('{', '\{')
+                value = value.replace('}', '\}')
                 # value = value.encode('utf-8').translate(None, string.punctuation)
                 # print value
                 values.append(value)
                 # query.append({"match": {field: value}})
                 # remove facet from aggregation
-                facets.pop(facet, None)
+                paths.pop(facet, None)
             result = self.es.search(index=self.index, size=limit, body={"query": {"query_string":
-                                    {"fields": fields, "query": ' '.join(values), "default_operator": "AND"}},
-                                     "aggs": facets})
+                                    {"fields": facets, "query": ' '.join(values), "default_operator": "AND"}},
+                                     "aggs": paths})
         else:
             # search all
             result = self.es.search(index=self.index, size=limit, body={"query": {"match_all": {}},
-                                     "aggs": facets})
+                                     "aggs": paths})
         return result['aggregations'], result['hits']['total']
 
     def search_by(self, facet, value, limit=N):
-        field = FIELDS[facet]
+        field = FACETS[facet]
         result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value))['hits']['hits']
         return result
 
