@@ -21,11 +21,11 @@ N_DOCS = 2028
 
 FACETS = {
     # "dataset_id": "raw.id",
-    "title": "raw.title",
-    "license": "raw.license_id",
-    "categorization": "raw.categorization",
     "tags": "raw.tags.name",
-    "organization": "raw.organization.name"
+    "categorization": "raw.categorization",
+    "title": "raw.title",
+    "organization": "raw.organization.name",
+    "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
 
@@ -108,9 +108,8 @@ class ESClient():
                                 })['hits']['hits'][0]['_source']
         return doc
 
-    def get_random_item(self):
-        doc = self.get_random_doc()
-        # print doc
+
+    def compile_item_entities(self, doc):
         item_entities = []
         for facet, path in FACETS.items():
             # find entity by traversing the dictionary of the item
@@ -131,7 +130,7 @@ class ESClient():
                 item_entities.append((facet, entity))
         return item_entities
 
-    def summarize_subset(self, facets_values=None, top_n=N, limit=N):
+    def summarize_subset(self, facets_values=[], top_n=N, limit=N):
         '''
         facets_values <dict> of facets and entities to find the subset
         '''
@@ -150,9 +149,11 @@ class ESClient():
             for facet, value in facets_values:
                 field = FACETS[facet]
                 facets.append(field)
-                # clean up value string
+                # clean up value string: escape ES special characters
                 value = value.replace('{', '\{')
                 value = value.replace('}', '\}')
+                value = value.replace(':', '\:')
+                value = value.replace('/', '\/')
                 # value = value.encode('utf-8').translate(None, string.punctuation)
                 # print value
                 values.append(value)
@@ -166,7 +167,7 @@ class ESClient():
             # search all
             result = self.es.search(index=self.index, size=limit, body={"query": {"match_all": {}},
                                      "aggs": paths})
-        return result['aggregations'], result['hits']['total']
+        return result
 
     def search_by(self, facet, value, limit=N):
         field = FACETS[facet]
