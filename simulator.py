@@ -128,4 +128,4 @@ def evaluate_sensitivity():
 
 
 if __name__ == '__main__':
-    evaluate_sensitivity()
+    run_evaluation()
