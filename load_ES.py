@@ -91,7 +91,7 @@ class ESClient():
         result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value), body={"aggs": facets})
         return result['aggregations']
 
-    def get_random_doc(self, query={"type": "dataset"}):
+    def get_random_doc(self, query={"raw.type": "dataset"}):
         doc = self.es.search(index=self.index, body={
                                   "query": {
                                     "function_score": {
