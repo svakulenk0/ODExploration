@@ -123,7 +123,8 @@ class ESClient():
                         item_entities.append((facet, e[element]))
                     ready = True
                 else:
-                    entity = entity[element]
+                    if element in entity.keys():
+                        entity = entity[element]
                 # print entity
             if not ready:
                 # item_entities.append(entity)
