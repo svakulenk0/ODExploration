@@ -14,7 +14,7 @@ INDEX_LOCAL = 'data_gv_at'
 INDEX_SERVER = 'odexploration'
 INDEX_CSV = 'autcsv'
 
-INDEX = INDEX_SERVER
+INDEX = INDEX_LOCAL
 
 N = 2914
 N_DOCS = 2028
@@ -154,6 +154,8 @@ class ESClient():
                 value = value.replace('}', '\}')
                 value = value.replace(':', '\:')
                 value = value.replace('/', '\/')
+                value = value.replace('[', '\[')
+                value = value.replace(']', '\]')
                 # value = value.encode('utf-8').translate(None, string.punctuation)
                 # print value
                 values.append(value)
