@@ -91,7 +91,7 @@ def simulate(l):
                 message = action[1]
             else:
                 message = action
-            print '\nU:%s\n' % message
+            print '\nU: %s\n' % message
             # success-stopping condition
             if action == 'Thank you!':
                 break
@@ -128,4 +128,4 @@ def evaluate_sensitivity():
 
 
 if __name__ == '__main__':
-    run_evaluation()
+    evaluate_sensitivity()
