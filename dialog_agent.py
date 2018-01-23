@@ -61,16 +61,17 @@ class DialogAgent():
         # found it
         elif n > 0:
             message = "\nHere you are:"
-            concepts = []
+            all_concepts = []
             for doc in result['hits']['hits']:
                 # show all entities of the item
-                concepts.extend(self.db.compile_item_entities(doc['_source']))
+                concepts = self.db.compile_item_entities(doc['_source'])
+                all_concepts.extend(concepts)
                 if self.simulation:
                     message += "\n\n" + '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts])
                 else:
                 # web-based chat html
                     message += "<br><br>" % ('<br>'.join(["%s: %s" % (facet, entity) for facet, entity in concepts]))
-            return message.encode('utf8'), concepts
+            return message.encode('utf8'), all_concepts
         else:
             # reset goal to the whole information space
             self.goal = []
