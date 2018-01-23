@@ -126,7 +126,7 @@ class ESClient():
                     if element in entity.keys():
                         entity = entity[element]
                 # print entity
-            if not ready:
+            if not ready and isinstance(entity, str):
                 # item_entities.append(entity)
                 item_entities.append((facet, entity))
         return item_entities
