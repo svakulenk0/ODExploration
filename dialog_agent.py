@@ -28,8 +28,10 @@ class DialogAgent():
         self.l = l
         # default exploration direction corresponds to the whole information space
         self.goal = []
+        # message formatting HTML vs text
+        self.simulation = False
 
-    def chat(self, action='Continue', simulation=False):
+    def chat(self, action='Continue'):
         # print action
         if action != 'Continue':
             # default exploration direction corresponds to the whole information space
@@ -47,7 +49,7 @@ class DialogAgent():
             # rank chunks
             chunks_rank = rank_chunks(chunks, self.l, self.history)
             facet, entities = chunks_rank.get()[1]
-            if simulation:
+            if self.simulation:
                 message = "There are %d datasets.\nYou can explore them by %s:\n\n%s" % (n, facet, '\n'.join(entities))
             else:
                 # web-based chat html
