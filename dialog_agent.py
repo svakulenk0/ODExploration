@@ -23,12 +23,13 @@ class DialogAgent():
         self.rank = []
         # default greeting message
         self.greeting = "Hi! Welcome to the Austrian Open Data portal!"
+        self.entity_decorator = "<button class='item' onclick=pivotEntity({%s})>%s</button>"
         # maximum message size
         self.l = l
         # default exploration direction corresponds to the whole information space
         self.goal = []
 
-    def chat(self, action='Continue'):
+    def chat(self, action='Continue', simulation=False):
         # print action
         if action != 'Continue':
             # default exploration direction corresponds to the whole information space
@@ -46,7 +47,12 @@ class DialogAgent():
             # rank chunks
             chunks_rank = rank_chunks(chunks, self.l, self.history)
             facet, entities = chunks_rank.get()[1]
-            message = "There are %d datasets.\nYou can explore them by %s:\n\n%s" % (n, facet, '\n'.join(entities))
+            if simulation:
+                message = "There are %d datasets.\nYou can explore them by %s:\n\n%s" % (n, facet, '\n'.join(entities))
+            else:
+                # web-based chat html
+                buttons = '<br>'.join(self.entity_decorator % ((facet, entity), entity) for entity in entities)
+                message = "There are %d datasets.<br>You can explore them by %s:<br><br>%s" % (n, facet, buttons)
             concepts = [(facet, entity) for entity in entities]
             self.history.extend(concepts)
             return message.encode('utf8'), concepts
