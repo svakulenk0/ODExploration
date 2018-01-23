@@ -49,7 +49,7 @@ class DialogAgent():
             message = "There are %d datasets.\nYou can explore them by %s:\n\n%s" % (n, facet, '\n'.join(entities))
             concepts = [(facet, entity) for entity in entities]
             self.history.extend(concepts)
-            return message, concepts
+            return message.encode('utf8'), concepts
         # found it
         elif n > 0:
             message = "Here you are:"
@@ -58,7 +58,7 @@ class DialogAgent():
                 # show all entities of the item
                 concepts.extend(self.db.compile_item_entities(doc['_source']))
                 message += "\n%s. Dataset\n\n%s" % (i+1, '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts]))
-            return message, concepts
+            return message.encode('utf8'), concepts
         else:
             return "No matching datasets found", []
 
