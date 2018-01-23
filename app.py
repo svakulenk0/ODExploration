@@ -16,13 +16,17 @@ chatbot = DialogAgent()
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    # start exploration
+    message, actions = chatbot.chat()
+    message = message.replace('\n', '<br>')
+    return render_template("index.html", text=message)
 
 
 @app.route("/get")
 def get_bot_response():
     userText = request.args.get('msg')
-    return str(chatbot.get_response(userText).encode('utf8'))
+    message, concepts = chatbot.chat(userText)
+    return str(message.encode('utf8'))
 
 
 @app.route("/show")

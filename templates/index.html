@@ -9,15 +9,16 @@
     <!-- <h3>A web implementation of <a href="https://github.com/gunthercox/ChatterBot">ChatterBot</a> using Flask.</h3> -->
     <div>
       <div id="chatbox">
-        <p class="botText"><span>Hi! I'm Open Data Chatbot.</span></p>
+        <p class="botText"><span>Hi! Welcome to the Austrian Open Data portal!</span></p>
+        <p class="botText"><span>{{ text|safe }}</span></p>
       </div>
       <div id="userInput">
         <!-- add buttons for available exploration direction -->
         <!-- <input id="facets" class="botBtn" type="submit" value="Facets"> -->
-        <input id="otherInput" class="botBtn" type="submit" value="Next">
+        <!-- <input id="otherInput" class="botBtn" type="submit" value="Next"> -->
         <!-- <input id="pivotInput" class="botBtn" type="submit" value="Pivot"> -->
-        <input id="similarInput" class="botBtn" type="submit" value="More">
-        <input id="textInput" type="text" name="msg" placeholder="Message" autofocus>
+        <!-- <input id="similarInput" class="botBtn" type="submit" value="More"> -->
+        <!-- <input id="textInput" type="text" name="msg" placeholder="Message" autofocus> -->
       </div>
       <script>
         // trigger story on load 
