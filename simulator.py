@@ -55,7 +55,7 @@ class Seeker():
             # action = random.choice(actions)
             return 'Continue'
         else:
-            return list(match)[0]
+            return list(match)[0].encode('utf8')
 
 
 
