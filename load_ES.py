@@ -165,8 +165,8 @@ class ESClient():
                                     {"fields": facets, "query": ' '.join(values), "default_operator": "AND"}},
                                      "aggs": paths})
         else:
-            # search all
-            result = self.es.search(index=self.index, size=limit, body={"query": {"match_all": {}},
+            # search all datasets
+            result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"raw.type": "dataset"}},
                                      "aggs": paths})
         return result
 
