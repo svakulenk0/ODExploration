@@ -53,6 +53,8 @@ def pivot_entity():
     entity = request.args.get('entity')
     action = (facet, entity)
     message, actions = chatbot.chat(action)
+    # convert to html
+    message = message.replace('\n', '<br>')
     return message
 
 
