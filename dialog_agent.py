@@ -66,10 +66,10 @@ class DialogAgent():
                 # show all entities of the item
                 concepts.extend(self.db.compile_item_entities(doc['_source']))
                 if self.simulation:
-                    message += "\n\n%s" % (i+1, '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts]))
+                    message += "\n\n" + '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts])
                 else:
                 # web-based chat html
-                    message += "<br><br>%s" % (i+1, '<br>'.join(["%s: %s" % (facet, entity) for facet, entity in concepts]))
+                    message += "<br><br>" + '<br>'.join(["%s: %s" % (facet, entity) for facet, entity in concepts])
             return message.encode('utf8'), concepts
         else:
             # reset goal to the whole information space
