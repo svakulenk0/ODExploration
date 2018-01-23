@@ -91,13 +91,11 @@ class ESClient():
         result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value), body={"aggs": facets})
         return result['aggregations']
 
-    def get_random_doc(self):
+    def get_random_doc(self, query={"type": "dataset"}):
         doc = self.es.search(index=self.index, body={
                                   "query": {
                                     "function_score": {
-                                      "query": {
-                                        "match_all": {}
-                                      },
+                                      "query": {"match": query},
                                       "functions": [
                                         {
                                           "random_score": {}
@@ -125,8 +123,6 @@ class ESClient():
                 else:
                     if element in entity.keys():
                         entity = entity[element]
-                    else:
-                        print entity
                 # print entity
             if not ready:
                 # item_entities.append(entity)
