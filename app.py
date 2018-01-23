@@ -18,6 +18,7 @@ chatbot = DialogAgent()
 def home():
     # start exploration
     message, actions = chatbot.chat()
+    # convert to html
     # message = message.replace('\n', '<br>')
     return render_template("index.html", text=message)
 
@@ -48,7 +49,9 @@ def home():
 
 @app.route("/pivot")
 def pivot_entity():
-    action = json.loads(request.args.get('facets_entities'))
+    facet = request.args.get('facet')
+    entity = request.args.get('entity')
+    action = (facet, entity)
     message, actions = chatbot.chat(action)
     return message
 

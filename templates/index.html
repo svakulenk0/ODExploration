@@ -22,9 +22,9 @@
       </div>
       <script>
         // trigger story on load 
-        $("document").ready(function() {
-            getBotResponse();
-        });
+        // $("document").ready(function() {
+        //     getBotResponse();
+        // });
         function getBotResponse() {
           var rawText = $("#textInput").val();
           if (rawText) {
@@ -60,9 +60,9 @@
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
-        function pivotEntity(facets_entities) {
-          console.log(facets_entities)
-          $.get("/pivot", { facets_entities: JSON.stringify(facets_entities)}).done(function(data) {
+        function pivotEntity(facet, entity) {
+          // console.log(facets_entities)
+          $.get("/pivot", {facet: facet, entity: entity}).done(function(data) {
             var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
