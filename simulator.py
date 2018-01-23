@@ -73,7 +73,7 @@ def simulate(l):
     '''
     # initialize conversation partners
     user = Seeker()
-    chatbot = DialogAgent(l)
+    chatbot = DialogAgent(l, simulation=True)
     # start the conversation
     # show default greeting
     print 'A:', chatbot.greeting

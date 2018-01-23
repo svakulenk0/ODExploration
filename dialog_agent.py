@@ -14,7 +14,7 @@ class DialogAgent():
     Dialog agent for the conversational browsing task
     '''
 
-    def __init__(self, l=8):
+    def __init__(self, l=8, simulation=False):
         # establish connection to the database
         self.db = ESClient()
         # concepts already communicated to the user
@@ -29,7 +29,7 @@ class DialogAgent():
         # default exploration direction corresponds to the whole information space
         self.goal = []
         # message formatting HTML vs text
-        self.simulation = False
+        self.simulation = simulation
 
     def chat(self, action='Continue'):
         # print action
