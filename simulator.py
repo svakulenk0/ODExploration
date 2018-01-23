@@ -55,7 +55,7 @@ class Seeker():
             # action = random.choice(actions)
             return 'Continue'
         else:
-            return list(match)[0].encode('utf8')
+            return list(match)[0]
 
 
 
@@ -91,7 +91,7 @@ def simulate(l):
                 message = action[1]
             else:
                 message = action
-            print '\nU: %s\n' % message
+            print '\nU: %s\n' % message.encode('utf8')
             # success-stopping condition
             if action == 'Thank you!':
                 break
