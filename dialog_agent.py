@@ -69,14 +69,17 @@ class DialogAgent():
                 if self.simulation:
                     message += "\n\n" + '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts])
                 else:
-                # web-based chat html
-                    message += "<br><br>" % ('<br>'.join(["%s: %s" % (facet, entity) for facet, entity in concepts]))
+                    # web-based chat html
+                    dataset_id = item["_source"]["raw"]["id"]
+                    dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
+                    message += "<br><br>" + ('<br>'.join(["%s: %s" % (facet, entity) for facet, entity in concepts]))
             return message.encode('utf8'), all_concepts
         else:
             # reset goal to the whole information space
             self.goal = []
             self.history = []
-            return "No matching datasets found", []
+            return self.chat(action)
+            # return "No matching datasets found", []
 
 
 def test_DialogAgent():
