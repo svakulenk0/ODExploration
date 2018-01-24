@@ -14,7 +14,7 @@ class DialogAgent():
     Dialog agent for the conversational browsing task
     '''
 
-    def __init__(self, l=8, simulation=False):
+    def __init__(self, l=5, simulation=False):
         # establish connection to the database
         self.db = ESClient()
         # concepts already communicated to the user
@@ -52,35 +52,55 @@ class DialogAgent():
             chunks_rank = rank_chunks(chunks, self.l, self.history)
             facet, entities = chunks_rank.get()[1]
             if self.simulation:
-                message = "\nThere are %d datasets.\nYou can explore them by %s, e.g.:\n\n%s" % (n, facet, '\n'.join(entities))
+                message = "There are %d datasets.\nYou can explore them by %s, e.g.:\n\n%s" % (n, facet, '\n'.join(entities))
             else:
                 # web-based chat html
                 buttons = '<br>'.join(self.entity_decorator % (facet, entity, entity) for entity in entities)
                 message = "<br>There are %d datasets.<br>You can explore them by %s, e.g.:<br><br>%s" % (n, facet, buttons)
+                # add continue button
+                message += '''<br><br><button class='item' onclick="continueExploration()">Continue</button>'''
             concepts = [(facet, entity) for entity in entities]
             self.history.extend(concepts)
             return message.encode('utf8'), concepts
         # found it
         elif n > 0:
-            message = "\nHere you are:"
+            if self.simulation:
+                message = "Here you are:"
+            else:
+                message = "<br>Here you are:"
             all_concepts = []
-            for doc in result['hits']['hits']:
+            for doc in result['hits']['hits'][:self.l]:
                 # show all entities of the item
                 concepts = self.db.compile_item_entities(doc['_source'])
                 all_concepts.extend(concepts)
                 if self.simulation:
-                    message += "\n\n" + '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts])
+                    # show all entities that belong to the item
+                    # message += "\n\n" + '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts])
+                    
+                    # show only titles
+                    for facet, entity in concepts:
+                        if facet == 'title':
+                            message += '\n' +  entity
                 else:
                     # web-based chat html
                     # get link to the dataset
                     dataset_id = doc["_source"]["raw"]["id"]
                     dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-                    message += "<br>"
-                    # show all entities that belong to the item
+                    # message += "<br>"
+                    
+                    # show only titles
                     for facet, entity in concepts:
                         if facet == 'title':
-                            entity = self.item_decorator % (dataset_link, entity)
-                        message += '<br>' + "%s: %s" % (facet, entity)
+                            message += '<br>' + self.item_decorator % (dataset_link, entity)
+
+                    # show all entities that belong to the item
+                    # for facet, entity in concepts:
+                    #     if facet == 'title':
+                    #         entity = self.item_decorator % (dataset_link, entity)
+                    #     message += '<br>' + "%s: %s" % (facet, entity)
+
+            # add continue button
+            # message += '''<br><br><button class='item' onclick="continue()">Skip</button>'''
             return message.encode('utf8'), all_concepts
         else:
             # reset goal to the whole information space
