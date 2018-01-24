@@ -14,8 +14,8 @@ INDEX_LOCAL = 'data_gv_at'
 INDEX_SERVER = 'odexploration'
 INDEX_CSV = 'autcsv'
 
-# INDEX = INDEX_LOCAL
-INDEX = INDEX_SERVER
+INDEX = INDEX_LOCAL
+# INDEX = INDEX_SERVER
 
 N = 2914
 N_DOCS = 2028
@@ -130,7 +130,7 @@ class ESClient():
                 item_entities.append((facet, entity))
         return item_entities
 
-    def summarize_subset(self, facets_values=[], top_n=N, limit=N):
+    def summarize_subset(self, facets_values=[], keywords="", top_n=N, limit=N):
         '''
         facets_values <dict> of facets and entities to find the subset
         '''
@@ -145,10 +145,12 @@ class ESClient():
             # search by entity
             facets = []
             values = []
-            # print facets_values
+            print facets_values
             for facet, value in facets_values:
-                field = FACETS[facet]
-                facets.append(field)
+                # '_search' facet is reserved for keyword search on all fields
+                if facet != '_search':
+                    field = FACETS[facet]
+                    facets.append(field)
                 # clean up value string: escape ES special characters
                 value = value.replace('{', '\{')
                 value = value.replace('}', '\}')
@@ -167,8 +169,14 @@ class ESClient():
                                     {"fields": facets, "query": ' '.join(values), "default_operator": "AND"}},
                                      "aggs": paths})
         else:
+            if keywords:
+                # string search
+                query = {"match": {"_all": keywords}}
+            else:
+                # match all docs
+                query = {"match": {"raw.type": "dataset"}}
             # search all datasets
-            result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"raw.type": "dataset"}},
+            result = self.es.search(index=self.index, size=limit, body={"query": query,
                                      "aggs": paths})
         return result
 
