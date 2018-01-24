@@ -23,7 +23,9 @@ class DialogAgent():
         self.rank = []
         # default greeting message
         self.greeting = "Hi! Welcome to the Austrian Open Data portal!"
+        # web-based chat buttons and links html
         self.entity_decorator = '''<button class='item' onclick="pivotEntity('%s','%s')">%s</button>'''
+        self.item_decorator = "<a href='%s'>%s</a>"
         # maximum message size
         self.l = l
         # default exploration direction corresponds to the whole information space
@@ -70,9 +72,15 @@ class DialogAgent():
                     message += "\n\n" + '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts])
                 else:
                     # web-based chat html
-                    dataset_id = item["_source"]["raw"]["id"]
+                    # get link to the dataset
+                    dataset_id = doc["_source"]["raw"]["id"]
                     dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-                    message += "<br><br>" + ('<br>'.join(["%s: %s" % (facet, entity) for facet, entity in concepts]))
+                    message += "<br>"
+                    # show all entities that belong to the item
+                    for facet, entity in concepts:
+                        if facet == 'title':
+                            entity = self.item_decorator % (dataset_link, entity)
+                        message += '<br>' + "%s: %s" % (facet, entity)
             return message.encode('utf8'), all_concepts
         else:
             # reset goal to the whole information space
