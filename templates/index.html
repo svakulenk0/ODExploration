@@ -68,8 +68,24 @@
           $("#chatbox").append(userHtml);
           // scroll window
           document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-
+          // call Flask backend
           $.get("/pivot", {facet: facet, entity: entity}).done(function(data) {
+            // show bot response
+            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+            $("#chatbox").append(botHtml);
+            // scroll window
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          });
+        }
+
+        function continueExploration() {
+          // show user choice
+          var userHtml = '<br><div class="userText"><span>Continue</span></div>';
+          $("#chatbox").append(userHtml);
+          // scroll window
+          document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          // call Flask backend
+          $.get("/continue").done(function(data) {
             // show bot response
             var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
