@@ -102,7 +102,7 @@ a:hover {
 }
 
 .userText span {
-    background-color: #009688;
+    background-color: #90ee90;
     padding: 10px;
     border-radius: 2px;
 }
@@ -116,7 +116,7 @@ a:hover {
 }
 
 .botText span {
-    background-color: #4340ef;
+    background-color: #d3d3d3;
     /*padding: 10px;*/
     border-radius: 2px;
 }
