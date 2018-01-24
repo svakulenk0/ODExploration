@@ -76,7 +76,7 @@ def simulate(l):
     chatbot = DialogAgent(l, simulation=True)
     # start the conversation
     # show default greeting
-    print 'A:', chatbot.greeting
+    print '\n1 A:', chatbot.greeting
     # start exploration
     message, actions = chatbot.chat()
     print message
@@ -97,7 +97,7 @@ def simulate(l):
                 break
         # continue exploration
         message, actions = chatbot.chat(action)
-        print 'A:', message
+        print n_turns, 'A:', message
         n_turns += 1
 
     return n_turns
