@@ -17,10 +17,21 @@ chatbot = DialogAgent()
 @app.route("/")
 def home():
     # start exploration
-    message, actions = chatbot.chat()
+    message, actions = chatbot.chat(start=True)
     # convert to html
     # message = message.replace('\n', '<br>')
     return render_template("index.html", text=message)
+    # return render_template("index.html")
+
+
+@app.route("/get")
+def search():
+    userText = request.args.get('msg')
+    message, actions = chatbot.chat(action=('_search', userText))
+    # message, actions = chatbot.chat(keywords=userText)
+    # convert to html
+    # message = message.replace('\n', '<br>')
+    return message
 
 
 @app.route("/pivot")
@@ -39,6 +50,12 @@ def continue_exploration():
     message, actions = chatbot.chat()
     # convert to html
     # message = message.replace('\n', '<br>')
+    return message
+
+
+@app.route("/restart")
+def restart():
+    message, actions = chatbot.reset_exploration()
     return message
 
 
