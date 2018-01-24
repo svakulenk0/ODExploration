@@ -25,87 +25,96 @@
         // $("document").ready(function() {
         //     getBotResponse();
         // });
-        function getBotResponse() {
-          var rawText = $("#textInput").val();
-          if (rawText) {
-            var userHtml = '<div class="userText"><span>' + rawText + '</span></div>';
-            $("#textInput").val("");
-            $("#chatbox").append(userHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-          }
-          $.get("/get", { msg: rawText }).done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
-            $("#chatbox").append(botHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-          });
-        }
-        function getDifferentItems() {
-          $.get("/get").done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
-            $("#chatbox").append(botHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-          });
-        }
-        function showFacets() {
-          $.get("/facets").done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
-            $("#chatbox").append(botHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-          });
-        }
-        function showSamples(facet, entity) {
-          $.get("/samples", { facet: facet, entity: entity }).done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
-            $("#chatbox").append(botHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-          });
-        }
+        // function getBotResponse() {
+        //   var rawText = $("#textInput").val();
+        //   if (rawText) {
+        //     var userHtml = '<div class="userText"><span>' + rawText + '</span></div>';
+        //     $("#textInput").val("");
+        //     $("#chatbox").append(userHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   }
+        //   $.get("/get", { msg: rawText }).done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function getDifferentItems() {
+        //   $.get("/get").done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function showFacets() {
+        //   $.get("/facets").done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function showSamples(facet, entity) {
+        //   $.get("/samples", { facet: facet, entity: entity }).done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
         function pivotEntity(facet, entity) {
-          // console.log(facets_entities)
+          // console.log(facet)
+
+          // show user choice
+          var userHtml = '<br><div class="userText"><span>' + entity + '</span></div>';
+          $("#chatbox").append(userHtml);
+          // scroll window
+          document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+
           $.get("/pivot", {facet: facet, entity: entity}).done(function(data) {
+            // show bot response
             var botHtml = '<div class="botText"><span>' + data + '</span></div>';
             $("#chatbox").append(botHtml);
+            // scroll window
             document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
           });
         }
-        function getMore() {
-          $.get("/more").done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
-            $("#chatbox").append(botHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-          });
-        }
-        function showDataset(datasetID) {
-          $.get("/show", { msg: datasetID }).done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
-            $("#chatbox").append(botHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-          });
-        }
-        function summarizeItems() {
-          $.get("/summary").done(function(data) {
-            var botHtml = '<div class="botText"><span>' + data + '</span></div>';
-            $("#chatbox").append(botHtml);
-            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
-          });
-        }
-        $("#textInput").keypress(function(e) {
-            if(e.which == 13) {
-                getBotResponse();
-            }
-        });
-        $("#facets").click(function(e) {
-            showFacets();
-        });
-        $("#similarInput").click(function() {
-            getMore();
-        });
-        $("#otherInput").click(function() {
-            getDifferentItems();
-        });
-        $("#pivotInput").click(function() {
-            summarizeItems();
-        });
+        // function getMore() {
+        //   $.get("/more").done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function showDataset(datasetID) {
+        //   $.get("/show", { msg: datasetID }).done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function summarizeItems() {
+        //   $.get("/summary").done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // $("#textInput").keypress(function(e) {
+        //     if(e.which == 13) {
+        //         getBotResponse();
+        //     }
+        // });
+        // $("#facets").click(function(e) {
+        //     showFacets();
+        // });
+        // $("#similarInput").click(function() {
+        //     getMore();
+        // });
+        // $("#otherInput").click(function() {
+        //     getDifferentItems();
+        // });
+        // $("#pivotInput").click(function() {
+        //     summarizeItems();
+        // });
       </script>
     </div>
   </body>
