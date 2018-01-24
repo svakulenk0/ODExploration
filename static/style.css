@@ -40,6 +40,10 @@ a:hover {
     margin-top: 60px;
 }
 
+#buttons {
+    text-align: center;
+}
+
 #textInput {
     width: 87%;
     border: none;
@@ -104,7 +108,8 @@ a:hover {
 .userText span {
     background-color: #90ee90;
     padding: 10px;
-    border-radius: 2px;
+    -moz-border-radius: 30px; /* or 50% */
+    border-radius: 30px; /* or 50% */
 }
 
 .botText {
@@ -116,9 +121,11 @@ a:hover {
 }
 
 .botText span {
-    background-color: #87CEFA;
-    /*padding: 10px;*/
-    border-radius: 2px;
+    background-color: #d3d3d3;
+    display: block;
+    padding: 10px;
+    -moz-border-radius: 30px; /* or 50% */
+    border-radius: 30px; /* or 50% */
 }
 
 #tidbit {
