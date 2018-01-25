@@ -221,6 +221,7 @@ class DialogAgent():
                     #     return datasets, all_concepts
                     if facet == 'title':
                         # if (facet, entity) not in self.history:
+                        print entity
                         message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
                             # n_concepts += 1
                         # else:
