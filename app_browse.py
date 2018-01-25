@@ -14,20 +14,22 @@ app = Flask(__name__)
 chatbot = DialogAgent()
 
 
-@app.route("/")
+@app.route("/browse")
 def home():
+    chatbot.history = []
+    chatbot.goal = []
     # start exploration
     message, actions = chatbot.chat(start=True)
     # convert to html
     # message = message.replace('\n', '<br>')
-    return render_template("index.html", text=message)
+    return render_template("browse.html", text=message)
     # return render_template("index.html")
 
 
 @app.route("/get")
 def search():
     userText = request.args.get('msg')
-    message, actions = chatbot.chat(action=('_search', userText))
+    message, actions = chatbot.search(userText)
     # message, actions = chatbot.chat(keywords=userText)
     # convert to html
     # message = message.replace('\n', '<br>')
@@ -55,7 +57,7 @@ def continue_exploration():
 
 @app.route("/restart")
 def restart():
-    message, actions = chatbot.reset_exploration()
+    message, actions = chatbot.restart()
     return message
 
 
