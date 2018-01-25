@@ -101,12 +101,20 @@ class DialogAgent():
             self.goal = [('_search', action)]
             self.page = 0
             keywords = self.goal[0][1]
-            for facet in FACETS.keys():
-                result = self.db.summarize_subset(facets_values=[(facet, keywords)])
+            words = keywords.split()
+            if len(words) > 1:
+                result = self.db.search(keywords=' AND '.join(words))
                 n = result['hits']['total']
                 if n > 0:
                     messages, all_concepts = self.show_titles(result['hits']['hits'], "Search", n)
                     datasets.extend(messages)
+            else:
+                for facet in FACETS.keys():
+                    result = self.db.summarize_subset(facets_values=[(facet, keywords)])
+                    n = result['hits']['total']
+                    if n > 0:
+                        messages, all_concepts = self.show_titles(result['hits']['hits'], "Search", n)
+                        datasets.extend(messages)
         #             message += "%d datasets for %s in %s<br>" % (n, keywords, facet)
         # return message, []
             if datasets:

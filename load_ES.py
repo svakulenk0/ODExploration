@@ -46,7 +46,8 @@ class ESClient():
         print json.dumps(result, indent=4, sort_keys=True)
 
     def search(self, keywords, limit=N):
-        result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})
+        result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}})
+        # result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})
         return result
 
     def sample_subset(self, keywords, facet_in, entity, limit=2):
