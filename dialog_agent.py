@@ -14,7 +14,7 @@ class DialogAgent():
     Dialog agent for the conversational browsing task
     '''
 
-    def __init__(self, l=4, simulation=False, search_only=False):
+    def __init__(self, l=6, simulation=False, search_only=False):
         # establish connection to the database
         self.db = ESClient()
         # concepts already communicated to the user
