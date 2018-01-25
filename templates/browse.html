@@ -9,7 +9,8 @@
     <!-- <h3>A web implementation of <a href="https://github.com/gunthercox/ChatterBot">ChatterBot</a> using Flask.</h3> -->
     <div>
       <div id="chatbox">
-        <p class="botText"><span>Hi! Welcome to the Austrian Open Data portal!</span></p>
+        <!-- <p class="botText"><span>Hi! Welcome to the Austrian Open Data portal!</span></p> -->
+        <p class="botText"><span>Hi! Willkommen am österreichischen Open Data Portal!</span></p>
         <p class="botText"><span>{{ text|safe }}</span></p>
       </div>
       <div id="userInput">
@@ -19,8 +20,8 @@
         <!-- <input id="pivotInput" class="botBtn" type="submit" value="Pivot"> -->
         <!-- <input id="similarInput" class="botBtn" type="submit" value="More"> -->
         <div id="buttons">
-          <input id="restart" class="botBtn" type="submit" value="Restart">
-          <input id="continue" class="botBtn" type="submit" value="Continue">
+          <input id="restart" class="botBtn" type="submit" value="Neustart">
+          <input id="continue" class="botBtn" type="submit" value="mehr Optionen">
         </div>
         <!-- <input id="textInput" type="text" name="msg" placeholder="Type and press Enter to search..." autofocus> -->
       </div>
@@ -85,7 +86,7 @@
 
         function continueExploration() {
           // show user choice
-          var userHtml = '<p class="userText"><span>Continue</span></p>';
+          var userHtml = '<p class="userText"><span>mehr Optionen</span></p>';
           $("#chatbox").append(userHtml);
           // scroll window
           document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
@@ -101,7 +102,7 @@
 
         function restart() {
           // show user choice
-          var userHtml = '<p class="userText"><span>Restart</span></p>';
+          var userHtml = '<p class="userText"><span>Neustart</span></p>';
           $("#chatbox").append(userHtml);
           // scroll window
           document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});

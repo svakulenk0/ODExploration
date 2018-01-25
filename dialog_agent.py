@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 '''
 svakulenko
 17 Jan 2017
@@ -9,20 +11,48 @@ from load_ES import ESClient, FACETS
 from ranking import chunk_w_ranks, rank_chunks
 from aggregations import facets, entities
 
+
+TEMPLATES = {
+        'en': {
+            'greeting': "Hi! Welcome to the Austrian Open Data portal!",
+            'not_found': "No matching datasets found",
+            'n_datasets': "There are %d datasets",
+            'explore': "<br><br>You can explore them by ",
+            'total': " in total.",
+            'goal': " for %s",
+            'connector': " and ",
+            },
+        'de': {
+            'greeting': "Hi! Willkommen am aesterreichischen Open Data Portal!",
+            # 'greeting': "Hi! Willkommen am österreichischen Open Data Portal!",
+            'not_found': "Keine Datensaetze gefunden",
+            # 'not_found': "Keine Datensätze gefunden",
+            'n_datasets': "Hier gibt es %d Datensaetze zu entdecken!",
+            # 'n_datasets': "Hier gibt es %d Datensätze zu entdecken",
+            'explore': "<br><br>Du kannst Sie filtern per ",
+            'total': " , insgesamt.",
+            'goal': " fuer %s",
+            # 'goal': " für %s",
+            'connector': " und ",
+            },
+    }
+
+
 class DialogAgent():
     '''
     Dialog agent for the conversational browsing task
     '''
 
-    def __init__(self, l=6, simulation=False, search_only=False):
+    def __init__(self, l=6, simulation=False, search_only=False, lang='de'):
         # establish connection to the database
         self.db = ESClient()
         # concepts already communicated to the user
         self.history = []
         # ranking of concept chunks from the database
         self.rank = []
+        self.lang = lang
         # default greeting message
-        self.greeting = "Hi! Welcome to the Austrian Open Data portal!"
+        self.greeting = TEMPLATES[self.lang]['greeting']
         # web-based chat buttons and links html
         self.entity_decorator = '''<button class='item' onclick="pivotEntity('%s','%s')">%s</button>'''
         self.item_decorator = "<a href='%s'>%s</a>"
@@ -51,7 +81,7 @@ class DialogAgent():
         if self.goal:
             self.goal.pop()
         else:
-            message += "No matching datasets found<br><br>"
+            message += TEMPLATES[self.lang]['not_found'] + "<br><br>"
         # print 'goal', self.goal
         # else:
         #     self.goal = []
@@ -83,15 +113,15 @@ class DialogAgent():
                 self.datasets = list(set(datasets))
                 # print datasets
                 self.n = len(self.datasets)
-                message += "There are %d datasets" % self.n
+                message += TEMPLATES[self.lang]['n_datasets'] % self.n
             else:
                 # reset goal
                 if not self.search_only:
                     self.goal.pop()
-                return "No matching datasets found", []
+                return TEMPLATES[self.lang]['not_found'], []
         if self.n <= self.page:
             # reset goal
-            return "No matching datasets found", []
+            return TEMPLATES[self.lang]['not_found'], []
         next_page = self.page + self.l
         message += '<br>'.join(self.datasets[self.page:next_page])
         self.page = next_page
@@ -121,12 +151,12 @@ class DialogAgent():
             # web-based chat html
             buttons = '<br>'.join(self.entity_decorator % (facet, entity, self.clean(entity)) for entity in entities)
             # if start or action != 'Continue':
-            message += "There are %d datasets" % n
-            if self.goal:
-                message += " for %s" % ' and '.join(["%s: %s" % (goal_facet, self.clean(goal_entity)) for goal_facet, goal_entity in self.goal])
-            else:
-                message += " in total."
-            message += "<br><br>You can explore them by "
+            message += TEMPLATES[self.lang]['n_datasets'] % n
+            # if self.goal:
+            #     message += TEMPLATES[self.lang]['goal'] % TEMPLATES[self.lang]['connector'].join(["%s: %s" % (goal_facet, self.clean(goal_entity)) for goal_facet, goal_entity in self.goal])
+            # else:
+            #     message += TEMPLATES[self.lang]['total']
+            message += TEMPLATES[self.lang]['explore']
             # else:
                 # message += "<br>"
             message += "%s:<br>%s" % (facet, buttons)
@@ -189,10 +219,12 @@ class DialogAgent():
                         #     break
                         # dataset.append((facet, entity))
                     # elif cognitive_resource > 0:
-                    #     button = self.entity_decorator % (facet, entity, self.clean(entity))
-                    #     message += '<br>' + "%s: %s" % (facet, button)
+                    #     
                     elif facet != 'tags':
-                        message += '<br>' + "%s: %s" % (facet, self.clean(entity))
+                        # attach buttons for item entities
+                        button = self.entity_decorator % (facet, entity, self.clean(entity))
+                        message += '<br>' + "%s: %s" % (facet, button)
+                        # message += '<br>' + "%s: %s" % (facet, self.clean(entity))
                         # dataset.append((facet, entity))
                         #     cognitive_resource -= 1
                         #     n_concepts += 1
