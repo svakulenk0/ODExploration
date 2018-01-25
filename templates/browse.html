@@ -22,7 +22,7 @@
           <!-- <input id="restart" class="botBtn" type="submit" value="Restart"> -->
           <input id="continue" class="botBtn" type="submit" value="Continue">
         </div>
-        <input id="textInput" type="text" name="msg" placeholder="Type to search..." autofocus>
+        <!-- <input id="textInput" type="text" name="msg" placeholder="Type and press Enter to search..." autofocus> -->
       </div>
       <script>
         // trigger story on load 
@@ -135,20 +135,20 @@
         //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
         //   });
         // }
-        $("#textInput").keypress(function(e) {
-            if(e.which == 13) {
-                getBotResponse();
-            }
-        });
+        // $("#textInput").keypress(function(e) {
+        //     if(e.which == 13) {
+        //         getBotResponse();
+        //     }
+        // });
         // $("#facets").click(function(e) {
         //     showFacets();
         // });
         // $("#similarInput").click(function() {
         //     getMore();
         // });
-        // default on Enter key
+        // // default on Enter key
         // $("#continue").keyup(function(event) {
-        //     if (event.keyCode == 13) {
+        //     if (event.keyCode === 13) {
         //         continueExploration();
         //     }
         // });

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Open Data Chatbot</h1>
+    <!-- <h3>A web implementation of <a href="https://github.com/gunthercox/ChatterBot">ChatterBot</a> using Flask.</h3> -->
+    <div>
+      <div id="chatbox">
+        <p class="botText"><span>Hi! Welcome to the Austrian Open Data portal!</span></p>
+        <!-- <p class="botText"><span>{{ text|safe }}</span></p> -->
+      </div>
+      <div id="userInput">
+        <!-- add buttons for available exploration direction -->
+        <!-- <input id="facets" class="botBtn" type="submit" value="Facets"> -->
+        <!-- <input id="otherInput" class="botBtn" type="submit" value="Next"> -->
+        <!-- <input id="pivotInput" class="botBtn" type="submit" value="Pivot"> -->
+        <!-- <input id="similarInput" class="botBtn" type="submit" value="More"> -->
+        <div id="buttons">
+          <!-- <input id="restart" class="botBtn" type="submit" value="Restart"> -->
+          <input id="continue" class="botBtn" type="submit" value="Continue">
+        </div>
+        <input id="textInput" type="text" name="msg" placeholder="Type and press Enter to search..." autofocus>
+      </div>
+      <script>
+        // trigger story on load 
+        // $("document").ready(function() {
+        //     getBotResponse();
+        // });
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          if (rawText) {
+            var userHtml = '<p class="userText"><span>' + rawText + '</span></p>';
+            $("#textInput").val("");
+            $("#chatbox").append(userHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          $.get("/search_get", { msg: rawText }).done(function(data) {
+            var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+            $("#chatbox").append(botHtml);
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          });
+          }
+          
+        }
+        // function getDifferentItems() {
+        //   $.get("/get").done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function showFacets() {
+        //   $.get("/facets").done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function showSamples(facet, entity) {
+        //   $.get("/samples", { facet: facet, entity: entity }).done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function pivotEntity(facet, entity) {
+        //   // console.log(facet)
+
+        //   // show user choice
+        //   var userHtml = '<p class="userText"><span>' + entity + '</span></p>';
+        //   $("#chatbox").append(userHtml);
+        //   // scroll window
+        //   document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   // call Flask backend
+        //   $.get("/pivot", {facet: facet, entity: entity}).done(function(data) {
+        //     // show bot response
+        //     var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+        //     $("#chatbox").append(botHtml);
+        //     // scroll window
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+
+        function continueExploration() {
+          // show user choice
+          var userHtml = '<p class="userText"><span>Continue</span></p>';
+          $("#chatbox").append(userHtml);
+          // scroll window
+          document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          // call Flask backend
+          $.get("/search_continue").done(function(data) {
+            // show bot response
+            var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+            $("#chatbox").append(botHtml);
+            // scroll window
+            document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+          });
+        }
+
+        // function restart() {
+        //   // show user choice
+        //   var userHtml = '<p class="userText"><span>Restart</span></p>';
+        //   $("#chatbox").append(userHtml);
+        //   // scroll window
+        //   document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   // call Flask backend
+        //   $.get("/restart").done(function(data) {
+        //     // show bot response
+        //     var botHtml = '<p class="botText"><span>' + data + '</span></p>';
+        //     $("#chatbox").append(botHtml);
+        //     // scroll window
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function getMore() {
+        //   $.get("/more").done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function showDataset(datasetID) {
+        //   $.get("/show", { msg: datasetID }).done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        // function summarizeItems() {
+        //   $.get("/summary").done(function(data) {
+        //     var botHtml = '<div class="botText"><span>' + data + '</span></div>';
+        //     $("#chatbox").append(botHtml);
+        //     document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+        //   });
+        // }
+        $("#textInput").keypress(function(e) {
+            if(e.which == 13) {
+                getBotResponse();
+            }
+        });
+        // $("#facets").click(function(e) {
+        //     showFacets();
+        // });
+        // $("#similarInput").click(function() {
+        //     getMore();
+        // });
+        // default on Enter key
+        // $("#continue").keyup(function(event) {
+        //     if (event.keyCode == 13) {
+        //         continueExploration();
+        //     }
+        // });
+        $("#continue").click(function() {
+            continueExploration();
+        });
+        // $("#restart").click(function() {
+        //     restart();
+        // });
+      </script>
+    </div>
+  </body>
+</html>
