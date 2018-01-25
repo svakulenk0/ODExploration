@@ -233,8 +233,11 @@ class DialogAgent():
                     #     
                     elif facet != 'tags':
                         # attach buttons for item entities
-                        button = self.entity_decorator % (facet, entity, self.clean(entity))
-                        message += '<br>' + "%s: %s" % (facet, button)
+                        try:
+                            button = self.entity_decorator % (facet, entity, self.clean(entity))
+                            message += '<br>' + "%s: %s" % (facet, button)
+                        except:
+                            break
                         # message += '<br>' + "%s: %s" % (facet, self.clean(entity))
                         # dataset.append((facet, entity))
                         #     cognitive_resource -= 1
