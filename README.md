@@ -10,13 +10,16 @@ pip install -r requirements.txt
 
 ## Run
 
-To start the chatbot web UI on localhost port 5008:
+To start the chatbot web UI on localhost port 8008:
 
-python app.py
+python app_browse.py
+python app_search.py
+
 
 ## Deploy
 
-gunicorn -w 4 app:app -b :5008
+gunicorn --bind 0.0.0.0:8008 wsgi_browse:app &
+gunicorn --bind 0.0.0.0:5008 wsgi_search:app &
 
 ## Stop
 
@@ -24,8 +27,17 @@ Ctrl+C
 
 otherwise
 
-kill -9 $(sudo lsof -t -i:5008)
+kill -9 $(sudo lsof -t -i:8008)
 
+sudo pkill python
+
+sudo pkill gunicorn
+
+
+# Interface
+
+http://localhost:8008/browse
+http://localhost:5008/search
 
 ## Dataset
 
