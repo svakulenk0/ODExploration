@@ -147,12 +147,13 @@ class DialogAgent():
         chunks = chunk_w_ranks(aggregations)
         # rank chunks
         chunks_rank = rank_chunks(chunks, self.l, self.history)
-        entities = []
+        facet, entities = chunks_rank.get()[1]
+        # entities = []
         # skip single entities as uninformative
-        while len(entities) < 2:
-            facet, entities = chunks_rank.get()[1]
-            if not entities:
-                return None, []
+        # while len(entities) < 2:
+            # facet, entities = chunks_rank.get()[1]
+        #     if not entities:
+        #         return None, []
         if self.simulation:
             message += "There are %d datasets.\nYou can explore them by %s:\n\n%s" % (n, facet, '\n'.join(entities))
         else:
@@ -178,6 +179,7 @@ class DialogAgent():
     def show_titles(self, results, action, n):
         all_concepts = []
         messages = []
+        # print results
         # n_concepts = 0
         # if not self.simulation and action != 'Continue' and n > 1:
         #     message += "There are %d datasets" % n
@@ -191,6 +193,7 @@ class DialogAgent():
             if self.simulation:
                 # show all entities that belong to the item
                 message += "\n" + '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts if (facet, entity) not in self.history])
+                # print message
                 # n_new += 1
                 # show only titles
                 # for facet, entity in concepts:
@@ -268,7 +271,7 @@ class DialogAgent():
 
         result = self.db.summarize_subset(facets_values=self.goal)
         n = result['hits']['total']
-
+        print n
         # form message
         if 'aggregations' in result.keys() and n > self.l:
             message, concepts = self.aggregate_entities(result, message, n)
