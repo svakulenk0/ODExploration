@@ -1,0 +1,1017 @@
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+nachweise
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+cc-by
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by
+
+Hier gibt es 1951 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-wien
+
+Hier gibt es 334 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Migration
+
+Hier gibt es 12 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Bevölkerung nach Migrationshintergrund seit 2011 - Gemeindebezirke Wien
+
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Gemeindebezirke Wien
+categorization:
+
+organization:
+license:
+"
+"Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by
+
+Hier gibt es 1951 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+cc-by-at-30
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-wien
+
+Hier gibt es 335 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Migration
+
+Hier gibt es 12 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Bevölkerung nach Migrationshintergrund seit 2011 Wien
+
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Wien
+categorization:
+
+organization:
+license:
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Gemeindebezirke Wien
+categorization:
+organization:
+license:
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Zählbezirke Wien
+categorization:
+organization:
+license: "
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+mehr Optionen
+
+Hier gibt es 234 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-wien
+
+Hier gibt es 38 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Migration
+
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Wien
+categorization:
+
+organization:
+license:
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Gemeindebezirke Wien
+categorization:
+organization:
+license:
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Zählbezirke Wien
+categorization:
+organization:
+license:
+"
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+mehr Optionen
+
+Hier gibt es 335 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+{bevoelkerung}
+
+Hier gibt es 234 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Bevölkerung
+
+Hier gibt es 16 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by
+
+Hier gibt es 1951 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-wien
+
+Hier gibt es 334 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Migration
+
+Hier gibt es 12 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Bevölkerung nach Migrationshintergrund seit 2011 - Gemeindebezirke Wien
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+"
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+mehr Optionen
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+mehr Optionen
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-wien
+
+Hier gibt es 335 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+{bevoelkerung}
+
+Hier gibt es 38 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Nationalität
+
+
+title: Bevölkerung nach Nationalität seit 2011 Zählbezirke Wien
+categorization:
+
+organization:
+license:
+
+title: Migrationsströme nach Nationalität seit 2002 Gemeindebezirke Wien
+categorization:
+organization:
+license:
+
+title: Bevölkerung nach Nationalität seit 2011 Gemeindebezirke Wien
+categorization:
+organization:
+license:
+
+title: Migrationsströme nach Nationalität seit 2002 Wien
+categorization:
+organization:
+license:
+
+title: Bevölkerung nach Nationalität seit 2011 Wien
+categorization:
+organization:
+license:
+
+title: Migrationsströme nach Nationalität seit 2007 Zählbezirke Wien
+categorization:
+organization:
+license:
+"
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+mehr Optionen
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+mehr Optionen
+
+Hier gibt es 38 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Migrationshintergrund
+
+
+title: Migrationsströme nach Migrationshintergrund seit 2002 Gemeindebezirke Wien
+categorization:
+
+organization:
+license:
+
+title: Migrationsströme nach Migrationshintergrund seit 2007 Zählbezirke Wien
+categorization:
+organization:
+license:
+"
+"Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-wien
+
+Hier gibt es 335 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Migration
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Genehmigung
+
+Hier gibt es 335 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Migration
+
+Hier gibt es 12 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+"
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+cc-by
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+other-pd
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+cc-by-sa
+
+
+title: Ankünfte und Übernachtungen nach Wohnsitz der Gäste 2015/2016
+categorization:
+
+organization:
+license:
+
+title: Versuchsergebnisse Grünland und Ackerbau
+categorization:
+organization:
+license:
+
+Marktdaten
+
+Hier gibt es 227 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Ausländer
+
+Hier gibt es 21 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Nationalität
+
+
+title: Bevölkerung der politischen Bezirke des Landes Salzburg, Geschlecht und Staatsangehörigkeit Zeitreihe
+categorization:
+
+organization:
+license:
+
+title: Bevölkerung des Landes Salzburg nach Geschlecht, Alter und Staatsangehörigkeit Zeitreihe
+categorization:
+organization:
+license:
+
+title: Bevölkerung der Gemeinden des Landes Salzburg, Geschlecht und Staatsangehörigkeit Zeitreihe
+categorization:
+organization:
+license:
+
+title: Eheschliessungen nach Staatsangehörigkeit (Österreich) Zeitreihe
+categorization:
+organization:
+license:
+
+title: Eheschliessungen nach Staatsangehörigkeit (gruppiert EU) Zeitreihe
+categorization:
+organization:
+license:
+
+Geburtsland
+
+
+title: Migrationsströme nach Geburtsland seit 2002 Gemeindebezirke Wien
+categorization:
+
+organization:
+license:
+
+title: Migrationsströme nach Geburtsland seit 2002 Wien
+categorization:
+organization:
+license:
+
+title: Migrationsströme nach Geburtsland seit 2007 Zählbezirke Wien
+categorization:
+organization:
+license:
+"
+"Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+
+title: Adressen Standorte Wien
+categorization:
+
+organization:
+license:
+
+title: Baubezirksgrenzen Steiermark
+categorization:
+organization:
+license:
+
+cc-by
+
+
+title: Adressen Standorte Wien
+categorization:
+
+organization:
+license:
+
+title: Baubezirksgrenzen Steiermark
+categorization:
+organization:
+license:
+
+cc-by-at-30
+
+
+title: Adressen Standorte Wien
+categorization:
+
+organization:
+license:
+
+title: Baubezirksgrenzen Steiermark
+categorization:
+organization:
+license:
+
+stadt-wien
+
+
+title: Adressen Standorte Wien
+categorization:
+
+organization:
+license:
+
+other-pd
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+cc-by-sa
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+cc-by-at-30
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+cc-by
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+other-pd
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+cc-by-sa
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+{bevoelkerung}
+
+Hier gibt es 227 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Einwohner
+
+Hier gibt es 39 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+Gesellschaft
+
+Hier gibt es 21 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+{bevoelkerung}
+
+Hier gibt es 21 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+{kunst-und-kultur,verwaltung-und-politik,wirtschaft-und-tourismus}
+
+Hier gibt es 39 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+stadt-wien
+
+Hier gibt es 335 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+stadt-wien
+
+Hier gibt es 12 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Migrationsströme nach Nationalität seit 2002 Wien
+
+
+title: Migrationsströme nach Nationalität seit 2002 Wien
+categorization:
+
+organization:
+license:
+
+title: Migrationsströme nach Nationalität seit 2002 Gemeindebezirke Wien
+categorization:
+organization:
+license: "
+"title: Bevölkerung nach Migrationshintergrund seit 2011 Gemeindebezirke Wien
+categorization:
+organization:
+license: "
+"Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+mehr Optionen
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-wien
+
+Hier gibt es 335 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Migration
+
+Hier gibt es 12 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Bevölkerung nach Migrationshintergrund seit 2011 - Gemeindebezirke Wien
+
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Gemeindebezirke Wien
+categorization:
+
+organization:
+license:
+
+Bevölkerung nach Migrationshintergrund seit 2011 - Zählbezirke Wien
+
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Zählbezirke Wien
+categorization:
+
+organization:
+license:
+
+Bevölkerung nach Migrationshintergrund seit 2011 Wien
+
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Wien
+categorization:
+
+organization:
+license:
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Gemeindebezirke Wien
+categorization:
+organization:
+license:
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Zählbezirke Wien
+categorization:
+organization:
+license: "
+"Open Data Chatbot
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+cc by at 30
+cc by
+other pd
+cc by sa
+
+cc-by-at-30
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+stadt linz
+stadt wien
+land oberoesterreich
+land salzburg
+stadt innsbruck
+stadt graz
+
+stadt-wien
+
+Hier gibt es 334 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+ViennaGIS
+Herkunft
+Bevölkerung
+Migration
+Geburtsland
+Mehrzweckkarte
+
+Migration
+
+Hier gibt es 12 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+Bevölkerung nach Migrationshintergrund seit 2011 Gemeindebezirke Wien
+Bevölkerung nach Migrationshintergrund seit 2011 Zählbezirke Wien
+Bevölkerung nach Migrationshintergrund seit 2011 Wien
+Migrationsströme nach Geburtsland seit 2002 Wien
+Migrationsströme nach Geburtsland seit 2002 Gemeindebezirke Wien
+Migrationsströme nach Geburtsland seit 2007 Zählbezirke Wien
+
+Bevölkerung nach Migrationshintergrund seit 2011 - Gemeindebezirke Wien
+
+
+title: Bevölkerung nach Migrationshintergrund seit 2011 Gemeindebezirke Wien
+categorization: bevoelkerung
+organization: stadt wien
+license: cc by at 30
+
+cc-by
+
+Hier gibt es 12 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+Migrationsströme nach Migrationshintergrund seit 2002 Gemeindebezirke Wien
+Migrationsströme nach Migrationshintergrund seit 2002 Wien
+Migrationsströme nach Migrationshintergrund seit 2007 Zählbezirke Wien
+Migrationsströme nach Nationalität seit 2002 Gemeindebezirke Wien
+Migrationsströme nach Nationalität seit 2002 Wien
+Migrationsströme nach Nationalität seit 2007 Zählbezirke Wien
+
+other-pd
+
+Hier gibt es 334 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+verkehr und technik
+geographie und planung
+bevoelkerung
+verwaltung und politik
+umwelt
+umwelt,verkehr und technik
+
+{bevoelkerung}
+
+Hier gibt es 38 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+Nationalität
+Prognose
+Geburt
+Geburtsort
+Lebendgeborene
+Privathaushalt
+
+Nationalität
+
+
+title: Bevölkerung nach Nationalität seit 2011 Zählbezirke Wien
+categorization: bevoelkerung
+organization: stadt wien
+license: cc by at 30
+
+title: Migrationsströme nach Nationalität seit 2002 Gemeindebezirke Wien
+categorization: bevoelkerung
+organization: stadt wien
+license: cc by at 30
+
+title: Bevölkerung nach Nationalität seit 2011 Gemeindebezirke Wien
+categorization: bevoelkerung
+organization: stadt wien
+license: cc by at 30
+
+title: Migrationsströme nach Nationalität seit 2002 Wien
+categorization: bevoelkerung
+organization: stadt wien
+license: cc by at 30
+
+title: Bevölkerung nach Nationalität seit 2011 Wien
+categorization: bevoelkerung
+organization: stadt wien
+license: cc by at 30
+
+title: Migrationsströme nach Nationalität seit 2007 Zählbezirke Wien
+categorization: bevoelkerung
+organization: stadt wien
+license: cc by at 30
+
+cc-by-sa
+
+Hier gibt es 38 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+Sterbefälle
+Tod
+Migrationshintergrund
+Arbeitsmarkt
+Bevölkerungsentwickung
+Bevölkerungsprognose
+
+Migrationshintergrund
+
+
+title: Migrationsströme nach Migrationshintergrund seit 2002 Gemeindebezirke Wien
+categorization: bevoelkerung
+organization: stadt wien
+license: cc by at 30
+
+title: Migrationsströme nach Migrationshintergrund seit 2007 Zählbezirke Wien
+categorization: bevoelkerung
+organization: stadt wien
+license: cc by at 30

@@ -1,0 +1,1852 @@
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+mehr Optionen
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 351 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+linz
+
+Hier gibt es 351 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+bevoelkerung
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Altersschichtung der statistischen Bezirke
+
+
+title: Altersschichtung der statistischen Bezirke
+categorization:
+
+organization:
+license:
+"
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by
+
+Hier gibt es 1951 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+linz
+
+Hier gibt es 219 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+bevoelkerung
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+"
+https://www.data.gv.at/katalog/dataset/77737a9b-2327-4f1c-bfca-1cd8614553bf
+"Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+mehr Optionen
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+stadt
+
+Hier gibt es 351 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+bevoelkerung
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+stadt
+
+Hier gibt es 181 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+{gesellschaft-und-soziales}
+
+Hier gibt es 219 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+nachweise
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+{gesellschaft-und-soziales}
+
+Hier gibt es 109 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+gebarung
+
+Hier gibt es 122 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+haushaltsrechnung
+
+Hier gibt es 90 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+ra
+
+Hier gibt es 122 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+kassenrechnung
+
+Hier gibt es 122 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+nachweise
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+geodaten
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+geo
+
+Hier gibt es 52 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+gesellschaft-und-soziales
+
+Hier gibt es 7 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+Seniorenzentren - Standorte
+
+
+title: Seniorenzentren Standorte
+categorization:
+
+organization:
+license:
+
+sport-und-freizeit
+
+gesundheit
+
+geographie-und-planung
+
+sport-und-freizeit"
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+gesundheit
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by
+
+Hier gibt es 1951 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+linz
+
+Hier gibt es 219 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+bevoelkerung
+
+
+title: Wegzüge
+categorization:
+
+organization:
+license:
+
+title: Zuzüge
+categorization:
+organization:
+license:
+
+title: Bundespräsidentenwahl 2016 (2. Wahlgang vom 4.12.2016)
+categorization:
+organization:
+license:
+
+title: Bundespräsidentenwahl 2016
+categorization:
+organization:
+license:
+
+title: Aufgehobene Bundespräsidentenwahl (2. Wahlgang vom 22.5.2016)
+categorization:
+organization:
+license:
+
+mehr Optionen
+
+Hier gibt es 219 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Bundespräsidentenwahl 2016
+
+Hier gibt es 9 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+mehr Optionen
+
+Hier gibt es 122 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+other-pd
+
+Hier gibt es 122 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+cc-by-at-30
+
+cc-by-sa
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+linz
+
+Hier gibt es 219 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+umwelt
+
+
+title: Baumkataster 2015
+categorization:
+
+organization:
+license:
+
+title: Baumkataster 2013
+categorization:
+organization:
+license:
+
+title: Baumkataster 2014
+categorization:
+organization:
+license:
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+haushaltsrechnung
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Hotspot - Standorte
+
+
+title: Hotspot Standorte
+categorization:
+
+organization:
+license:
+
+title: Salzburg surft Hotspot Standorte
+categorization:
+organization:
+license:
+"
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by
+
+Hier gibt es 1951 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+linz
+
+Hier gibt es 122 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Rechnungsabschluss 2013 - Leistungen für Personal und Pensionen
+
+
+title: Rechnungsabschluss 2013 Leistungen für Personal und Pensionen
+categorization:
+
+organization:
+license:
+
+finanzen-und-rechnungswesen
+
+Hier gibt es 188 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+nachweise
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Krankenanstalten - Standorte
+
+
+title: Krankenanstalten Standorte
+categorization:
+
+organization:
+license:
+
+haushalt
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Stadtplan Linz 1976
+
+
+title: Stadtplan Linz 1976
+categorization:
+
+organization:
+license:
+
+stadt-linz
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+Veranstaltung - Standorte
+
+other-pd
+
+cc-by-sa
+
+Neustart
+
+Rechnungsabschluss 2013 - Finanzzuweisungen, Zuschüsse oder Beiträge von und an Gebietskörperschaften
+
+
+title: Veranstaltung Standorte
+categorization:
+
+organization:
+license: Hier gibt es 75 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Hier gibt es 75 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+
+title: Rechnungsabschluss 2013 Finanzzuweisungen, Zuschüsse oder Beiträge von und an Gebietskörperschaften
+categorization:
+organization:
+license:
+
+bewegung
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+haushaltsrechnung
+
+Hier gibt es 90 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+haushaltsrechnung
+
+Hier gibt es 90 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Rechnungsabschluss 2013 - Leistungen für Personal und Pensionen
+
+
+title: Rechnungsabschluss 2013 Leistungen für Personal und Pensionen
+categorization:
+
+organization:
+license:
+"
+"
+
+data.gv.at - offene Daten Österreichs
+
+    API
+    Icon Fragezeichen
+
+Datenkatalog   Apps & News
+Katalog durchstöbern
+
+    Startseite
+    Daten »
+    Dokumente »
+    Anwendungen »
+    Infos »
+
+Katalog
+Apotheken - Standorte
+
+POI's (Points of Interest) für Apotheken in in der Stadt Linz. Die Koordinaten sind im Gauß-Krüger System M31-5Mio. EPSG:31255 und im EPSG-Codes WGS84 verfügbar.
+
+HINWEIS:
+
+Bitte beachten sie bei den Apotheken die Berufsordnung im speziellen § 13. und § 18.
+
+Berufsordnung im Internet unter: http://www.apotheker.or.at/Internet/OEAK/NewsPresse_1_0_0a.nsf/agentEmergency!OpenAgent&p=6713AEAD32AF7878C125751500329226&fsn=fsStartHomeFachinfo&iif=0
+Daten und Ressourcen
+
+    Apotheken - StandorteCSV
+    Entdecke
+
+Veröffentlichende Stelle Bezeichnung bzw. Name der Organisation der den Metadatensatz veröffentlicht.   Stadt Linz
+Datenverantwortliche Stelle Bezeichnung bzw. Name der für den Datensatz, Dienst oder das Dokument zuständigen Organisation bzw. Person  Magistrat der Landeshauptstadt Linz, Stadtkommunikation
+Kontaktseite der datenverantwortlichen Stelle Kontaktseite der datenverantwortlichen Stelle     http://www.linz.at/politik_verwaltung/32377.asp
+Datenverantwortliche Stelle - E-Mailkontakt E-Mail Kontaktadresse der für den Datensatz, den Dienst oder das Dokument zuständigen Organisation bzw. Person  open.commons@linz.at
+Lizenz Rechtliche Nutzungsinformationen für die Verwendung des Datensatzes, Dienstes oder Dokuments.    Creative Commons Namensnennung 3.0 Österreich
+Lizenz Zitat Die richtige Namensnennung (CC-BY) der Datenquelle laut den Nutzungsbedingungen des jeweiligen Datenportals. Entspricht dem Feld ""Datenquelle"" von OGD-Metadaten 1.1.    Datenquelle: CC-BY-3.0: Stadt Linz - data.linz.gv.at
+Link zur Lizenz Link (URL) auf die Web-Publikation der Lizenz   https://creativecommons.org/licenses/by/3.0/at/deed.de
+Geographische Abdeckung/Lage Geographische Ortsidentifikation eines Datensatzes, Dienstes oder Dokuments    Linz, Oberösterreich, Österreich
+Zeitliche Ausdehnung (Anfang) Element zur Erfassung des Beginns der Gültigkeit eines Datensatzes, Dienstes oder Dokuments   2010-12-31
+Zeitliche Ausdehnung (Ende) Ende der Gültigkeit eines Datensatzes, Dienstes oder Dokuments.     2010-12-31
+Datum des Metadatensatzes Datum, an dem der Metadatensatz erzeugt bzw. aktualisiert wurde. Die Datumsangabe erfolgt gemäß Ö–NORM ISO 8601 YYYY-MM-DD.   05.10.2017 07:20:37
+Aktualisierungszyklus Menschenlesbare Frequenz der Aktualisierung des Datensatzes, Dienstes bzw. Dokuments.     kontinuierlich
+Kategorie Kategorisierung des Datensatzes, Dienstes oder Dokuments.     Verwaltung und Politik
+Bezeichnung der Metadatenstruktur Name der Metadatenstruktur    OGD Austria Metadaten 2.4
+Sprache des Metadatensatzes ISO 639-2 dreistelliger ISO Sprachcode für den Metadatensatz    ger
+Character Set Code des Metadatensatzes Characterset Code zur Beschreibung des Metadatensatzes nach ISO\IEC 10646-1  utf8
+Eindeutiger Identifikator Eindeutiger Identifikator für den Metadatensatz. Der Eintrag beschreibt die eindeutige Identifikation für einen Metadatensatz. Es sollte eine UUID (nach RFC:4122) gewählt werden.    d61ed212-9915-4018-a350-caecfda3e0c6
+Anwendungen
+3 von 429 eingereichten Anwendungen verwenden diesen Datensatz/Dienst:
+
+    Vorschau Lingeo – Linzer GEO Datenbank
+    Lingeo – Linzer GEO Datenbank
+
+    Eingereicht von Harald Stapfer, http://www.appscore.at
+
+    Du bist neu in Linz oder behältst einfach nur gern den Überblick? Mit Lingeo weißt du immer genau wo es […]
+
+    Android
+    Vorschau IZY Linz
+    IZY Linz
+
+    Eingereicht von Torsten Geise, http://www.tntbrain.com/open-data-apps/izy-linz
+
+    IZY Linz stellt dir Standorte von interessanten Punkten in und um Linz zur Verfügung. Das gehören zum Beispiel Standorte von […]
+
+    iOS
+    Vorschau Urlaub in Linz
+    Urlaub in Linz
+
+    Eingereicht von Thomas Tursics, http://www.tursics.de/UrlaubInLinz
+
+    Linz für die Hosentasche. Alle wichtigen Informationen in einer App. In der liebevoll gestalteten App findet man die wichtigsten Dinge […]
+
+    AndroidBlackberryiOS
+
+    Neue Anwendung zum Datensatz/Dienst ""Apotheken - Standorte"" einreichen
+
+Teilen
+
+2 Klicks für mehr Datenschutz: ein wesentliches Open Data-Prinzip besagt, dass keine Daten veröffentlicht werden dürfen, die einen Rückschluß auf einzelne natürliche Personen zulassen. Ein ähnliches Prinzip zum Schutz persönlicher Daten wird auf data.gv.at bei Teilen-Buttons für Social-Media-Netzwerke verfolgt: da diese Teilen-Buttons allein beim Laden bereits Daten übermitteln, bieten wir Ihnen die Möglichkeit der Selbstbestimmung - Sie können selbst entscheiden, ob ein Teilen-Button aktiviert werden soll oder nicht.
+
+    nicht mit Facebook verbunden
+    Facebook ""Like""-Dummy
+    nicht mit Twitter verbunden
+    ""Tweet this""-Dummy
+    nicht mit Google+ verbunden
+    ""Google+1""-Dummy
+    Einstellungen
+
+comments powered by Disqus
+Veröffentlichende Organisation bzw. Person  Titel des beschriebenen Metadatensatzes
+
+Stadt Linz
+Kategorie  Kategorisierung des Datensatzes, Dienstes oder Dokuments.
+
+ Verwaltung und Politik
+Schlagworte  
+
+    apotheken geo geodaten poi pois standorte 
+
+API - Link zu allen Metadaten
+
+/api/3/action/package_show?id=d61ed212-9915-4018-a350-caecfda3e0c6
+RSS-Feeds für Stadt Linz
+
+geänderte Datensätze
+Letzte Änderung
+
+05.10.2017 09:20:37
+
+Logo der Cooperation OGD Österreich
+
+Impressum
+(Datenschutz)
+RSS-Feeds
+@datagvat
+Weitere Daten: ODP Logo ODP Logo
+"
+"
+
+data.gv.at - offene Daten Österreichs
+
+    API
+    Icon Fragezeichen
+
+Datenkatalog   Apps & News
+Katalog durchstöbern
+
+    Startseite
+    Daten »
+    Dokumente »
+    Anwendungen »
+    Infos »
+
+Katalog
+Geburten
+
+Informationen nach Alter und dem Familienstand der Mutter und dem Geschlecht des Lebendgeborenen Kindes.
+
+Anmerkung: Bei den Standesämtern beurkundete Lebendgeborene.
+Daten und Ressourcen
+
+    Geburten 2003 - 2015PDF
+    Entdecke
+    Geburten 2015CSV
+    Entdecke
+    Geburten 2014CSV
+    Entdecke
+    Geburten 2013CSV
+    Entdecke
+    Geburten 2012CSV
+    Entdecke
+    Geburten 2011CSV
+    Entdecke
+    Geburten 2010CSV
+    Entdecke
+    Geburten 2009CSV
+    Entdecke
+    Geburten 2008CSV
+    Entdecke
+    Geburten 2007CSV
+    Entdecke
+    Geburten 2006CSV
+    Entdecke
+    Geburten 2005CSV
+    Entdecke
+    Geburten 2004CSV
+    Entdecke
+    Geburten 2003CSV
+    Entdecke
+
+Veröffentlichende Stelle Bezeichnung bzw. Name der Organisation der den Metadatensatz veröffentlicht.   Stadt Linz
+Datenverantwortliche Stelle Bezeichnung bzw. Name der für den Datensatz, Dienst oder das Dokument zuständigen Organisation bzw. Person  Magistrat der Landeshauptstadt Linz, Stadtforschung
+Kontaktseite der datenverantwortlichen Stelle Kontaktseite der datenverantwortlichen Stelle     http://www.linz.at/politik_verwaltung/32386.asp
+Datenverantwortliche Stelle - E-Mailkontakt E-Mail Kontaktadresse der für den Datensatz, den Dienst oder das Dokument zuständigen Organisation bzw. Person  open.commons@linz.at
+Lizenz Rechtliche Nutzungsinformationen für die Verwendung des Datensatzes, Dienstes oder Dokuments.    Creative Commons Namensnennung 3.0 Österreich
+Lizenz Zitat Die richtige Namensnennung (CC-BY) der Datenquelle laut den Nutzungsbedingungen des jeweiligen Datenportals. Entspricht dem Feld ""Datenquelle"" von OGD-Metadaten 1.1.    Datenquelle: CC-BY-3.0: Stadt Linz - data.linz.gv.at
+Link zur Lizenz Link (URL) auf die Web-Publikation der Lizenz   https://creativecommons.org/licenses/by/3.0/at/deed.de
+Geographische Abdeckung/Lage Geographische Ortsidentifikation eines Datensatzes, Dienstes oder Dokuments    Linz, Oberösterreich, Österreich
+Zeitliche Ausdehnung (Anfang) Element zur Erfassung des Beginns der Gültigkeit eines Datensatzes, Dienstes oder Dokuments   2004-01-01
+Zeitliche Ausdehnung (Ende) Ende der Gültigkeit eines Datensatzes, Dienstes oder Dokuments.     2015-12-31
+Datum des Metadatensatzes Datum, an dem der Metadatensatz erzeugt bzw. aktualisiert wurde. Die Datumsangabe erfolgt gemäß Ö–NORM ISO 8601 YYYY-MM-DD.   05.10.2017 08:31:52
+Aktualisierungszyklus Menschenlesbare Frequenz der Aktualisierung des Datensatzes, Dienstes bzw. Dokuments.     jährlich
+Kategorie Kategorisierung des Datensatzes, Dienstes oder Dokuments.     Bevölkerung
+Bezeichnung der Metadatenstruktur Name der Metadatenstruktur    OGD Austria Metadaten 2.4
+Sprache des Metadatensatzes ISO 639-2 dreistelliger ISO Sprachcode für den Metadatensatz    ger
+Character Set Code des Metadatensatzes Characterset Code zur Beschreibung des Metadatensatzes nach ISO\IEC 10646-1  utf8
+Eindeutiger Identifikator Eindeutiger Identifikator für den Metadatensatz. Der Eintrag beschreibt die eindeutige Identifikation für einen Metadatensatz. Es sollte eine UUID (nach RFC:4122) gewählt werden.    a349b038-152f-4c8a-92d4-de11547dd8ff
+Anwendungen
+Haben Sie eine Anwendung zu diesem Datensatz erstellt? Dann teilen Sie uns dies bitte mit.
+Teilen
+
+2 Klicks für mehr Datenschutz: ein wesentliches Open Data-Prinzip besagt, dass keine Daten veröffentlicht werden dürfen, die einen Rückschluß auf einzelne natürliche Personen zulassen. Ein ähnliches Prinzip zum Schutz persönlicher Daten wird auf data.gv.at bei Teilen-Buttons für Social-Media-Netzwerke verfolgt: da diese Teilen-Buttons allein beim Laden bereits Daten übermitteln, bieten wir Ihnen die Möglichkeit der Selbstbestimmung - Sie können selbst entscheiden, ob ein Teilen-Button aktiviert werden soll oder nicht.
+
+    nicht mit Facebook verbunden
+    Facebook ""Like""-Dummy
+    nicht mit Twitter verbunden
+    ""Tweet this""-Dummy
+    nicht mit Google+ verbunden
+    ""Google+1""-Dummy
+    Einstellungen
+
+comments powered by Disqus
+Veröffentlichende Organisation bzw. Person  Titel des beschriebenen Metadatensatzes
+
+Stadt Linz
+Kategorie  Kategorisierung des Datensatzes, Dienstes oder Dokuments.
+
+ Bevölkerung
+Schlagworte  
+
+    age alter birth ehelichkeit geburt geburten geschlecht marital personen sex status 
+
+API - Link zu allen Metadaten
+
+/api/3/action/package_show?id=a349b038-152f-4c8a-92d4-de11547dd8ff
+RSS-Feeds für Stadt Linz
+
+geänderte Datensätze
+Letzte Änderung
+
+05.10.2017 10:31:52
+
+Logo der Cooperation OGD Österreich
+
+Impressum
+(Datenschutz)
+RSS-Feeds
+@datagvat
+Weitere Daten: ODP Logo ODP Logo
+"
+"Hauptwohnsitzbevölkerung aufgrund des Meldegesetzes
+
+Die Stadt Linz wurde bis Ende 2013 in 36 Statistische Bezirke unterteilt. Seit 1.1.2014 gilt die neue Gliederung in 16 Statistische Bezirke. Die zur Verfügung gestellten Informationen basieren auf der seit 1.1.2014 gültigen Variante."
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+stadt
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+gesellschaft-und-soziales
+
+Hier gibt es 90 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+verkehr-und-technik
+
+Hier gibt es 90 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+cc-by
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+other-pd
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+cc-by-sa
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+nachweise
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+rechnungsabschlussverordnung
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+vorbericht
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+vrv
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+anmerkungen
+
+Hier gibt es 122 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+"
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+mehr Optionen
+
+Hier gibt es 188 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+gesellschaft-und-soziales
+
+Hier gibt es 7 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+Seniorenzentren - Standorte
+
+
+title: Seniorenzentren Standorte
+categorization:
+
+organization:
+license:
+
+stadt-linz
+
+Neustart
+
+mehr Optionen
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+Hier gibt es 75 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+Hier gibt es 351 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+other-pd
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+cc-by-sa
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+gesundheit
+
+Hier gibt es 90 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Rechnungsabschluss 2012 - Leistungen für Personal und Pensionen
+
+
+title: Rechnungsabschluss 2012 Leistungen für Personal und Pensionen
+categorization:
+
+organization:
+license:
+
+cc-by-at-30
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+stadt
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+bevoelkerung
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Altersschichtung der statistischen Bezirke
+
+
+title: Altersschichtung der statistischen Bezirke
+categorization:
+
+organization:
+license:
+
+verkehr-und-technik
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+finanzen-und-rechnungswesen
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+"
+"
+Open Data Chatbot
+
+Hi! Willkommen am österreichischen Open Data Portal!
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+mehr Optionen
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 122 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+mehr Optionen
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+stadt
+
+Hier gibt es 178 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+mehr Optionen
+
+Hier gibt es 192 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+mehr Optionen
+
+Hier gibt es 188 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+mehr Optionen
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+mehr Optionen
+
+mehr Optionen
+
+mehr Optionen
+
+mehr Optionen
+
+mehr Optionen
+
+mehr Optionen
+
+Stadtplan Linz 2016 / 1 Halbjahr
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Hier gibt es 75 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+Hier gibt es 75 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Hier gibt es 75 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Hier gibt es 7 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+Spaziergang
+
+Hier gibt es 90 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+mehr Optionen
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+mehr Optionen
+
+Hier gibt es 33 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+mehr Optionen
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+5 und 4 Stern Beherbergungsbetriebe
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Rechnungsabschluss 2013 - Dienstposten- und Stellenplan
+
+
+title: Rechnungsabschluss 2013 Dienstposten und Stellenplan
+categorization:
+
+organization:
+license:
+
+Rechnungsabschluss 2013 - Dienstposten- und Stellenplan
+
+
+title: Rechnungsabschluss 2013 Dienstposten und Stellenplan
+categorization:
+
+organization:
+license:
+
+Rechnungsabschluss 2013 - Kassenreste
+
+
+title: Rechnungsabschluss 2013 Kassenreste
+categorization:
+
+organization:
+license:
+
+mehr Optionen
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-at-30
+
+Hier gibt es 1852 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 177 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by
+
+Hier gibt es 1951 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 122 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+other-pd
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by-sa
+
+
+title: Ankünfte und Übernachtungen nach Wohnsitz der Gäste 2015/2016
+categorization:
+
+organization:
+license:
+
+title: Versuchsergebnisse Grünland und Ackerbau
+categorization:
+organization:
+license:
+
+mehr Optionen
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+other-pd
+
+Hier gibt es 51 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+Denkmal
+
+Hier gibt es 25 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+{kunst-und-kultur,verwaltung-und-politik,wirtschaft-und-tourismus}
+
+Hier gibt es 24 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Denkmalliste Oberösterreich
+
+
+title: Denkmalliste Oberösterreich
+categorization:
+
+organization:
+license:
+
+title: Denkmalliste Oberösterreich
+categorization:
+organization:
+license:
+
+title: Denkmalliste Oberösterreich
+categorization:
+organization:
+license:
+
+mehr Optionen
+
+Hier gibt es 24 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+Neustart
+
+Hier gibt es 2002 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per license:
+
+
+
+cc-by
+
+Hier gibt es 1951 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per organization:
+
+
+
+
+
+stadt-linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per tags:
+
+
+
+
+
+linz
+
+Hier gibt es 349 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per categorization:
+
+
+
+
+
+gesellschaft-und-soziales
+
+Hier gibt es 10 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+
+
+Belegung der städtischen Senioren- und Pflegeheime
+
+
+title: Belegung der städtischen Senioren und Pflegeheime
+categorization:
+
+organization:
+license:
+
+bevoelkerung
+
+Hier gibt es 10 Datensaetze zu entdecken!
+
+Du kannst Sie filtern per title:
+
+
+
+Private Seniorenheime
+
+
+title: Private Seniorenheime
+categorization:
+
+organization:
+license:
+
+Seniorenzentren - Standorte
+
+
+title: Seniorenzentren Standorte
+categorization:
+
+organization:
+license:
+
+Städtische Seniorenzentren
+
+
+title: Städtische Seniorenzentren
+categorization:
+
+organization:
+license:
+"
