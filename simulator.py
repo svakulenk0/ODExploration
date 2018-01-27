@@ -18,7 +18,7 @@ class Seeker():
     '''
     User simulator class
     '''
-    def __init__(self):
+    def __init__(self, goal):
         # establish connection to the database
         self.db = ESClient()
         # model user knowledge
@@ -26,6 +26,7 @@ class Seeker():
         # cognitive resource limit
         self.l = 9
         # initialize goal to a random concept from the information model
+        self.goal = goal
         self.define_goal()
         # selection strategy of the agent with respect to the set of actions
         # offered by the agent
@@ -34,7 +35,11 @@ class Seeker():
     def define_goal(self):
         # pick at item from the database at random
         # entities_list = [entity['key'] for facet in entities.values() for entity in facet['buckets']]
-        doc = self.db.get_random_doc()
+        if self.goal == 'random':
+            doc = self.db.get_random_doc()
+        else:
+            doc = self.db.search_by(facet='title', value=self.goal)
+            # print doc
 
         self.goal = set(self.db.compile_item_entities(doc))
         # self.goal = random.choice(items)
@@ -71,12 +76,12 @@ def test_define_random_goal():
     print user.goal
 
 
-def simulate(l):
+def simulate(l=6, goal='random'):
     '''
     Simulate conversation between a user and a dialog agent
     '''
     # initialize conversation partners
-    user = Seeker()
+    user = Seeker(goal)
     chatbot = DialogAgent(l, simulation=True)
     # start the conversation
     # show default greeting
@@ -131,8 +136,19 @@ def evaluate_sensitivity():
         run_evaluation(l)
 
 
+def distance_to_goal():
+    goal = 'Bahnlinien Tirol'
+    for l in [3, 4, 5, 6, 7, 8]:
+        n_turns = simulate(l, goal)
+
+        # show stats
+        print "Cognitive resource:", l
+        print "Number of turns per dialog", n_turns
+
+
 if __name__ == '__main__':
     # fix encoding
     reload(sys)
     sys.setdefaultencoding('utf8')
-    evaluate_sensitivity()
+    # evaluate_sensitivity()
+    distance_to_goal()
