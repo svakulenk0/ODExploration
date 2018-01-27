@@ -7,10 +7,12 @@ svakulenko
 User simulator class to evaluate performance of the dialog agent
 '''
 import random
+import sys
 
 from load_ES import ESClient
 from aggregations import entities
 from dialog_agent import DialogAgent
+
 
 class Seeker():
     '''
@@ -130,4 +132,7 @@ def evaluate_sensitivity():
 
 
 if __name__ == '__main__':
+    # fix encoding
+    reload(sys)
+    sys.setdefaultencoding('utf8')
     evaluate_sensitivity()
