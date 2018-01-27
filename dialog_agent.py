@@ -23,7 +23,7 @@ TEMPLATES = {
             'connector': " and ",
             },
         'de': {
-            'greeting': "Hi! Willkommen am aesterreichischen Open Data Portal!",
+            'greeting': "Hi! Willkommen am Oesterreichischen Open Data Portal!",
             # 'greeting': "Hi! Willkommen am österreichischen Open Data Portal!",
             'not_found': "Keine Datensaetze gefunden",
             # 'not_found': "Keine Datensätze gefunden",
@@ -265,9 +265,9 @@ class DialogAgent():
             # self.goal = [action]
 
         # continue previous search results exploration
-        for facet, value in self.goal:
-            if facet == '_search':
-                return self.search(action)
+        # for facet, value in self.goal:
+        #     if facet == '_search':
+        #         return self.search(action)
 
         result = self.db.summarize_subset(facets_values=self.goal)
         n = result['hits']['total']
