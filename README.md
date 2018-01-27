@@ -27,7 +27,7 @@ Ctrl+C
 
 otherwise
 
-kill -9 $(sudo lsof -t -i:8008)
+kill -9 $(sudo lsof -t -i:5008)
 
 sudo pkill python
 
@@ -36,7 +36,11 @@ sudo pkill gunicorn
 
 # Interface
 
+http://communidata.at:8008/browse
 http://localhost:8008/browse
+
+
+http://communidata.at:5008/search
 http://localhost:5008/search
 
 ## Dataset
