@@ -181,7 +181,7 @@ class ESClient():
 
     def search_by(self, facet, value, limit=N):
         field = FACETS[facet]
-        result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value))['hits']['hits']
+        result = self.es.search(index=self.index, size=limit, q='%s="%s"'%(field, value))['hits']['hits'][0]['_source']
         return result
 
     def top(self, n=N):
