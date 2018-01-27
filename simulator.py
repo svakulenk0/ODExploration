@@ -151,7 +151,8 @@ def goal_distance(goal=[MAX_GOAL], ls=L_RANGE):
         print "Number of turns per dialog", n_turns
 
 
-def goals_from_file(path='./results/user_study/correct_results_immigration.txt'):
+# def goals_from_file(path='./results/user_study/correct_results_immigration.txt'):
+def goals_from_file(path='./results/user_study/correct_results_retirement.txt'):
     with open(path) as f:
         goals = f.readlines()
         for goal in goals:
