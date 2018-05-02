@@ -14,7 +14,7 @@ INDEX_LOCAL = 'data_gv_at'
 INDEX_SERVER = 'odexploration'
 INDEX_CSV = 'autcsv'
 
-INDEX = INDEX_LOCAL
+# INDEX = INDEX_LOCAL
 INDEX = INDEX_SERVER
 
 N = 2914
