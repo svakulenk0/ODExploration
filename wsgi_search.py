@@ -1,5 +1,5 @@
-from app_search import app
+from app_search import app as application
 
 
 if __name__ == "__main__":
-    app.run()
+    application.run()

@@ -1,7 +1,7 @@
 alabaster==0.7.9
-anaconda-clean==1.0
-anaconda-client==1.5.1
-anaconda-navigator==1.3.2
+#anaconda-clean==1.0
+#anaconda-client==1.5.1
+#anaconda-navigator==1.3.2
 aniso8601==1.3.0
 -e git+https://github.com/sebneu/anycsv.git@b8ad7b5750929923b529fc0637f4f9058c090e62#egg=anycsv
 apiai==1.2.3

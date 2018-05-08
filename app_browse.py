@@ -13,6 +13,9 @@ app = Flask(__name__)
 
 chatbot = DialogAgent()
 
+@app.route('/')
+def root():
+    return app.send_static_file('index.html')
 
 @app.route("/browse")
 def home():
@@ -27,6 +30,7 @@ def home():
 
 
 @app.route("/get")
+@app.route("/search_get")
 def search():
     userText = request.args.get('msg')
     message, actions = chatbot.search(userText)
@@ -59,6 +63,21 @@ def continue_exploration():
 def restart():
     message, actions = chatbot.restart()
     return message
+
+
+
+@app.route("/search")
+def search_home():
+    chatbot = DialogAgent(search_only=True)
+    return render_template("search.html")
+
+
+
+@app.route("/search_continue")
+def continue_search():
+    message, actions = chatbot.search()
+    return message
+
 
 
 if __name__ == "__main__":
