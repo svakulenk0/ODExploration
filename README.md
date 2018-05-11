@@ -6,19 +6,26 @@ If you love #government #data but hate faceted search and csv tables? How to mak
 
 ## Requirements
 
+source myvenv/bin/activate
+
 pip install -r requirements.txt
+
+elasticsearch
+
 
 ## Run
 
 To start the chatbot web UI on localhost port 8008:
 
 python app_browse.py
+
 python app_search.py
 
 
 ## Deploy
 
 gunicorn --bind 0.0.0.0:8008 wsgi_browse:app &
+
 gunicorn --bind 0.0.0.0:5008 wsgi_search:app &
 
 ## Stop
@@ -37,10 +44,12 @@ sudo pkill gunicorn
 # Interface
 
 http://communidata.at:8008/browse
+
 http://localhost:8008/browse
 
 
 http://communidata.at:5008/search
+
 http://localhost:5008/search
 
 ## Dataset
