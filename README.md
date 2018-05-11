@@ -43,14 +43,13 @@ sudo pkill gunicorn
 
 # Interface
 
-http://communidata.at:8008/browse
 
+http://bot.communidata.at/browse
 http://localhost:8008/browse
 
 
-http://communidata.at:5008/search
-
-http://localhost:5008/search
+http://bot.communidata.at/search
+http://localhost:8008/search
 
 ## Dataset
 
