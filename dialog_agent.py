@@ -43,7 +43,7 @@ class DialogAgent():
     Dialog agent for the conversational browsing task
     '''
 
-    def __init__(self, l=6, simulation=False, search_only=False, lang='de'):
+    def __init__(self, l=6, simulation=False, search_only=False, lang='en'):
         # establish connection to the database
         self.db = ESClient()
         # concepts already communicated to the user
@@ -52,7 +52,7 @@ class DialogAgent():
         self.rank = []
         self.lang = lang
         # default greeting message
-        self.greeting = TEMPLATES[self.lang]['greeting']
+        # self.greeting = TEMPLATES[self.lang]['greeting']
         # web-based chat buttons and links html
         self.entity_decorator = '''<button class='item' onclick="pivotEntity('%s','%s')">%s</button>'''
         self.item_decorator = "<a href='%s'>%s</a>"
