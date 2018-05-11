@@ -41,15 +41,11 @@ sudo pkill python
 sudo pkill gunicorn
 
 
-# Interface
+# Demo Interface
 
 
-http://bot.communidata.at/browse
-http://localhost:8008/browse
+http://bot.communidata.at
 
-
-http://bot.communidata.at/search
-http://localhost:8008/search
 
 ## Dataset
 
