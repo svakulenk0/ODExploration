@@ -10,12 +10,9 @@ import string
 from elasticsearch import Elasticsearch
 
 
-INDEX_LOCAL = 'data_gv_at'
-INDEX_SERVER = 'odexploration'
-INDEX_CSV = 'autcsv'
+SERVER_ES = ('atcsv', 9202)
 
-# INDEX = INDEX_LOCAL
-INDEX = INDEX_SERVER
+CONFIG = SERVER_ES
 
 N = 2914
 N_DOCS = 2028
@@ -33,7 +30,7 @@ FACETS = {
 
 class ESClient():
 
-    def __init__(self, index=INDEX, host='localhost', port=9200):
+    def __init__(self, index=CONFIG[0], host='localhost', port=CONFIG[1]):
         self.es = Elasticsearch(hosts=[{"host": host, "port": port}])
         self.index = index
 
