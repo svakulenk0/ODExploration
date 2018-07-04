@@ -14,7 +14,7 @@ from aggregations import facets, entities
 
 TEMPLATES = {
         'en': {
-            'greeting': "Hi! Welcome to the Austrian Open Data portal!",
+            'greeting': "Welcome to the Austrian Open Data portal!",
             'not_found': "No matching datasets found",
             'n_datasets': "There are %d datasets",
             'explore': "<br><br>You can explore them by ",
@@ -23,7 +23,7 @@ TEMPLATES = {
             'connector': " and ",
             },
         'de': {
-            'greeting': "Hi! Willkommen am Oesterreichischen Open Data Portal!",
+            'greeting': "Willkommen am Oesterreichischen Open Data Portal!",
             # 'greeting': "Hi! Willkommen am österreichischen Open Data Portal!",
             'not_found': "Keine Datensaetze gefunden",
             # 'not_found': "Keine Datensätze gefunden",
@@ -271,7 +271,8 @@ class DialogAgent():
 
         result = self.db.summarize_subset(facets_values=self.goal)
         n = result['hits']['total']
-        # print n
+        print n, 'results'
+        print result
         # form message
         if 'aggregations' in result.keys() and n > self.l:
             message, concepts = self.aggregate_entities(result, message, n)
