@@ -27,6 +27,7 @@ FACETS = {
     "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
+ALL_DATASETS_QUERY = {}
 
 TOP_N = 2914
 
@@ -141,7 +142,7 @@ class ESClient():
                 item_entities.append((facet, entity))
         return item_entities
 
-    def summarize_subset(self, facets_values=[], keywords="", top_n=N, limit=N, operator="AND", paths=FIELDS):
+    def summarize_subset(self, facets_values=[], keywords="", limit=N, operator="AND", paths=FIELDS):
         '''
         facets_values <dict> of facets and entities to find the subset
         '''
@@ -178,7 +179,7 @@ class ESClient():
                                      "aggs": paths})
         else:
             # match all docs
-            query = {"match": {"raw.type": "dataset"}}
+            query = ALL_DATASETS_QUERY
             # search all datasets
             return self.es.search(index=self.index, size=limit, body={"query": query, "aggs": paths})
 
