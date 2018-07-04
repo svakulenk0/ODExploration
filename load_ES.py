@@ -27,7 +27,20 @@ FACETS = {
     "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
-ALL_DATASETS_QUERY = {"match_all": {}}
+# ALL_DATASETS_QUERY = {"match_all": {}}
+ALL_DATASETS_QUERY = {
+                        "size" : 0,
+                        "query" : {
+                            "match_all" : {}
+                        },
+                        "aggs" : {
+                            "dataset_name" : {
+                                "terms" : {
+                                  "field" : "table.properties.dataset.dataset_name.text"
+                                }
+                            }
+                        }
+                    }
 
 TOP_N = 2914
 
@@ -181,7 +194,8 @@ class ESClient():
             # match all docs
             query = ALL_DATASETS_QUERY
             # search all datasets
-            return self.es.search(index=self.index, size=limit, body={"query": query, "aggs": paths})
+            return self.es.search(index=self.index, size=limit, body=ALL_DATASETS_QUERY)
+            # return self.es.search(index=self.index, size=limit, body={"query": query, "aggs": paths})
 
     def search_by(self, facet, value, limit=N):
         field = FACETS[facet]
