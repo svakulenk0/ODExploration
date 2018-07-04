@@ -13,6 +13,7 @@ from elasticsearch import Elasticsearch
 SERVER_ES = ('atcsv', 9202)
 
 CONFIG = SERVER_ES
+INDEX = CONFIG[0]
 
 N = 2914
 N_DOCS = 2028
@@ -30,7 +31,7 @@ FACETS = {
 
 class ESClient():
 
-    def __init__(self, index=CONFIG[0], host='localhost', port=CONFIG[1]):
+    def __init__(self, index=INDEX, host='localhost', port=CONFIG[1]):
         self.es = Elasticsearch(hosts=[{"host": host, "port": port}])
         self.index = index
 
