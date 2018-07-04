@@ -28,6 +28,18 @@ FACETS = {
     # "dataset_link": "dataset.dataset_link",
 }
 
+TOP_N = 2914
+
+FIELDS = {
+        "dataset_name": {"terms": {"field": "table.properties.dataset.dataset_name.text", "size" : TOP_N}},
+        "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
+        "keywords": {"terms": {"field": "table.properties.dataset.keywords.text", "size" : TOP_N}},
+        "publisher": {"terms": {"field": "table.properties.dataset.publisher.text", "size" : TOP_N}},
+        "entities": {"terms": {"field": "table.properties.column.entities.keyword", "size" : TOP_N}},
+        "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
+        "data_entities": {"terms": {"field": "table.properties.data_entities.keyword", "size" : TOP_N}},
+        }
+
 
 class ESClient():
 
@@ -129,17 +141,10 @@ class ESClient():
                 item_entities.append((facet, entity))
         return item_entities
 
-    def summarize_subset(self, facets_values=[], keywords="", top_n=N, limit=N, operator="AND"):
+    def summarize_subset(self, facets_values=[], keywords="", top_n=N, limit=N, operator="AND", paths=FIELDS):
         '''
         facets_values <dict> of facets and entities to find the subset
         '''
-        paths = {
-                "title": {"terms": {"field": "raw.title.keyword", "size" : top_n}},
-                "license": {"terms": {"field": "raw.license_id.keyword", "size" : top_n}},
-                "categorization": {"terms": {"field": "raw.categorization.keyword", "size" : top_n}},
-                "tags": {"terms": {"field": "raw.tags.name.keyword", "size" : top_n}},
-                "organization": {"terms": {"field": "raw.organization.name.keyword", "size" : top_n}}
-                }
         if facets_values:
             # search by entity
             facets = []
