@@ -33,12 +33,12 @@ TOP_N = 2914
 
 FIELDS = {
         "dataset_name": {"terms": {"field": "table.properties.dataset.dataset_name.text"}},
-        # "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
-        # "keywords": {"terms": {"field": "table.properties.dataset.keywords.text", "size" : TOP_N}},
-        # "publisher": {"terms": {"field": "table.properties.dataset.publisher.text", "size" : TOP_N}},
-        # "entities": {"terms": {"field": "table.properties.column.entities.keyword", "size" : TOP_N}},
-        # "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
-        # "data_entities": {"terms": {"field": "table.properties.data_entities.keyword", "size" : TOP_N}},
+        "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
+        "keywords": {"terms": {"field": "table.properties.dataset.keywords.text", "size" : TOP_N}},
+        "publisher": {"terms": {"field": "table.properties.dataset.publisher.text", "size" : TOP_N}},
+        "entities": {"terms": {"field": "table.properties.column.entities.keyword", "size" : TOP_N}},
+        "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
+        "data_entities": {"terms": {"field": "table.properties.data_entities.keyword", "size" : TOP_N}},
         }
 
 
