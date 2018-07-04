@@ -15,7 +15,7 @@ SERVER_ES = ('atcsv', 9202)
 CONFIG = SERVER_ES
 INDEX = CONFIG[0]
 
-N = 2914
+N = 0
 N_DOCS = 2028
 
 FACETS = {
@@ -29,7 +29,6 @@ FACETS = {
 }
 # ALL_DATASETS_QUERY = {"match_all": {}}
 ALL_DATASETS_QUERY = {
-                        "size" : 0,
                         "query" : {
                             "match_all" : {}
                         },
