@@ -27,7 +27,7 @@ FACETS = {
     "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
-ALL_DATASETS_QUERY = {}
+ALL_DATASETS_QUERY = {"match_all": {}}
 
 TOP_N = 2914
 
