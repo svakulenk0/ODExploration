@@ -27,30 +27,18 @@ FACETS = {
     "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
-# ALL_DATASETS_QUERY = {"match_all": {}}
-ALL_DATASETS_QUERY = {
-                        "query" : {
-                            "match_all" : {}
-                        },
-                        "aggs" : {
-                            "dataset_name" : {
-                                "terms" : {
-                                  "field" : "table.properties.dataset.dataset_name.text"
-                                }
-                            }
-                        }
-                    }
+ALL_DATASETS_QUERY = {"match_all": {}}
 
 TOP_N = 2914
 
 FIELDS = {
-        "dataset_name": {"terms": {"field": "table.properties.dataset.dataset_name.text", "size" : TOP_N}},
-        "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
-        "keywords": {"terms": {"field": "table.properties.dataset.keywords.text", "size" : TOP_N}},
-        "publisher": {"terms": {"field": "table.properties.dataset.publisher.text", "size" : TOP_N}},
-        "entities": {"terms": {"field": "table.properties.column.entities.keyword", "size" : TOP_N}},
-        "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
-        "data_entities": {"terms": {"field": "table.properties.data_entities.keyword", "size" : TOP_N}},
+        "dataset_name": {"terms": {"field": "table.properties.dataset.dataset_name.text"}},
+        # "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
+        # "keywords": {"terms": {"field": "table.properties.dataset.keywords.text", "size" : TOP_N}},
+        # "publisher": {"terms": {"field": "table.properties.dataset.publisher.text", "size" : TOP_N}},
+        # "entities": {"terms": {"field": "table.properties.column.entities.keyword", "size" : TOP_N}},
+        # "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
+        # "data_entities": {"terms": {"field": "table.properties.data_entities.keyword", "size" : TOP_N}},
         }
 
 
@@ -193,8 +181,7 @@ class ESClient():
             # match all docs
             query = ALL_DATASETS_QUERY
             # search all datasets
-            return self.es.search(index=self.index, size=limit, body=ALL_DATASETS_QUERY)
-            # return self.es.search(index=self.index, size=limit, body={"query": query, "aggs": paths})
+            return self.es.search(index=self.index, size=limit, body={"query": query, "aggs": paths})
 
     def search_by(self, facet, value, limit=N):
         field = FACETS[facet]
