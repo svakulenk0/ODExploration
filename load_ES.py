@@ -10,7 +10,7 @@ import string
 from elasticsearch import Elasticsearch
 
 
-SERVER_ES = ('csvengine', 9202, 'at_csv')
+SERVER_ES = ('csvengine', 9200, 'at_csv')
 
 CONFIG = SERVER_ES
 INDEX = CONFIG[2]
@@ -32,10 +32,10 @@ ALL_DATASETS_QUERY = {"match_all": {}}
 TOP_N = 2914
 
 FIELDS = {
-        "dataset_name": {"terms": {"field": "table.properties.dataset.dataset_name.text"}},
+        "dataset_name": {"terms": {"field": "dataset.dataset_name.keyword"}},
         # "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
-        "keywords": {"terms": {"field": "dataset.keywords.keyword", "size" : TOP_N}},
-        "publisher": {"terms": {"field": "table.properties.dataset.publisher.text", "size" : TOP_N}},
+        "keywords": {"terms": {"field": "dataset.keywords.keyword"}},
+        "publisher": {"terms": {"field": "dataset.publisher.keyword"}},
         # "entities": {"terms": {"field": "column.entities.keyword", "size" : TOP_N}},
         # "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
         # "data_entities": {"terms": {"field": "table.properties.data_entities.keyword", "size" : TOP_N}},
