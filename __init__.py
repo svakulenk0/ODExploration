@@ -2,7 +2,10 @@ from opsdroid.matchers import match_regex
 import logging
 import random
 
+from dialog_agent import DialogAgent
+
 chatbot = DialogAgent()
+
 
 def setup(opsdroid):
     logging.debug("Loaded ODExploration skill")
