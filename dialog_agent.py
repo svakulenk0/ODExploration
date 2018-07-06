@@ -160,7 +160,7 @@ class DialogAgent():
         else:
             # web-based chat html
             # buttons = '*'.join(self.entity_decorator % (facet, entity, self.clean(entity)) for entity in entities)
-            buttons = '*'.join(self.entity_decorator % self.clean(entity) for entity in entities)
+            buttons = ' * '.join(self.entity_decorator % self.clean(entity) for entity in entities)
             # if start or action != 'Continue':
             message += TEMPLATES[self.lang]['n_datasets'] % n
             # if self.goal:
