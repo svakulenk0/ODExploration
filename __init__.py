@@ -2,10 +2,16 @@ from opsdroid.matchers import match_regex
 import logging
 import random
 
+chatbot = DialogAgent()
+
 def setup(opsdroid):
     logging.debug("Loaded ODExploration skill")
 
+
 @match_regex(r'.*')
-async def hello2(opsdroid, config, message):
-    text = random.choice(["Yes!"])
+async def exploreOD(opsdroid, config, message):
+    chatbot.history = []
+    chatbot.goal = []
+    # start exploration
+    text, actions = chatbot.chat(start=True)
     await message.respond(text)
