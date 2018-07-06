@@ -30,7 +30,7 @@ async def exploreOD(opsdroid, config, message):
 @match_regex(r'search .*')
 async def searchOD(opsdroid, config, message):
     request = message
-    print request
+    print(request)
     text, actions = chatbot.search(request)
     print(text)
     await message.respond(text)
