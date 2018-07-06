@@ -101,7 +101,8 @@ class DialogAgent():
         if action != 'Continue':
             self.goal = [('_search', action)]
             self.page = 0
-            keywords = self.goal[0][1]
+            # keywords = self.goal[0][1]
+            keywords = self.goal[0]
             words = keywords.split()
             if len(words) > 1:
                 result = self.db.search(keywords=' AND '.join(words))
