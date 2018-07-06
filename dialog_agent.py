@@ -159,7 +159,8 @@ class DialogAgent():
             message += "There are %d datasets. * You can explore them by %s: * %s" % (n, facet, '*'.join(entities))
         else:
             # web-based chat html
-            buttons = '*'.join(self.entity_decorator % (facet, entity, self.clean(entity)) for entity in entities)
+            # buttons = '*'.join(self.entity_decorator % (facet, entity, self.clean(entity)) for entity in entities)
+            buttons = '*'.join(self.entity_decorator % self.clean(entity) for entity in entities)
             # if start or action != 'Continue':
             message += TEMPLATES[self.lang]['n_datasets'] % n
             # if self.goal:
@@ -238,7 +239,8 @@ class DialogAgent():
                     elif facet != 'tags':
                         # attach buttons for item entities
                         try:
-                            button = self.entity_decorator % (facet, entity, self.clean(entity))
+                            # button = self.entity_decorator % (facet, entity, self.clean(entity))
+                            button = self.entity_decorator % self.clean(entity)
                             message += '<br>' + "%s: %s" % (facet, button)
                         except:
                             break
