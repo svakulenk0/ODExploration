@@ -54,7 +54,7 @@ class ESClient():
 
     def show_one(self):
         result = self.es.search(index=self.index, body={"query": {"match_all": {}}})['hits']['hits'][0]
-        print json.dumps(result, indent=4, sort_keys=True)
+        print(json.dumps(result, indent=4, sort_keys=True))
 
     def search(self, keywords, limit=N):
         result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}})
@@ -223,7 +223,7 @@ def test_index(index=INDEX):
 
 def test_aggregation_stats(index=INDEX):
     db = ESClient(index)
-    print db.top()
+    print(db.top())
     # print db.count()
 
 
@@ -231,7 +231,7 @@ def test_describe_subset(index=INDEX, top_n=2):
     db = ESClient(index)
     keyword = "I would like to know more about finanzen"
     results = db.describe_subset(keywords=keyword, top_n=top_n)['aggregations']
-    print json.dumps(results, indent=4, sort_keys=True)
+    print(json.dumps(results, indent=4, sort_keys=True))
     # pick the most representative documents from the subset
 
 
@@ -241,26 +241,26 @@ def test_top_docs_search(index=INDEX, top_n=2, n_samples=5):
     results = db.describe_subset(keywords=keyword, top_n=top_n)
     # show the top docs
     for item in results['hits']['hits'][:n_samples]:
-        print item['_source']['raw']['title']
+        print(item['_source']['raw']['title'])
 
 
 def test_search(index=INDEX, n_samples=5):
     db = ESClient(index)
     results = db.search("finanzen")
     for result in results[:n_samples]:
-        print result['_source']['raw']['categorization']
-        print result['_source']['raw']['title']
-    print len(results), "results"
+        print(result['_source']['raw']['categorization'])
+        print(result['_source']['raw']['title'])
+    print(len(results), "results")
 
 
 def test_search_csv():
     dataset_link = "http://www.data.gv.at/katalog/dataset/80607cc6-8fc1-4b2e-8517-716de8f1ba63"
-    print dataset_link
+    print(dataset_link)
     csv_db = ESClient(INDEX_CSV, host='csvengine', port=9201)
     # csv_db.show_one()
     tables = csv_db.search_by(facet='dataset_link', value=dataset_link)
     if tables:
-        print tables[0]['_source']['no_rows'], 'rows'
+        print(tables[0]['_source']['no_rows'], 'rows')
 
 
 if __name__ == '__main__':

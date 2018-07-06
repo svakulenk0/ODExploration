@@ -311,7 +311,7 @@ class DialogAgent():
 
 def test_DialogAgent():
     chatbot = DialogAgent()
-    chatbot.chat()
+    print(chatbot.chat())
 
 
 def main():
