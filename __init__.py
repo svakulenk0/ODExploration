@@ -11,6 +11,12 @@ def setup(opsdroid):
     logging.debug("Loaded ODExploration skill")
 
 
+@match_regex(r'help')
+async def exploreOD(opsdroid, config, message):
+    text = "Type 'browse' to explore the data or 'search keyword' for search, e.g. search hund or search schule or search leopoldstadt"
+    await message.respond(text)
+
+
 @match_regex(r'browse')
 async def exploreOD(opsdroid, config, message):
     chatbot.history = []
