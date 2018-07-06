@@ -54,7 +54,8 @@ class DialogAgent():
         # default greeting message
         # self.greeting = TEMPLATES[self.lang]['greeting']
         # web-based chat buttons and links html
-        self.entity_decorator = '''<button class='item' onclick="pivotEntity('%s','%s')">%s</button>'''
+        # self.entity_decorator = '''<button class='item' onclick="pivotEntity('%s','%s')">%s</button>'''
+        self.entity_decorator = '''**%s**'''
         self.item_decorator = "<a href='%s'>%s</a>"
         # maximum message size
         self.l = l
@@ -168,7 +169,7 @@ class DialogAgent():
             message += TEMPLATES[self.lang]['explore']
             # else:
                 # message += "<br>"
-            message += "%s: %s" % (facet, buttons)
+            message += "%s: * %s" % (facet, buttons)
             # add continue button
             # message += '''<br><br><button class='item' onclick="continueExploration()">Continue</button>'''
             # message += '''<br><button class='item' onclick="restart()">Restart</button>'''
