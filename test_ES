@@ -1,0 +1,47 @@
+curl -XGET 'csvengine:9200/at_csv/_count'
+
+curl -X GET "localhost:9200/at_csv/_search" -H 'Content-Type: application/json' -d'
+{
+    "size" : 0,
+    "query" : {
+        "match_all" : {}
+    },
+    "aggs" : {
+        "keywords" : {
+            "terms" : {
+              "field" : "dataset.keywords.keyword"
+            }
+         },
+        "entities" : {
+                "terms" : {
+                  "field" : "column.entities.keyword"
+                }
+            },
+        "dataset_name" : {
+                "terms" : {
+                  "field" : "dataset.dataset_name.keyword"
+                }
+            },
+        "name" : {
+                "terms" : {
+                  "field" : "dataset.name.keyword"
+                }
+            },
+        "publisher" : {
+                "terms" : {
+                  "field" : "dataset.publisher.keyword"
+                }
+            },
+        "metadata_entities" : {
+                "terms" : {
+                  "field" : "metadata_entities.keyword"
+                }
+            },
+        "data_entities" : {
+                "terms" : {
+                  "field" : "data_entities.keyword"
+                }
+            }
+    }
+}
+'
