@@ -18,4 +18,4 @@ async def exploreOD(opsdroid, config, message):
     # start exploration
     text, actions = chatbot.chat(start=True)
     print(text)
-    await message.respond(str(text, 'utf-8'))
+    await message.respond(text)

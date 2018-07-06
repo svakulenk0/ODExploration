@@ -278,7 +278,7 @@ class DialogAgent():
             message, concepts = self.aggregate_entities(result, message, n)
             if not message:
                 return self.reset_exploration()
-            return message, concepts
+            return str(message, 'utf-8'), concepts
         # show titles
         elif n > 0:
             messages, all_concepts = self.show_titles(result['hits']['hits'], action, n)
@@ -289,7 +289,7 @@ class DialogAgent():
             # finish with the batch
             if n <= self.l:
                 self.goal.pop()
-            return "<br>".join(messages), all_concepts
+            return str("<br>".join(messages), 'utf-8'), all_concepts
             # else:
                 # return self.reset_exploration(action)
                 # message += "<br>No other datasets found"
