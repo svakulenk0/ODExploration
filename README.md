@@ -6,20 +6,33 @@ If you love #government #data but hate faceted search and csv tables? How to mak
 
 ## Requirements
 
-source myvenv/bin/activate
+Python 3
 
-pip install -r requirements.txt
+virtualenv py3
 
-elasticsearch
+source py3/bin/activate
+
+pip3 install ...
+
+* flask
+* elasticsearch
+* numpy
+
+## Config
+
+To move the chatbot to another ES index modify the load_ES.py as follows:
+
+* query to match all datasets: ALL_DATASETS_QUERY
+* provide description of the facets mapping used for browsing in FIELDS
+
+
 
 
 ## Run
 
 To start the chatbot web UI on localhost port 8008:
 
-python app_browse.py
-
-python app_search.py
+python3 app_browse.py
 
 
 ## Deploy
@@ -45,6 +58,8 @@ sudo pkill gunicorn
 
 
 http://bot.communidata.at
+
+http://communidata.ai.wu.ac.at:8008/browse
 
 
 ## Dataset
