@@ -10,10 +10,10 @@ import string
 from elasticsearch import Elasticsearch
 
 
-SERVER_ES = ('atcsv', 9202)
+SERVER_ES = ('csvengine', 9202, 'at_csv')
 
 CONFIG = SERVER_ES
-INDEX = CONFIG[0]
+INDEX = CONFIG[2]
 
 N = 0
 N_DOCS = 2028
@@ -33,18 +33,18 @@ TOP_N = 2914
 
 FIELDS = {
         "dataset_name": {"terms": {"field": "table.properties.dataset.dataset_name.text"}},
-        "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
-        "keywords": {"terms": {"field": "table.properties.dataset.keywords.text", "size" : TOP_N}},
+        # "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
+        "keywords": {"terms": {"field": "dataset.keywords.keyword", "size" : TOP_N}},
         "publisher": {"terms": {"field": "table.properties.dataset.publisher.text", "size" : TOP_N}},
-        "entities": {"terms": {"field": "table.properties.column.entities.keyword", "size" : TOP_N}},
-        "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
-        "data_entities": {"terms": {"field": "table.properties.data_entities.keyword", "size" : TOP_N}},
+        # "entities": {"terms": {"field": "column.entities.keyword", "size" : TOP_N}},
+        # "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
+        # "data_entities": {"terms": {"field": "table.properties.data_entities.keyword", "size" : TOP_N}},
         }
 
 
 class ESClient():
 
-    def __init__(self, index=INDEX, host='localhost', port=CONFIG[1]):
+    def __init__(self, index=INDEX, host=CONFIG[0], port=CONFIG[1]):
         self.es = Elasticsearch(hosts=[{"host": host, "port": port}])
         self.index = index
 

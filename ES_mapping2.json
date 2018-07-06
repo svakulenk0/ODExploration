@@ -1,0 +1,223 @@
+{
+  "at_csv": {
+    "mappings": {
+      "table": {
+        "properties": {
+          "column": {
+            "type": "nested",
+            "properties": {
+              "col_no": {
+                "type": "long"
+              },
+              "dates": {
+                "type": "date"
+              },
+              "entities": {
+                "type": "keyword",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword"
+                  }
+                }
+              },
+              "header": {
+                "properties": {
+                  "exact": {
+                    "type": "keyword"
+                  },
+                  "value": {
+                    "type": "text",
+                    "analyzer": "german"
+                  }
+                }
+              },
+              "max": {
+                "type": "text",
+                "analyzer": "german"
+              },
+              "min": {
+                "type": "text",
+                "analyzer": "german"
+              },
+              "source": {
+                "type": "keyword"
+              },
+              "values": {
+                "properties": {
+                  "exact": {
+                    "type": "keyword"
+                  },
+                  "value": {
+                    "type": "text",
+                    "analyzer": "german"
+                  }
+                }
+              }
+            }
+          },
+          "data_entities": {
+            "type": "keyword"
+          },
+          "data_temp_end": {
+            "type": "date"
+          },
+          "data_temp_pattern": {
+            "type": "keyword"
+          },
+          "data_temp_start": {
+            "type": "date"
+          },
+          "dataset": {
+            "type": "nested",
+            "properties": {
+              "dataset_description": {
+                "type": "text",
+                "analyzer": "german"
+              },
+              "dataset_link": {
+                "type": "keyword"
+              },
+              "dataset_name": {
+                "type": "text",
+                "analyzer": "german"
+              },
+              "keywords": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword"
+                  }
+                },
+                "analyzer": "german"
+              },
+              "name": {
+                "type": "text",
+                "analyzer": "german"
+              },
+              "publisher": {
+                "type": "text",
+                "analyzer": "german"
+              },
+              "publisher_email": {
+                "type": "keyword"
+              },
+              "publisher_link": {
+                "type": "keyword"
+              }
+            }
+          },
+          "dialect": {
+            "type": "nested",
+            "properties": {
+              "delimiter": {
+                "type": "keyword"
+              },
+              "doublequote": {
+                "type": "keyword"
+              },
+              "encoding": {
+                "type": "keyword"
+              },
+              "lineterminator": {
+                "type": "keyword"
+              },
+              "quotechar": {
+                "type": "keyword"
+              },
+              "quoting": {
+                "type": "keyword"
+              },
+              "skipinitialspace": {
+                "type": "keyword"
+              }
+            }
+          },
+          "metadata_entities": {
+            "type": "keyword"
+          },
+          "metadata_temp_end": {
+            "type": "date"
+          },
+          "metadata_temp_start": {
+            "type": "date"
+          },
+          "modified": {
+            "type": "date"
+          },
+          "no_columns": {
+            "type": "long"
+          },
+          "no_rows": {
+            "type": "long"
+          },
+          "parsingerror": {
+            "properties": {
+              "errorclass": {
+                "type": "text",
+                "index": false
+              },
+              "errormessage": {
+                "type": "text",
+                "index": false
+              }
+            }
+          },
+          "portal": {
+            "type": "nested",
+            "properties": {
+              "apiuri": {
+                "type": "keyword"
+              },
+              "id": {
+                "type": "keyword"
+              },
+              "iso": {
+                "type": "keyword"
+              },
+              "software": {
+                "type": "keyword"
+              },
+              "uri": {
+                "type": "keyword"
+              }
+            }
+          },
+          "published": {
+            "type": "date"
+          },
+          "row": {
+            "type": "nested",
+            "properties": {
+              "dates": {
+                "type": "date"
+              },
+              "entities": {
+                "type": "keyword"
+              },
+              "row_no": {
+                "type": "long"
+              },
+              "values": {
+                "properties": {
+                  "exact": {
+                    "type": "keyword"
+                  },
+                  "value": {
+                    "type": "text",
+                    "analyzer": "german"
+                  }
+                }
+              }
+            }
+          },
+          "transaction_time": {
+            "type": "date"
+          },
+          "url": {
+            "type": "keyword"
+          }
+        }
+      }
+    }
+  }
+}
