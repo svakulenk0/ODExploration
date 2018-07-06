@@ -20,11 +20,11 @@ N_DOCS = 2028
 
 FACETS = {
     # "dataset_id": "raw.id",
-    "tags": "raw.tags.name",
-    "categorization": "raw.categorization",
-    "title": "raw.title",
-    "organization": "raw.organization.name",
-    "license": "raw.license_id",
+    "keywords": "dataset.keywords",
+    # "categorization": "raw.categorization",
+    "title": "dataset.dataset_name",
+    "publisher": "dataset.publisher",
+    # "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
 ALL_DATASETS_QUERY = {"match_all": {}}
