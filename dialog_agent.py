@@ -17,7 +17,7 @@ TEMPLATES = {
             'greeting': "Welcome to the Austrian Open Data portal!",
             'not_found': "No matching datasets found",
             'n_datasets': "There are %d datasets",
-            'explore': "* You can explore them by ",
+            'explore': "⋅⋅⋅You can explore them by ",
             'total': " in total.",
             'goal': " for %s",
             'connector': " and ",
