@@ -7,9 +7,9 @@ svakulenko
 Dialog agent for the conversational browsing task
 '''
 
-from load_ES import ESClient, FACETS
-from ranking import chunk_w_ranks, rank_chunks
-from aggregations import facets, entities
+from .load_ES import ESClient, FACETS
+from .ranking import chunk_w_ranks, rank_chunks
+from .aggregations import facets, entities
 
 
 TEMPLATES = {

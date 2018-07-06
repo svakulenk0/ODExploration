@@ -8,7 +8,7 @@ from queue import PriorityQueue
 from heapq import heappush, nlargest
 import numpy as np
 
-from aggregations import entities, n_items
+from .aggregations import entities, n_items
 
 
 def rank_nodes(entities):
