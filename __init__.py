@@ -17,5 +17,5 @@ async def exploreOD(opsdroid, config, message):
     chatbot.goal = []
     # start exploration
     text, actions = chatbot.chat(start=True)
-    print text
+    print(text)
     await message.respond(text)
