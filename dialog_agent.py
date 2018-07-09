@@ -210,7 +210,7 @@ class DialogAgent():
                 # get link to the dataset
                 # dataset_id = doc["_source"]["raw"]["id"]
                 # dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-                dataset_link = doc[DATASET_LINK]
+                dataset_link = doc["_source"][DATASET_LINK]
                 print (dataset_link)
                 print (concepts)
                 
