@@ -287,7 +287,7 @@ class DialogAgent():
         result = self.db.summarize_subset(facets_values=self.goal)
         n = result['hits']['total']
         print(n, 'results')
-        print(result)
+        # print(result)
         # form message
         if 'aggregations' in result.keys() and n > self.l:
             message, concepts = self.aggregate_entities(result, message, n)

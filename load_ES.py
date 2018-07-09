@@ -59,7 +59,7 @@ class ESClient():
         print(json.dumps(result, indent=4, sort_keys=True))
 
     def search(self, keywords, limit=N):
-        print (keywords)
+        # print (keywords)
         result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}, 'highlight': {'fields': {'content': {}}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})
         return result
@@ -151,7 +151,7 @@ class ESClient():
         facets_values <dict> of facets and entities to find the subset
         '''
         if facets_values:
-            print(facets_values)
+            # print(facets_values)
             # search by entity
             facets = []
             values = []
