@@ -147,6 +147,7 @@ class ESClient():
         facets_values <dict> of facets and entities to find the subset
         '''
         if facets_values:
+            print(facets_values)
             # search by entity
             facets = []
             values = []

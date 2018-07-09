@@ -102,6 +102,7 @@ class DialogAgent():
             self.goal = [('_search', action)]
             self.page = 0
             keywords = self.goal[0][1]
+            print(keywords)
             words = keywords.split()
             print(words)
             if len(words) > 1:
