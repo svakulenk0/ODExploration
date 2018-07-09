@@ -16,7 +16,7 @@ TEMPLATES = {
         'en': {
             'greeting': "Welcome to the Austrian Open Data portal!",
             'not_found': "No matching datasets found",
-            'n_datasets': "There are %d datasets, e.g.:\n\n",
+            'n_datasets': "There are %d datasets\n\n",
             'many_datasets': "There are many datasets, e.g.:\n\n",
             # 'many_datasets': "There are many datasets about **%s** e.g.:\n\n",
             'explore': "\n\nYou can explore them by ",
