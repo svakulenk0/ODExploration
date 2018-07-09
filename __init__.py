@@ -20,7 +20,7 @@ async def exploreOD(opsdroid, config, message):
     await message.respond(text)
 
 
-@match_regex(r'browse')
+@match_regex(r'browse|more|next')
 async def exploreOD(opsdroid, config, message):
     text, actions = chatbot.chat()
     print(text)

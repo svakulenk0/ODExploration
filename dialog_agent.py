@@ -127,7 +127,7 @@ class DialogAgent():
                 # print datasets
                 self.n = len(self.datasets)
                 if self.n < N:
-                    message += TEMPLATES[self.lang]['n_datasets'] % (self.n, ' about *%s*' % keywords)
+                    message += TEMPLATES[self.lang]['n_datasets'] % (self.n, ' about **%s**' % keywords)
                 else:
                     message += TEMPLATES[self.lang]['many_datasets'] % keywords
             else:
