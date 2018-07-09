@@ -103,6 +103,7 @@ class DialogAgent():
             self.page = 0
             keywords = self.goal[0][1]
             words = keywords.split()
+            print(words)
             if len(words) > 1:
                 result = self.db.search(keywords=' AND '.join(words))
                 n = result['hits']['total']
