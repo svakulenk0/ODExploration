@@ -103,7 +103,6 @@ class DialogAgent():
             self.goal = [('_search', action)]
             self.page = 0
             keywords = self.goal[0][1]
-            print(keywords)
             words = keywords.split()
             print(words)
             if len(words) > 1:
@@ -212,7 +211,7 @@ class DialogAgent():
                 # dataset_id = doc["_source"]["raw"]["id"]
                 # dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
                 try:
-                    print (doc["_source"]['properties']['dataset']['dataset_link'])
+                    print (doc["_source"]['dataset']['dataset_link'])
                 except:
                     print("except!")
                 # dataset_link = doc["_source"][DATASET_LINK]

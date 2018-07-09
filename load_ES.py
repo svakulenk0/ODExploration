@@ -15,15 +15,16 @@ SERVER_ES = ('csvengine', 9200, 'at_csv')
 CONFIG = SERVER_ES
 INDEX = CONFIG[2]
 
-N_DOCS = 2028
+N_DOCS = 467
 N = N_DOCS
+TOP_N = N_DOCS
 
 FACETS = {
     # "dataset_id": "raw.id",
     # "keywords": "dataset.keywords",
     # "categorization": "raw.categorization",
     "title": "dataset.dataset_name",
-    "publisher": "dataset.publisher",
+    # "publisher": "dataset.publisher",
     # "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
@@ -31,7 +32,6 @@ DATASET_LINK = "dataset.dataset_link"
 
 ALL_DATASETS_QUERY = {"match_all": {}}
 
-TOP_N = 2914
 
 FIELDS = {
         "title": {"terms": {"field": "dataset.dataset_name.keyword"}},
@@ -59,6 +59,7 @@ class ESClient():
         print(json.dumps(result, indent=4, sort_keys=True))
 
     def search(self, keywords, limit=N):
+        print (keywords)
         result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})
         return result
@@ -128,6 +129,7 @@ class ESClient():
             # find entity by traversing the dictionary of the item
             entity = doc
             ready = False
+            print (path)
             for element in path.split('.'):
                 # print element
                 if isinstance(entity, list):
