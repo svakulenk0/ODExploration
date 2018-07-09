@@ -96,7 +96,6 @@ class DialogAgent():
     def search(self, action='Continue', message=''):
         # generate requests for different facets
         # if keywords:
-        print('here')
         datasets = []
         all_concepts = []
         if action != 'Continue':
