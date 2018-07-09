@@ -163,22 +163,23 @@ class ESClient():
                 #     # operator = "OR"
                 #     return self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": value}}, "aggs": paths})
                 # else:
-                field = FACETS[facet]
-                facets.append(field)
-                # clean up value string: escape ES special characters
-                value = value.replace('{', '\{')
-                value = value.replace('}', '\}')
-                value = value.replace(':', '\:')
-                value = value.replace('/', '\/')
-                value = value.replace('[', '\[')
-                value = value.replace(']', '\]')
-                value = value.replace('-', '\-')
-                # value = value.encode('utf-8').translate(None, string.punctuation)
-                # print value
-                values.append(value)
-                # query.append({"match": {field: value}})
-                # remove facet from aggregation
-                paths.pop(facet, None)
+                if facet in FACETS:
+                    field = FACETS[facet]
+                    facets.append(field)
+                    # clean up value string: escape ES special characters
+                    value = value.replace('{', '\{')
+                    value = value.replace('}', '\}')
+                    value = value.replace(':', '\:')
+                    value = value.replace('/', '\/')
+                    value = value.replace('[', '\[')
+                    value = value.replace(']', '\]')
+                    value = value.replace('-', '\-')
+                    # value = value.encode('utf-8').translate(None, string.punctuation)
+                    # print value
+                    values.append(value)
+                    # query.append({"match": {field: value}})
+                    # remove facet from aggregation
+                    paths.pop(facet, None)
             return self.es.search(index=self.index, size=limit, body={"query": {"query_string":
                                     {"fields": facets, "query": ' '.join(values), "default_operator": operator}},
                                      "aggs": paths})
