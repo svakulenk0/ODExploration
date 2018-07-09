@@ -7,7 +7,7 @@ svakulenko
 Dialog agent for the conversational browsing task
 '''
 
-from .load_ES import ESClient, FACETS
+from .load_ES import ESClient, FACETS, DATASET_LINK
 from .ranking import chunk_w_ranks, rank_chunks
 from .aggregations import facets, entities
 
@@ -209,8 +209,9 @@ class DialogAgent():
             else:
                 # web-based chat html
                 # get link to the dataset
-                dataset_id = doc["_source"]["raw"]["id"]
-                dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
+                # dataset_id = doc["_source"]["raw"]["id"]
+                # dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
+                dataset_link = DATASET_LINK
 
                 
                 # show only titles
