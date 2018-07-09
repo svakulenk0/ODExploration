@@ -239,7 +239,7 @@ class DialogAgent():
                         # try:
                         # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
                         message += "\n\n%s: %s" % (facet, self.clean(entity))
-                message += "\n\n%s" % doc['highlight']
+                # message += "\n\n%s" % doc['highlight']
                         # except:
                             # break
                             # n_concepts += 1
