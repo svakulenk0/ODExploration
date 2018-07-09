@@ -304,7 +304,7 @@ class DialogAgent():
             # finish with the batch
             if n <= self.l:
                 self.goal.pop()
-            return str("\n\n".join(messages), 'utf-8'), all_concepts
+            return str("\n\n\n\n".join(messages), 'utf-8'), all_concepts
             # else:
                 # return self.reset_exploration(action)
                 # message += "<br>No other datasets found"

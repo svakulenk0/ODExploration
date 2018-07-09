@@ -16,7 +16,7 @@ CONFIG = SERVER_ES
 INDEX = CONFIG[2]
 
 N_DOCS = 2028
-N = 20
+N = N_DOCS
 
 FACETS = {
     # "dataset_id": "raw.id",
@@ -149,7 +149,7 @@ class ESClient():
         facets_values <dict> of facets and entities to find the subset
         '''
         if facets_values:
-            # print(facets_values)
+            print(facets_values)
             # search by entity
             facets = []
             values = []
