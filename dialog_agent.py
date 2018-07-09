@@ -211,8 +211,8 @@ class DialogAgent():
                 # dataset_id = doc["_source"]["raw"]["id"]
                 # dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
                 dataset_link = DATASET_LINK
-                print dataset_link
-                print concepts
+                print (dataset_link)
+                print (concepts)
                 
                 # show only titles
                 # for facet, entity in concepts:
