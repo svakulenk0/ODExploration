@@ -16,8 +16,8 @@ TEMPLATES = {
         'en': {
             'greeting': "Welcome to the Austrian Open Data portal!",
             'not_found': "No matching datasets found",
-            'n_datasets': "There are %d datasets, e.g.:",
-            'many_datasets': "There are many datasets, e.g.:",
+            'n_datasets': "There are %d datasets%s, e.g.\n\n:",
+            'many_datasets': "There are many datasets about %s, e.g.\n\n:",
             'explore': "\n\nYou can explore them by ",
             'total': " in total.",
             'goal': " for %s",
@@ -127,9 +127,9 @@ class DialogAgent():
                 # print datasets
                 self.n = len(self.datasets)
                 if self.n < N:
-                    message += TEMPLATES[self.lang]['n_datasets'] % self.n
+                    message += TEMPLATES[self.lang]['n_datasets'] % (self.n, ' about ' + keywords)
                 else:
-                    message += TEMPLATES[self.lang]['many_datasets']
+                    message += TEMPLATES[self.lang]['many_datasets'] % keywords
             else:
                 # reset goal
                 if not self.search_only:
@@ -169,7 +169,7 @@ class DialogAgent():
             # buttons = '*'.join(self.entity_decorator % (facet, entity, self.clean(entity)) for entity in entities)
             buttons = '\n\n'.join(self.entity_decorator % self.clean(entity) for entity in entities)
             # if start or action != 'Continue':
-            message += TEMPLATES[self.lang]['n_datasets'] % n
+            message += TEMPLATES[self.lang]['n_datasets'] % (n, '')
             # if self.goal:
             #     message += TEMPLATES[self.lang]['goal'] % TEMPLATES[self.lang]['connector'].join(["%s: %s" % (goal_facet, self.clean(goal_entity)) for goal_facet, goal_entity in self.goal])
             # else:
