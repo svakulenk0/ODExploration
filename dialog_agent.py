@@ -105,20 +105,20 @@ class DialogAgent():
             keywords = self.goal[0][1]
             words = keywords.split()
             print(words)
-            if len(words) > 0:
-                result = self.db.search(keywords=' AND '.join(words))
-                n = result['hits']['total']
-                print('%d datasets found' % n)
-                if n > 0:
-                    messages, all_concepts = self.show_titles(result['hits']['hits'], "Search", n)
-                    datasets.extend(messages)
-            else:
-                for facet in FACETS.keys():
-                    result = self.db.summarize_subset(facets_values=[(facet, keywords)])
-                    n = result['hits']['total']
-                    if n > 0:
-                        messages, all_concepts = self.show_titles(result['hits']['hits'], "Search", n)
-                        datasets.extend(messages)
+            # if len(words) > 0:
+            result = self.db.search(keywords=' AND '.join(words))
+            n = result['hits']['total']
+            print('%d datasets found' % n)
+            if n > 0:
+                messages, all_concepts = self.show_titles(result['hits']['hits'], "Search", n)
+                datasets.extend(messages)
+            # else:
+            #     for facet in FACETS.keys():
+            #         result = self.db.summarize_subset(facets_values=[(facet, keywords)])
+            #         n = result['hits']['total']
+            #         if n > 0:
+            #             messages, all_concepts = self.show_titles(result['hits']['hits'], "Search", n)
+            #             datasets.extend(messages)
         #             message += "%d datasets for %s in %s<br>" % (n, keywords, facet)
         # return message, []
             if datasets:
@@ -239,6 +239,7 @@ class DialogAgent():
                         # try:
                         # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
                         message += "\n\n%s: %s" % (facet, self.clean(entity))
+                message += "\n\n%s" % doc['highlight']
                         # except:
                             # break
                             # n_concepts += 1
@@ -247,12 +248,12 @@ class DialogAgent():
                         # dataset.append((facet, entity))
                     # elif cognitive_resource > 0:
                     #     
-                    elif facet != 'tags':
-                        # attach buttons for item entities
-                        # try:
-                            # button = self.entity_decorator % (facet, entity, self.clean(entity))
-                        button = self.entity_decorator % self.clean(entity)
-                        message += '\n\n' + "%s: %s" % (facet, button)
+                    # elif facet != 'tags':
+                    #     # attach buttons for item entities
+                    #     # try:
+                    #         # button = self.entity_decorator % (facet, entity, self.clean(entity))
+                    #     button = self.entity_decorator % self.clean(entity)
+                    #     message += '\n\n' + "%s: %s" % (facet, button)
                         # except:
                         #     break
                         # message += '<br>' + "%s: %s" % (facet, self.clean(entity))

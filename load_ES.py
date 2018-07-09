@@ -16,7 +16,7 @@ CONFIG = SERVER_ES
 INDEX = CONFIG[2]
 
 N_DOCS = 467
-N = N_DOCS
+N = 100
 TOP_N = N_DOCS
 
 FACETS = {
@@ -60,7 +60,7 @@ class ESClient():
 
     def search(self, keywords, limit=N):
         print (keywords)
-        result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}})
+        result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}, 'highlight': {'fields': {'content': {}}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})
         return result
 
