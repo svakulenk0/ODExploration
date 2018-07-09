@@ -16,7 +16,7 @@ TEMPLATES = {
         'en': {
             'greeting': "Welcome to the Austrian Open Data portal!",
             'not_found': "No matching datasets found",
-            'n_datasets': "There are %d datasets:",
+            'n_datasets': "There are %d datasets, e.g.:",
             'many_datasets': "There are many datasets, e.g.:",
             'explore': "\n\nYou can explore them by ",
             'total': " in total.",
@@ -242,7 +242,8 @@ class DialogAgent():
                         # if (facet, entity) not in self.history:
                         # try:
                         # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
-                        message += "\n\n%s: %s" % (facet, self.clean(entity))
+                        message += "\n\n%s" % (self.clean(entity))
+                        # message += "\n\n%s: %s" % (facet, self.clean(entity))
                 # message += "\n\n%s" % doc['highlight']
                         # except:
                             # break
