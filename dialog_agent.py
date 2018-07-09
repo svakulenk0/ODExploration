@@ -210,7 +210,7 @@ class DialogAgent():
                 # get link to the dataset
                 # dataset_id = doc["_source"]["raw"]["id"]
                 # dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-                dataset_link = DATASET_LINK
+                dataset_link = doc[DATASET_LINK]
                 print (dataset_link)
                 print (concepts)
                 
@@ -231,10 +231,10 @@ class DialogAgent():
                     #     return datasets, all_concepts
                     if facet == 'title':
                         # if (facet, entity) not in self.history:
-                        try:
-                            message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
-                        except:
-                            break
+                        # try:
+                        message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
+                        # except:
+                            # break
                             # n_concepts += 1
                         # else:
                         #     break
@@ -243,12 +243,12 @@ class DialogAgent():
                     #     
                     elif facet != 'tags':
                         # attach buttons for item entities
-                        try:
+                        # try:
                             # button = self.entity_decorator % (facet, entity, self.clean(entity))
-                            button = self.entity_decorator % self.clean(entity)
-                            message += '<br>' + "%s: %s" % (facet, button)
-                        except:
-                            break
+                        button = self.entity_decorator % self.clean(entity)
+                        message += '<br>' + "%s: %s" % (facet, button)
+                        # except:
+                        #     break
                         # message += '<br>' + "%s: %s" % (facet, self.clean(entity))
                         # dataset.append((facet, entity))
                         #     cognitive_resource -= 1
