@@ -237,7 +237,8 @@ class DialogAgent():
                     if facet == 'title':
                         # if (facet, entity) not in self.history:
                         # try:
-                        message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
+                        # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
+                        message += "\n\n%s: %s" % (facet, self.clean(entity))
                         # except:
                             # break
                             # n_concepts += 1
@@ -251,7 +252,7 @@ class DialogAgent():
                         # try:
                             # button = self.entity_decorator % (facet, entity, self.clean(entity))
                         button = self.entity_decorator % self.clean(entity)
-                        message += '<br>' + "%s: %s" % (facet, button)
+                        message += '\n\n' + "%s: %s" % (facet, button)
                         # except:
                         #     break
                         # message += '<br>' + "%s: %s" % (facet, self.clean(entity))
@@ -302,7 +303,7 @@ class DialogAgent():
             # finish with the batch
             if n <= self.l:
                 self.goal.pop()
-            return str("<br>".join(messages), 'utf-8'), all_concepts
+            return str("\n\n".join(messages), 'utf-8'), all_concepts
             # else:
                 # return self.reset_exploration(action)
                 # message += "<br>No other datasets found"
