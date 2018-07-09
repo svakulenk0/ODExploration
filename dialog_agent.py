@@ -16,8 +16,8 @@ TEMPLATES = {
         'en': {
             'greeting': "Welcome to the Austrian Open Data portal!",
             'not_found': "No matching datasets found",
-            'n_datasets': "There are %d datasets%s, e.g.:\n\n",
-            'many_datasets': "There are many datasets about **%s**, e.g.:\n\n",
+            'n_datasets': "There are %d datasets%s e.g.:\n\n",
+            'many_datasets': "There are many datasets about **%s** e.g.:\n\n",
             'explore': "\n\nYou can explore them by ",
             'total': " in total.",
             'goal': " for %s",
@@ -127,7 +127,7 @@ class DialogAgent():
                 # print datasets
                 self.n = len(self.datasets)
                 if self.n < N:
-                    message += TEMPLATES[self.lang]['n_datasets'] % (self.n, ' about **%s**' % keywords)
+                    message += TEMPLATES[self.lang]['n_datasets'] % (self.n, ' about **%s** ' % keywords)
                 else:
                     message += TEMPLATES[self.lang]['many_datasets'] % keywords
             else:
