@@ -55,7 +55,8 @@ class DialogAgent():
         # self.greeting = TEMPLATES[self.lang]['greeting']
         # web-based chat buttons and links html
         # self.entity_decorator = '''<button class='item' onclick="pivotEntity('%s','%s')">%s</button>'''
-        self.entity_decorator = '''**%s**'''
+        # self.entity_decorator = '''**%s**'''
+        self.entity_decorator = '''%s'''
         self.item_decorator = "<a href='%s'>%s</a>"
         # maximum message size
         self.l = l
@@ -135,7 +136,7 @@ class DialogAgent():
             # reset goal
             return TEMPLATES[self.lang]['not_found'], []
         next_page = self.page + self.l
-        message += '<br>'.join(self.datasets[self.page:next_page])
+        message += '\n\n'.join(self.datasets[self.page:next_page])
         self.page = next_page
         # finish with the batch
         if self.n <= next_page and not self.search_only:
