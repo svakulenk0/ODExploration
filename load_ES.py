@@ -15,8 +15,8 @@ SERVER_ES = ('csvengine', 9200, 'at_csv')
 CONFIG = SERVER_ES
 INDEX = CONFIG[2]
 
-N = 0
 N_DOCS = 2028
+N = N_DOCS
 
 FACETS = {
     # "dataset_id": "raw.id",
