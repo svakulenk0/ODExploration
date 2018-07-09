@@ -107,6 +107,7 @@ class DialogAgent():
             if len(words) > 1:
                 result = self.db.search(keywords=' AND '.join(words))
                 n = result['hits']['total']
+                print(n)
                 if n > 0:
                     messages, all_concepts = self.show_titles(result['hits']['hits'], "Search", n)
                     datasets.extend(messages)
