@@ -131,7 +131,8 @@ class DialogAgent():
                     # message += TEMPLATES[self.lang]['n_datasets'] % (self.n, ' about **%s** ' % keywords)
                     message += TEMPLATES[self.lang]['n_datasets'] % (self.n)
                 else:
-                    message += TEMPLATES[self.lang]['many_datasets'] % keywords
+                    # message += TEMPLATES[self.lang]['many_datasets'] % keywords
+                    message += TEMPLATES[self.lang]['many_datasets']
             else:
                 # reset goal
                 if not self.search_only:
