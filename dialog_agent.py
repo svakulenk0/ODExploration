@@ -127,12 +127,12 @@ class DialogAgent():
                 self.datasets = list(set(datasets))
                 # print datasets
                 self.n = len(self.datasets)
-                if self.n < N:
-                    # message += TEMPLATES[self.lang]['n_datasets'] % (self.n, ' about **%s** ' % keywords)
-                    message += TEMPLATES[self.lang]['n_datasets'] % (self.n)
-                else:
-                    # message += TEMPLATES[self.lang]['many_datasets'] % keywords
-                    message += TEMPLATES[self.lang]['many_datasets']
+                # if self.n < N:
+                #     # message += TEMPLATES[self.lang]['n_datasets'] % (self.n, ' about **%s** ' % keywords)
+                #     message += TEMPLATES[self.lang]['n_datasets'] % (self.n)
+                # else:
+                #     # message += TEMPLATES[self.lang]['many_datasets'] % keywords
+                #     message += TEMPLATES[self.lang]['many_datasets']
             else:
                 # reset goal
                 if not self.search_only:
@@ -173,7 +173,7 @@ class DialogAgent():
             buttons = '\n\n'.join(self.entity_decorator % self.clean(entity) for entity in entities)
             # if start or action != 'Continue':
             # message += TEMPLATES[self.lang]['n_datasets'] % (n, '')
-            message += TEMPLATES[self.lang]['n_datasets'] % n
+            # message += TEMPLATES[self.lang]['n_datasets'] % n
             # if self.goal:
             #     message += TEMPLATES[self.lang]['goal'] % TEMPLATES[self.lang]['connector'].join(["%s: %s" % (goal_facet, self.clean(goal_entity)) for goal_facet, goal_entity in self.goal])
             # else:
