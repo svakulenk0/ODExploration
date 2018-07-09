@@ -6,6 +6,9 @@ from .dialog_agent import DialogAgent
 
 chatbot = DialogAgent()
 
+# restart exploration
+# chatbot.history = []
+# chatbot.goal = []
 
 def setup(opsdroid):
     logging.debug("Loaded ODExploration skill")
@@ -19,15 +22,12 @@ async def exploreOD(opsdroid, config, message):
 
 @match_regex(r'browse')
 async def exploreOD(opsdroid, config, message):
-    chatbot.history = []
-    chatbot.goal = []
-    # start exploration
-    text, actions = chatbot.chat(start=True)
+    text, actions = chatbot.chat()
     print(text)
     await message.respond(text)
 
 
-@match_regex(r'search (.*)')
+@match_regex(r'(.*)')
 async def searchOD(opsdroid, config, message):
     request = message.regex.group(1)
     # print(request)
