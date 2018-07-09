@@ -16,7 +16,7 @@ CONFIG = SERVER_ES
 INDEX = CONFIG[2]
 
 N_DOCS = 2028
-N = N_DOCS
+N = 20
 
 FACETS = {
     # "dataset_id": "raw.id",
