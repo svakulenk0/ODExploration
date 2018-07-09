@@ -109,7 +109,7 @@ class DialogAgent():
             if len(words) > 1:
                 result = self.db.search(keywords=' AND '.join(words))
                 n = result['hits']['total']
-                print(n)
+                print('%d datasets found' % n)
                 if n > 0:
                     messages, all_concepts = self.show_titles(result['hits']['hits'], "Search", n)
                     datasets.extend(messages)
@@ -212,7 +212,8 @@ class DialogAgent():
                 # dataset_id = doc["_source"]["raw"]["id"]
                 # dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
                 dataset_link = DATASET_LINK
-
+                print dataset_link
+                print concepts
                 
                 # show only titles
                 # for facet, entity in concepts:

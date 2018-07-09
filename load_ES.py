@@ -34,7 +34,7 @@ ALL_DATASETS_QUERY = {"match_all": {}}
 TOP_N = 2914
 
 FIELDS = {
-        "dataset_name": {"terms": {"field": "dataset.dataset_name.keyword"}},
+        "title": {"terms": {"field": "dataset.dataset_name.keyword"}},
         # "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
         "keywords": {"terms": {"field": "dataset.keywords.keyword"}},
         "publisher": {"terms": {"field": "dataset.publisher.keyword"}},
@@ -149,7 +149,7 @@ class ESClient():
         facets_values <dict> of facets and entities to find the subset
         '''
         if facets_values:
-            print(facets_values)
+            # print(facets_values)
             # search by entity
             facets = []
             values = []
