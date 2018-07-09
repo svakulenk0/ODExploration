@@ -7,7 +7,7 @@ svakulenko
 Dialog agent for the conversational browsing task
 '''
 
-from .load_ES import ESClient, FACETS, DATASET_LINK
+from .load_ES import ESClient, FACETS, DATASET_LINK, N
 from .ranking import chunk_w_ranks, rank_chunks
 from .aggregations import facets, entities
 
@@ -16,7 +16,8 @@ TEMPLATES = {
         'en': {
             'greeting': "Welcome to the Austrian Open Data portal!",
             'not_found': "No matching datasets found",
-            'n_datasets': "There are %d datasets",
+            'n_datasets': "There are %d datasets:",
+            'many_datasets': "There are many datasets, e.g.:",
             'explore': "\n\nYou can explore them by ",
             'total': " in total.",
             'goal': " for %s",
@@ -125,7 +126,10 @@ class DialogAgent():
                 self.datasets = list(set(datasets))
                 # print datasets
                 self.n = len(self.datasets)
-                message += TEMPLATES[self.lang]['n_datasets'] % self.n
+                if self.n < N:
+                    message += TEMPLATES[self.lang]['n_datasets'] % self.n
+                else:
+                    message += TEMPLATES[self.lang]['many_datasets']
             else:
                 # reset goal
                 if not self.search_only:
