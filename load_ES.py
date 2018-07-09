@@ -20,7 +20,7 @@ N = N_DOCS
 
 FACETS = {
     # "dataset_id": "raw.id",
-    "keywords": "dataset.keywords",
+    # "keywords": "dataset.keywords",
     # "categorization": "raw.categorization",
     "title": "dataset.dataset_name",
     "publisher": "dataset.publisher",
@@ -36,7 +36,7 @@ TOP_N = 2914
 FIELDS = {
         "title": {"terms": {"field": "dataset.dataset_name.keyword"}},
         # "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
-        # "keywords": {"terms": {"field": "dataset.keywords.keyword"}},
+        "keywords": {"terms": {"field": "dataset.keywords.keyword"}},
         "publisher": {"terms": {"field": "dataset.publisher.keyword"}},
         # "entities": {"terms": {"field": "column.entities.keyword", "size" : TOP_N}},
         # "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
