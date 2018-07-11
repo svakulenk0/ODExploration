@@ -301,7 +301,7 @@ class DialogAgent():
         if 'aggregations' in result.keys() and n > self.l:
             message, concepts = self.aggregate_entities(result, message, n)
             if not message:
-                return self.reset_exploration()
+                return self.restart()
             return str(message, 'utf-8'), concepts
         # show titles
         elif n > 0:
