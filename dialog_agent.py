@@ -163,8 +163,8 @@ class DialogAgent():
         # skip single entities as uninformative
         # while len(entities) < 2:
             # facet, entities = chunks_rank.get()[1]
-        #     if not entities:
-        #         return None, []
+        if not entities:
+            return None, []
         if self.simulation:
             message += "There are %d datasets. * You can explore them by %s: * %s" % (n, facet, '*'.join(entities))
         else:
