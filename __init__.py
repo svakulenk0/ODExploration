@@ -16,7 +16,7 @@ def setup(opsdroid):
 
 @match_regex(r'help')
 async def exploreOD(opsdroid, config, message):
-    text = "Type 'browse' to explore the data or 'search keyword' for search, e.g. search hund or search schule or search leopoldstadt"
+    text = "Type 'browse' to explore the data or enter keywords to search data, e.g. WU Wien"
     await message.respond(text)
 
 
