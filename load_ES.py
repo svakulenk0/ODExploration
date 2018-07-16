@@ -21,10 +21,13 @@ TOP_N = N_DOCS
 
 FACETS = {
     # "dataset_id": "raw.id",
-    # "keywords": "dataset.keywords",
+    "keywords": "dataset.keywords",
     # "categorization": "raw.categorization",
     "title": "dataset.dataset_name",
-    # "publisher": "dataset.publisher",
+    "cell_value": "row.values.value",
+    "publisher": "dataset.publisher",
+    "metadata_entities": "metadata_labels",
+    "data_entities": "data_labels"
     # "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
@@ -63,7 +66,7 @@ class ESClient():
         # print (keywords)
         # result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}})
         # result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", "dataset.dataset_link"], "query": {"query_string": {"query": keywords}}})
-        result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", DATASET_LINK], "query": {"query_string": {"query": keywords}}, 'highlight': {"pre_tags" : ["*"], "post_tags" : ["*"], 'fields': {'row.values.value': { "number_of_fragments" : 1 }}}})
+        result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", DATASET_LINK], "query": {"query_string": {"query": keywords, "default_operator": "AND", "fields": FACETS.items()}}, 'highlight': {"pre_tags" : ["*"], "post_tags" : ["*"], 'fields': {'row.values.value': { "number_of_fragments" : 1 }}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}, 'highlight': {'fields': {'content': {}}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})
         return result

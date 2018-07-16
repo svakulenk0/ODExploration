@@ -109,7 +109,8 @@ class DialogAgent():
             words = keywords.split()
             print(words)
             # if len(words) > 0:
-            result = self.db.search(keywords=' AND '.join(words))
+            # result = self.db.search(keywords=' AND '.join(words))
+            result = self.db.search(keywords=' '.join(words))
             n = result['hits']['total']
             print('%d datasets found' % n)
             if n > 0:
