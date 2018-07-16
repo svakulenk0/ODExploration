@@ -28,7 +28,8 @@ FACETS = {
     # "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
-DATASET_LINK = "dataset.dataset_link"
+# DATASET_LINK = "dataset.dataset_link"
+DATASET_LINK = "properties.url"
 
 ALL_DATASETS_QUERY = {"match_all": {}}
 
@@ -62,7 +63,7 @@ class ESClient():
         # print (keywords)
         # result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}})
         # result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", "dataset.dataset_link"], "query": {"query_string": {"query": keywords}}})
-        result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", "dataset.dataset_link"], "query": {"query_string": {"query": keywords}}, 'highlight': {"pre_tags" : ["*"], "post_tags" : ["*"], 'fields': {'row.values.value': {}}}})
+        result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", DATASET_LINK], "query": {"query_string": {"query": keywords}}, 'highlight': {"pre_tags" : ["*"], "post_tags" : ["*"], 'fields': {'row.values.value': {}}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}, 'highlight': {'fields': {'content': {}}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})
         return result
