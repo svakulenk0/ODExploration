@@ -249,7 +249,7 @@ class DialogAgent():
                         # try:
                         # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
                         message += "\n\n%s" % (self.item_decorator % (self.clean(entity), dataset_link))
-                print doc
+                print (doc)
                 highlights = doc["highlight"]["row"]["values"]["value"]
                 for highlight in highlights:
                     message += "\n\n%s" % highlight
