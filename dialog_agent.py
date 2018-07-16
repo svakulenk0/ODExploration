@@ -256,11 +256,12 @@ class DialogAgent():
                     # try:
                     # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
                     # print (entity)
-            message += "\n\n%s" % (self.item_decorator % (self.clean(doc['_source']['dataset']['dataset_name']), dataset_link))
-            if 'highlight' in doc:
-                highlights = doc["highlight"]["row.values.value"]
-                for highlight in highlights:
-                    message += "\n\n%s" % highlight
+            if 'dataset' in doc['_source']:
+                message += "\n\n%s" % (self.item_decorator % (self.clean(doc['_source']['dataset']['dataset_name']), dataset_link))
+                if 'highlight' in doc:
+                    highlights = doc["highlight"]["row.values.value"]
+                    for highlight in highlights:
+                        message += "\n\n%s" % highlight
 
                         # message += "\n\n%s" % (self.clean(entity))
                         # message += "\n\n%s: %s" % (facet, self.clean(entity))
