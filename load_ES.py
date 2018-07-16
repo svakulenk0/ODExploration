@@ -61,7 +61,8 @@ class ESClient():
     def search(self, keywords, limit=N):
         # print (keywords)
         # result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}})
-        result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", "dataset.dataset_link"], "query": {"query_string": {"query": keywords}}})
+        # result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", "dataset.dataset_link"], "query": {"query_string": {"query": keywords}}})
+        result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", "dataset.dataset_link"], "query": {"query_string": {"query": keywords}}, 'highlight': {'fields': {'row.values.value': {}}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}, 'highlight': {'fields': {'content': {}}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})
         return result
