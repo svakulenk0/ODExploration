@@ -145,7 +145,7 @@ class DialogAgent():
             return TEMPLATES[self.lang]['not_found'], []
         next_page = self.page + self.l
         # message += '\n\n'.join(self.datasets[self.page:next_page])
-        print self.datasets
+        print (self.datasets)
         message = '\n\n'.join(self.datasets[:self.l])
         self.page = next_page
         # finish with the batch
