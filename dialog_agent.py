@@ -203,19 +203,19 @@ class DialogAgent():
         for doc in results:
             message = ""
             # show all entities of the item
-            concepts = self.db.compile_item_entities(doc['_source'])
-            all_concepts.extend(concepts)
-            if self.simulation:
-                # show all entities that belong to the item
-                message += "\n" + '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts if (facet, entity) not in self.history])
-                # print message
-                # n_new += 1
-                # show only titles
-                # for facet, entity in concepts:
-                #     if facet == 'title':
-                #         message += '\n' +  entity
-                        # communicated_concepts.append((facet, entity))
-            else:
+            # concepts = self.db.compile_item_entities(doc['_source'])
+            # all_concepts.extend(concepts)
+            # if self.simulation:
+            #     # show all entities that belong to the item
+            #     message += "\n" + '\n'.join(["%s: %s" % (facet, entity) for facet, entity in concepts if (facet, entity) not in self.history])
+            #     # print message
+            #     # n_new += 1
+            #     # show only titles
+            #     # for facet, entity in concepts:
+            #     #     if facet == 'title':
+            #     #         message += '\n' +  entity
+            #             # communicated_concepts.append((facet, entity))
+            # else:
                 # web-based chat html
                 # get link to the dataset
                 # dataset_id = doc["_source"]["raw"]["id"]
@@ -225,39 +225,39 @@ class DialogAgent():
                 # except:
                 #     print("except!")
                 # print (doc["_source"])
-                print (doc)
+            print (doc)
 
-                # dataset_link = doc["_source"][DATASET_LINK]
-                dataset_link = doc["_id"]
-                # dataset_link = "hi"
-                # print (dataset_link)
-                # print (concepts)
+            # dataset_link = doc["_source"][DATASET_LINK]
+            dataset_link = doc["_id"]
+            # dataset_link = "hi"
+            # print (dataset_link)
+            # print (concepts)
+            
+            # show only titles
+            # for facet, entity in concepts:
+            #     if facet == 'title':
+            #         message += '<br>' + self.item_decorator % (dataset_link, entity)
+
+            # show all entities that belong to the item
+            # for facet, entity in concepts:
                 
-                # show only titles
-                # for facet, entity in concepts:
-                #     if facet == 'title':
-                #         message += '<br>' + self.item_decorator % (dataset_link, entity)
-
-                # show all entities that belong to the item
-                for facet, entity in concepts:
+            #     # if facet == 'title' or (facet, entity) not in self.history:
+            #     # if facet == 'title' or (facet, entity) not in self.history:
                     
-                    # if facet == 'title' or (facet, entity) not in self.history:
-                    # if facet == 'title' or (facet, entity) not in self.history:
-                        
-                    # break on reaching the cognitive limit
-                    # if n_concepts > self.l:
-                    #     # self.history.extend(communicated_concepts)
-                    #     return datasets, all_concepts
-                    if facet == 'title':
-                        # if (facet, entity) not in self.history:
-                        # try:
-                        # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
-                        print (entity)
-                        message += "\n\n%s" % (self.item_decorator % (self.clean(entity), dataset_link))
-                if 'highlight' in doc:
-                    highlights = doc["highlight"]["row.values.value"]
-                    for highlight in highlights:
-                        message += "\n\n%s" % highlight
+            #     # break on reaching the cognitive limit
+            #     # if n_concepts > self.l:
+            #     #     # self.history.extend(communicated_concepts)
+            #     #     return datasets, all_concepts
+            #     if facet == 'title':
+                    # if (facet, entity) not in self.history:
+                    # try:
+                    # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
+                    # print (entity)
+            message += "\n\n%s" % (self.item_decorator % (self.clean(doc['_source']['dataset']['dataset_name']), dataset_link))
+            if 'highlight' in doc:
+                highlights = doc["highlight"]["row.values.value"]
+                for highlight in highlights:
+                    message += "\n\n%s" % highlight
 
                         # message += "\n\n%s" % (self.clean(entity))
                         # message += "\n\n%s: %s" % (facet, self.clean(entity))
