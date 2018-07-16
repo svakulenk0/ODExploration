@@ -10,7 +10,7 @@ import string
 from elasticsearch import Elasticsearch
 
 
-SERVER_ES = ('csvengine', 9200, 'at_csv')
+SERVER_ES = ('csvengine', 9200, 'at_csv_geo')
 
 CONFIG = SERVER_ES
 INDEX = CONFIG[2]
@@ -34,13 +34,13 @@ ALL_DATASETS_QUERY = {"match_all": {}}
 
 
 FIELDS = {
-        "title": {"terms": {"field": "dataset.dataset_name.keyword"}},
+        "title": {"terms": {"field": "dataset.dataset_name.keyword", "size" : TOP_N}},
         # "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
-        "keywords": {"terms": {"field": "dataset.keywords.keyword"}},
-        "publisher": {"terms": {"field": "dataset.publisher.keyword"}},
+        "keywords": {"terms": {"field": "dataset.keywords.keyword", "size" : TOP_N}},
+        "publisher": {"terms": {"field": "dataset.publisher.keyword", "size" : TOP_N}},
         # "entities": {"terms": {"field": "column.entities.keyword", "size" : TOP_N}},
-        # "metadata_entities": {"terms": {"field": "table.properties.metadata_entities.keyword", "size" : TOP_N}},
-        # "data_entities": {"terms": {"field": "table.properties.data_entities.keyword", "size" : TOP_N}},
+        "metadata_entities": {"terms": {"field": "metadata_labels.keyword", "size" : TOP_N}},
+        "data_entities": {"terms": {"field": "data_labels.keyword", "size" : TOP_N}},
         }
 
 
