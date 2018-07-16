@@ -24,7 +24,7 @@ FACETS = {
     "keywords": "dataset.keywords",
     # "categorization": "raw.categorization",
     "title": "dataset.dataset_name^5",
-    "dataset_description": "dataset.dataset_description^2",
+    "dataset_description": "dataset.dataset_description",
     "cell_value": "row.values.value",
     "publisher": "dataset.publisher",
     "metadata_entities": "metadata_labels",
