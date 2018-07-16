@@ -63,7 +63,7 @@ class ESClient():
         # print (keywords)
         # result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}})
         # result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", "dataset.dataset_link"], "query": {"query_string": {"query": keywords}}})
-        result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", DATASET_LINK], "query": {"query_string": {"query": keywords}}, 'highlight': {"pre_tags" : ["*"], "post_tags" : ["*"], 'fields': {'row.values.value': {}}}})
+        result = self.es.search(index=self.index, size=limit, body={"_source": ["dataset.dataset_name", DATASET_LINK], "query": {"query_string": {"query": keywords}}, 'highlight': {"pre_tags" : ["*"], "post_tags" : ["*"], 'fields': {'row.values.value': { "number_of_fragments" : 1 }}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"query_string": {"query": keywords}}, 'highlight': {'fields': {'content': {}}}})
         # result = self.es.search(index=self.index, size=limit, body={"query": {"match": {"_all": keywords}}})
         return result
