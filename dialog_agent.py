@@ -261,7 +261,8 @@ class DialogAgent():
                 if 'highlight' in doc:
                     # highlights = doc["highlight"]["row.values.value"]
                     for key in doc["highlight"]:
-                        message += "\n\n%s" % doc["highlight"][key]
+                        for highlight in doc["highlight"][key]:
+                            message += "\n\n%s" % highlight
 
                         # message += "\n\n%s" % (self.clean(entity))
                         # message += "\n\n%s: %s" % (facet, self.clean(entity))
