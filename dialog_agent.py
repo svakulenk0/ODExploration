@@ -59,7 +59,8 @@ class DialogAgent():
         # self.entity_decorator = '''<button class='item' onclick="pivotEntity('%s','%s')">%s</button>'''
         # self.entity_decorator = '''**%s**'''
         self.entity_decorator = '''%s'''
-        self.item_decorator = "<a href='%s'>%s</a>"
+        # self.item_decorator = "<a href='%s'>%s</a>"
+        self.item_decorator = "[%s](%s)"
         # maximum message size
         self.l = l
         # default exploration direction corresponds to the whole information space
@@ -218,14 +219,14 @@ class DialogAgent():
                 # get link to the dataset
                 # dataset_id = doc["_source"]["raw"]["id"]
                 # dataset_link = "http://www.data.gv.at/katalog/dataset/%s" % dataset_id
-                try:
-                    print (doc["_source"]['dataset']['dataset_link'])
-                except:
-                    print("except!")
-                # dataset_link = doc["_source"][DATASET_LINK]
-                dataset_link = "hi"
+                # try:
+                #     print (doc["_source"]['dataset']['dataset_link'])
+                # except:
+                #     print("except!")
+                dataset_link = doc["_source"][DATASET_LINK]
+                # dataset_link = "hi"
                 # print (dataset_link)
-                print (concepts)
+                # print (concepts)
                 
                 # show only titles
                 # for facet, entity in concepts:
@@ -246,7 +247,8 @@ class DialogAgent():
                         # if (facet, entity) not in self.history:
                         # try:
                         # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
-                        message += "\n\n%s" % (self.clean(entity))
+                        message += "\n\n%s" % (self.item_decorator % (self.clean(entity), dataset_link))
+                        # message += "\n\n%s" % (self.clean(entity))
                         # message += "\n\n%s: %s" % (facet, self.clean(entity))
                 # message += "\n\n%s" % doc['highlight']
                         # except:
