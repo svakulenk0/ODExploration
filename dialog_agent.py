@@ -126,7 +126,8 @@ class DialogAgent():
         #             message += "%d datasets for %s in %s<br>" % (n, keywords, facet)
         # return message, []
             if datasets:
-                self.datasets = list(set(datasets))
+                self.datasets = list(datasets)
+                # self.datasets = list(set(datasets))
                 # print datasets
                 self.n = len(self.datasets)
                 # if self.n < N:
@@ -145,7 +146,7 @@ class DialogAgent():
             return TEMPLATES[self.lang]['not_found'], []
         next_page = self.page + self.l
         # message += '\n\n'.join(self.datasets[self.page:next_page])
-        print (self.datasets)
+        # print (self.datasets)
         message = '\n\n'.join(self.datasets[:self.l])
         self.page = next_page
         # finish with the batch
