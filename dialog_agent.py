@@ -252,6 +252,7 @@ class DialogAgent():
                         # if (facet, entity) not in self.history:
                         # try:
                         # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
+                        print (entity)
                         message += "\n\n%s" % (self.item_decorator % (self.clean(entity), dataset_link))
                 if 'highlight' in doc:
                     highlights = doc["highlight"]["row.values.value"]
