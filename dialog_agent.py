@@ -251,7 +251,7 @@ class DialogAgent():
                         message += "\n\n%s" % (self.item_decorator % (self.clean(entity), dataset_link))
                 print (doc)
                 if 'highlight' in doc:
-                    highlights = doc["highlight"]["row"]["values"]["value"]
+                    highlights = doc["highlight"]["row.values.value"]
                     for highlight in highlights:
                         message += "\n\n%s" % highlight
 
