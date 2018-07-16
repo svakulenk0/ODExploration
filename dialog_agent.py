@@ -223,6 +223,7 @@ class DialogAgent():
                 #     print (doc["_source"]['dataset']['dataset_link'])
                 # except:
                 #     print("except!")
+                print doc["_source"]
                 dataset_link = doc["_source"][DATASET_LINK]
                 # dataset_link = "hi"
                 # print (dataset_link)
