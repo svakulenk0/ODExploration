@@ -225,8 +225,9 @@ class DialogAgent():
                 #     print("except!")
                 # print (doc["_source"])
                 print (doc)
-                
-                dataset_link = doc["_source"][DATASET_LINK]
+
+                # dataset_link = doc["_source"][DATASET_LINK]
+                dataset_link = doc["_id"]
                 # dataset_link = "hi"
                 # print (dataset_link)
                 # print (concepts)
