@@ -224,7 +224,9 @@ class DialogAgent():
                 # except:
                 #     print("except!")
                 # print (doc["_source"])
-                dataset_link = doc["_source"]['dataset']['dataset_link']
+                print (doc)
+                
+                dataset_link = doc["_source"][DATASET_LINK]
                 # dataset_link = "hi"
                 # print (dataset_link)
                 # print (concepts)
@@ -249,7 +251,6 @@ class DialogAgent():
                         # try:
                         # message += "<br>%s: %s" % (facet, self.item_decorator % (dataset_link, self.clean(entity)))
                         message += "\n\n%s" % (self.item_decorator % (self.clean(entity), dataset_link))
-                print (doc)
                 if 'highlight' in doc:
                     highlights = doc["highlight"]["row.values.value"]
                     for highlight in highlights:
