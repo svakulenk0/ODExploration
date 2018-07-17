@@ -231,7 +231,10 @@ class DialogAgent():
             print (doc)
 
             # dataset_link = doc["_source"][DATASET_LINK]
-            dataset_link = doc["_id"]
+            
+            # TODO link to Sebastian's interface for table view
+            dataset_link = "http://data.wu.ac.at/odgraphsearch/render/" + doc["_id"]
+
             # dataset_link = "hi"
             # print (dataset_link)
             # print (concepts)
