@@ -21,7 +21,7 @@ TOP_N = N_DOCS
 
 FACETS = {
     # "dataset_id": "raw.id",
-    "keywords": "dataset.keywords",
+    # "keywords": "dataset.keywords",
     # "categorization": "raw.categorization",
     "title": "dataset.dataset_name^5",
     "dataset_description": "dataset.dataset_description",
@@ -32,8 +32,8 @@ FACETS = {
     # "license": "raw.license_id",
     # "dataset_link": "dataset.dataset_link",
 }
-# DATASET_LINK = "dataset.dataset_link"
-DATASET_LINK = "properties.url"
+DATASET_LINK = "dataset.dataset_link"
+# DATASET_LINK = "properties.url"
 
 ALL_DATASETS_QUERY = {"match_all": {}}
 
@@ -41,7 +41,7 @@ ALL_DATASETS_QUERY = {"match_all": {}}
 FIELDS = {
         "title": {"terms": {"field": "dataset.dataset_name.keyword", "size" : TOP_N}},
         # "name": {"terms": {"field": "table.properties.dataset.name.text", "size" : TOP_N}},
-        "keywords": {"terms": {"field": "dataset.keywords.keyword", "size" : TOP_N}},
+        # "keywords": {"terms": {"field": "dataset.keywords.keyword", "size" : TOP_N}},
         "publisher": {"terms": {"field": "dataset.publisher.keyword", "size" : TOP_N}},
         # "entities": {"terms": {"field": "column.entities.keyword", "size" : TOP_N}},
         "metadata_entities": {"terms": {"field": "metadata_labels.keyword", "size" : TOP_N}},
