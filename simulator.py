@@ -47,7 +47,7 @@ class Seeker():
         if doc:
             self.goal = set(self.db.compile_item_entities(doc))
         else:
-            print "Goal not found"
+            print ("Goal not found")
         # self.goal = random.choice(items)
 
     def reply_random(self, actions):
@@ -79,7 +79,7 @@ def test_define_random_goal():
     check a random item is assigned as a goal the simulated user gets
     '''
     user = Seeker()
-    print user.goal
+    print (user.goal)
 
 
 def simulate(l=6, goal='random'):
@@ -92,10 +92,10 @@ def simulate(l=6, goal='random'):
         chatbot = DialogAgent(l, simulation=True)
         # start the conversation
         # show default greeting
-        print '\n1 A:', chatbot.greeting
+        print ('\n1 A:', chatbot.greeting)
         # start exploration
         message, actions = chatbot.chat()
-        print message
+        print (message)
 
         # count number of turns
         n_turns = 1
@@ -107,13 +107,13 @@ def simulate(l=6, goal='random'):
                     message = action[1]
                 else:
                     message = action
-                print '\nU: %s\n' % message.encode('utf8')
+                print ('\nU: %s\n' % message.encode('utf8'))
                 # success-stopping condition
                 if action == 'Thank you!':
                     break
             # continue exploration
             message, actions = chatbot.chat(action)
-            print n_turns, 'A:', message
+            print (n_turns, 'A:', message)
             n_turns += 1
 
         return n_turns
@@ -130,12 +130,12 @@ def run_evaluation(l=8, k=500):
         n_turns.append(simulate(l))
 
     # show stats
-    print "Cognitive resource:", l
-    print "\nDistribution of the number of turns per dialog (%d runs):" % k
-    print sorted(n_turns)
-    print "Minimum number of turns per dialog", min(n_turns)
-    print "Average number of turns per dialog", reduce(lambda x, y: x + y, n_turns) / len(n_turns)
-    print "Maximum number of turns per dialog", max(n_turns)
+    print ("Cognitive resource:", l)
+    print ("\nDistribution of the number of turns per dialog (%d runs):" % k)
+    print (sorted(n_turns))
+    print ("Minimum number of turns per dialog", min(n_turns))
+    print ("Average number of turns per dialog", reduce(lambda x, y: x + y, n_turns) / len(n_turns))
+    print ("Maximum number of turns per dialog", max(n_turns))
 
 
 def evaluate_sensitivity():
@@ -147,8 +147,8 @@ def goal_distance(goal=[MAX_GOAL], ls=L_RANGE):
     for l in ls:
         n_turns = simulate(l, goal)
         # show stats
-        print "Cognitive resource:", l
-        print "Number of turns per dialog", n_turns
+        print ("Cognitive resource:", l)
+        print ("Number of turns per dialog", n_turns)
 
 
 # def goals_from_file(path='./results/user_study/correct_results_immigration.txt'):
@@ -156,7 +156,7 @@ def goals_from_file(path='./results/user_study/correct_results_retirement.txt'):
     with open(path) as f:
         goals = f.readlines()
         for goal in goals:
-            print goal
+            print (goal)
             goal_distance(goal, ls=[6])
 
 
@@ -164,5 +164,5 @@ if __name__ == '__main__':
     # fix encoding
     reload(sys)
     sys.setdefaultencoding('utf8')
-    # evaluate_sensitivity()
-    goals_from_file()
+    evaluate_sensitivity()
+    # goals_from_file()

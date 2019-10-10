@@ -4,11 +4,11 @@ svakulenko
 
 Ranking for nodes and chunks of the information model
 '''
-from queue import PriorityQueue
+from Queue import PriorityQueue
 from heapq import heappush, nlargest
 import numpy as np
 
-from .aggregations import entities, n_items
+from aggregations import entities, n_items
 
 
 def rank_nodes(entities):
