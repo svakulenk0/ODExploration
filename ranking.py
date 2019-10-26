@@ -4,7 +4,7 @@ svakulenko
 
 Ranking for nodes and chunks of the information model
 '''
-from Queue import PriorityQueue
+from queue import PriorityQueue
 from heapq import heappush, nlargest
 import numpy as np
 
@@ -129,7 +129,7 @@ def gini_facets(entities):
         # entities count distribution of the attribute
         distribution = [entity['doc_count'] for entity in counts['buckets']]
         skewness = gini(distribution)
-        print facet, skewness
+        print( facet, skewness )
         # chunks[facet].append((entity['doc_count'], entity['key']))
     # return chunks
 
@@ -141,14 +141,14 @@ def test_gini_facets():
 def test_rank_nodes(topn=20):
     ranking = rank_nodes(entities)
     for i in range(topn):
-        print ranking.get()
+        print( ranking.get() )
 
 def test_chunk(n=2):
-    print chunk(entities)[:n]
+    print( chunk(entities)[:n] )
 
 
 def test_chunk_w_ranks(n=2):
-    print chunk_w_ranks(entities)
+    print( chunk_w_ranks(entities) )
 
 
 def test_rank_chunks(l=3, n=4, entities=entities):
@@ -161,7 +161,7 @@ def test_rank_chunks(l=3, n=4, entities=entities):
     for i in range(n):
         chunks_rank = rank_chunks(chunks, l, history)
         facet, entities = chunks_rank.get()[1]
-        print facet, entities
+        print( facet, entities )
         concepts = [(facet, entity) for entity in entities]
         history.extend(concepts)
 

@@ -25,7 +25,7 @@ def home():
     message, actions = chatbot.chat(start=True)
     # convert to html
     # message = message.replace('\n', '<br>')
-    return render_template("browse.html", text=message)
+    return render_template("browse.html", text=str(message,'utf-8'))
     # return render_template("index.html")
 
 
