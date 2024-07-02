@@ -4,6 +4,23 @@
 
 If you love #government #data but hate faceted search and csv tables? How to make your database talk? How to squeeze a table into a sequence of characters?
 
+
+If you find this work useful, feel free to cite us:
+
+```
+@article{DBLP:journals/corr/abs-2012-03704,
+  author       = {Svitlana Vakulenko and
+                  Vadim Savenkov and
+                  Maarten de Rijke},
+  title        = {Conversational Browsing},
+  journal      = {CoRR},
+  volume       = {abs/2012.03704},
+  year         = {2020},
+  url          = {https://arxiv.org/abs/2012.03704},
+}
+
+```
+
 ## Requirements
 
 source myvenv/bin/activate
